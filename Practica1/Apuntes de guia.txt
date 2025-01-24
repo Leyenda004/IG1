@@ -1,0 +1,31 @@
+EDITABLE EN CLASE MAIN.CPP:
+Absolutamente nada, simplemente llama a una instancia de IGApp para empezar.
+
+EDITABLE EN CLASE IGAPP1: 
+Añadir escenas al vector, el resto de funciones no se tocan, son de gestión de escenas, atajos de teclado, gestión de la ventana gráfica, etc.
+
+Solo se crea una escena y se llama en el init.
+mScenes.push_brack(new Scene); Ponemos una nueva escena en el vector de escenas.
+mCamera->set2D(); Ponemos la visión en 2D.
+mScenes[0]->init(); Llamamos al init de la única escena que hemos puesto.
+
+EDITABLE EN SCENE:
+Podemos cambiar el color del background a la escena.
+
+EDITABLE EN CAMARA, SHADER, TEXTURA:
+Aun no se sabe nada, no editar.
+
+
+
+CLASES QUE SE USAN
+
+ENTITY.CPP
+Abs_Entity: Clase abstracta en la que identificamos cualquier objeto que se puede pintar.
+Propiedad Mesh
+
+MESH.CPP
+Es la clase que guarda todos los puntos y los renderiza.
+"Ahora mismo" cualquier objeto es una unión de puntos situados en unas coordenadas, tenemos los vértices y los colores en vectores.
+Hay que crear mallas nuevas.
+
+

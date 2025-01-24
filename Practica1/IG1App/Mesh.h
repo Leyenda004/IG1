@@ -10,7 +10,7 @@ class Mesh
 {
 public:
 	static Mesh* createRGBAxes(GLdouble l); // creates a new 3D-RGB axes mesh
-
+	
 	Mesh();
 	virtual ~Mesh();
 
@@ -25,6 +25,10 @@ public:
 
 	void load();
 	void unload();
+
+	//EDITABLE
+
+	static Mesh* generateRegularPolygon(GLuint num, GLdouble r);
 
 protected:
 	GLuint mPrimitive =
