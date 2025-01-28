@@ -7,8 +7,7 @@ public:
     glm::dvec4 mColor;
 
     SingleColorEntity();
-
-    SingleColorEntity(glm::dvec4);
+    SingleColorEntity(glm::dvec4 color);
 
     inline glm::dvec4 color() const { return mColor; }
     inline void setColor(glm::dvec4 color) { mColor = color; }
