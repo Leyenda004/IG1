@@ -1,6 +1,8 @@
 #include "SingleColorEntity.h"
 
-SingleColorEntity::SingleColorEntity(glm::dvec4 color = glm::dvec4(1)/*?*/) {
+
+// hay que usar esta!!!
+SingleColorEntity::SingleColorEntity(glm::dvec4 color /*= glm::dvec4(1)*//*?*/) {
 	mShader = Shader::get("simple");
 }
 

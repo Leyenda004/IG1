@@ -1,5 +1,5 @@
 #include "Scene.h"
-//#include "RegularPolygon.h"
+#include "RegularPolygon.h"
 
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
@@ -20,7 +20,7 @@ Scene::init()
 	//gObjects.push_back(new RGBAxes(1200.0));
 
 	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	//gObjects.push_back(new RegularPolygon());
+	gObjects.push_back(new RegularPolygon());
 }
 
 Scene::~Scene()

@@ -111,3 +111,23 @@ Mesh::createRGBAxes(GLdouble l)
 
 	return mesh;
 }
+
+//EDITABLE
+
+Mesh*
+Mesh::generateRegularPolygon(GLuint num, GLdouble r) {
+	Mesh* mesh = new Mesh();
+
+	mesh->mPrimitive = GL_LINE_LOOP;
+	mesh->mNumVertices = num;
+	mesh->vVertices.reserve(mesh->mNumVertices);
+
+	int x, y;
+	for (int i = 0; i < num; ++i) {
+		x = /*cx +*/ r * glm::cos(glm::radians(360. / num));
+		y = /*cy +*/ r * glm::sin(glm::radians(360. / num));
+		mesh->vVertices.emplace_back(x, y);
+
+	}
+	return mesh;
+}

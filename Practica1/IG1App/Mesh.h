@@ -26,6 +26,10 @@ public:
 	void load();
 	void unload();
 
+	//EDITABLE
+
+	static Mesh* generateRegularPolygon(GLuint num, GLdouble r);
+
 protected:
 	GLuint mPrimitive =
 	  GL_TRIANGLES;          // graphic primitive: GL_POINTS, GL_LINES, GL_TRIANGLES, ...
