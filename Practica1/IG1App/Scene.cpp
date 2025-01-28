@@ -1,4 +1,5 @@
 #include "Scene.h"
+#include "RegularPolygon.h"
 
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
@@ -16,10 +17,10 @@ Scene::init()
 
 	// Graphics objects (entities) of the scene
 	gObjects.push_back(new RGBAxes(400.0));
-
+	//gObjects.push_back(new RGBAxes(1200.0));
 
 	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	//gObjects.push_back()
+	//gObjects.push_back(new RegularPolygon());
 }
 
 Scene::~Scene()

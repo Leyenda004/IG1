@@ -124,8 +124,8 @@ Mesh::generateRegularPolygon(GLuint num, GLdouble r) {
 
 	int x, y;
 	for (int i = 0; i < num; ++i) {
-		x = /*cx +*/ r * glm::cos(glm::radians(360 / num));
-		y = /*cy +*/ r * glm::sin(glm::radians(360 / num));
+		x = /*cx +*/ r * glm::cos(glm::radians(360.0 / num));
+		y = /*cy +*/ r * glm::sin(glm::radians(360.0 / num));
 		mesh->vVertices.emplace_back(x, y);
 
 	}
