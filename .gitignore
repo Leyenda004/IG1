@@ -398,3 +398,5 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+/Practica1/.vs/IGProjects_x64_VS2022/v17
+Practica1/.vs/IGProjects_x64_VS2022/v17/Browse.VC.db
