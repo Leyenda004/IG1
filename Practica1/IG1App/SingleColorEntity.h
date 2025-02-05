@@ -3,8 +3,9 @@
 class SingleColorEntity :
     public Abs_Entity
 {
-public:
+private:
     glm::dvec4 mColor;
+public:
 
     SingleColorEntity();
     SingleColorEntity(glm::dvec4 color);

@@ -14,10 +14,10 @@ SingleColorEntity::SingleColorEntity(glm::dvec4 color /*= glm::dvec4(1)*//*?*/) 
 
 void SingleColorEntity::render(mat4 const& modelViewMat) const {
 	if (mMesh != nullptr) {
-		//mat4 aMat = mColor * mModelMat;
-		mShader->setUniform("color", modelViewMat/*mColor o modelViewMat??*/);
-		//mShader->use();
-		//upload(aMat);
+		mat4 aMat = modelViewMat * mModelMat;
+		mShader->use();
+		mShader->setUniform("color", (vec4)mColor/*mColor o modelViewMat??*/);
+		upload(aMat);
 		mMesh->render();
 	}
 }

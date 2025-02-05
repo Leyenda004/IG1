@@ -121,15 +121,14 @@ Mesh::generateRegularPolygon(GLuint num, GLdouble r) {
 	mesh->mPrimitive = GL_LINE_LOOP;
 	mesh->mNumVertices = num;
 	mesh->vVertices.reserve(mesh->mNumVertices);
-	mesh->vColors.reserve(mesh->mNumVertices);
+	//mesh->vColors.reserve(mesh->mNumVertices);
 	//PLANO X, PLANO Y, PLANO Z
 	int x = 0, y = 0, z = 0;
 	for (int i = 0; i < num; ++i) {
 		x = r * glm::cos(glm::radians(360. / num));
 		y = r * glm::sin(glm::radians(360. / num));
 		mesh->vVertices.emplace_back(x, y, z);
-		mesh->vColors.emplace_back(0.0, 0.0, 1.0, 1.0);
-
+		//mesh->vColors.emplace_back(1.0, 1.0, 1.0, 1.0);
 	}
 	return mesh;
 }
