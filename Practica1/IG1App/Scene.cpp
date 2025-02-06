@@ -20,7 +20,9 @@ Scene::init()
 	//gObjects.push_back(new RGBAxes(1200.0));
 
 	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	gObjects.push_back(new RegularPolygon());
+	// COLOR , LADOS, DISTANCIA DESDE EL CENTRO
+	gObjects.push_back(new RegularPolygon(dvec4(1.0f,1.0f,1.0f,1.0f),5,100.0f));
+	gObjects.push_back(new RegularPolygon(dvec4(1.0f, 1.0f, 1.0f, 1.0f), 10, 100.0f));
 }
 
 Scene::~Scene()

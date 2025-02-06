@@ -125,8 +125,8 @@ Mesh::generateRegularPolygon(GLuint num, GLdouble r) {
 	//PLANO X, PLANO Y, PLANO Z
 	GLdouble ang = 90.0f;
 	GLdouble diff = 360.0f / num;
-	int x = 0, y = 0, z = 0;
-	for (int i = 0; i < num; ++i) {
+	GLdouble x = 0.0f, y = 0.0f, z = 0.0f;
+	for (GLint i = 0; i < num; ++i) {
 		x = r * cos(radians(ang));
 		y = r * sin(radians(ang));
 		ang += diff;
