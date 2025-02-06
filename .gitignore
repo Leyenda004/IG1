@@ -400,3 +400,5 @@ FodyWeavers.xsd
 *.sln.iml
 /Practica1/.vs/IGProjects_x64_VS2022/v17
 Practica1/.vs/IGProjects_x64_VS2022/v17/Browse.VC.db
+/Practica1/.vs
+Practica1/.vs/IGProjects_x64_VS2022/v17/.suo
