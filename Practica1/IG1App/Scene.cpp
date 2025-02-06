@@ -21,8 +21,8 @@ Scene::init()
 
 	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	// COLOR , LADOS, DISTANCIA DESDE EL CENTRO
-	gObjects.push_back(new RegularPolygon(dvec4(1.0f,1.0f,1.0f,1.0f),5,100.0f));
-	gObjects.push_back(new RegularPolygon(dvec4(1.0f, 1.0f, 1.0f, 1.0f), 10, 100.0f));
+	gObjects.push_back(new RegularPolygon(dvec4(0.0f,1.0f,1.0f,1.0f),3,200.0f));
+	gObjects.push_back(new RegularPolygon(dvec4(1.0f,0.0f,1.0f,1.0f),32,200.0f));
 }
 
 Scene::~Scene()
