@@ -1,5 +1,6 @@
 #include "RGBTriangle.h"
 
-RGBTriangle::RGBTriangle() : EntityWithColors() {
-
+RGBTriangle::RGBTriangle(GLdouble radius) : EntityWithColors() {
+	mMesh = Mesh::generateRGBTriangle(radius);
+	load();
 }

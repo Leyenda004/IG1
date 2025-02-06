@@ -121,18 +121,38 @@ Mesh::generateRegularPolygon(GLuint num, GLdouble r) {
 	mesh->mPrimitive = GL_LINE_LOOP;
 	mesh->mNumVertices = num;
 	mesh->vVertices.reserve(mesh->mNumVertices);
-	//mesh->vColors.reserve(mesh->mNumVertices);
 	//PLANO X, PLANO Y, PLANO Z
 	GLdouble ang = 90.0f;
 	GLdouble diff = 360.0f / num;
-	GLdouble x = 0.0f, y = 0.0f, z = 0.0f;
+	GLdouble x = 0.0f, y = 0.0f;
 	for (GLint i = 0; i < num; ++i) {
 		x = r * cos(radians(ang));
 		y = r * sin(radians(ang));
 		ang += diff;
 		mesh->vVertices.emplace_back(x, y, 0.0f);
-		
-		//mesh->vColors.emplace_back(1.0, 1.0, 1.0, 1.0);
 	}
+	return mesh;
+}
+
+Mesh*
+Mesh::generateRGBTriangle(GLdouble r) {
+	Mesh* mesh = new Mesh();
+	mesh->vColors.reserve(3);
+	mesh = Mesh::generateRegularPolygon(3, r);
+	mesh->vColors.emplace_back(1.0f, 0.0f, 0.0f, 1.0f);
+	mesh->vColors.emplace_back(0.0f, 1.0f, 0.0f, 1.0f);
+	mesh->vColors.emplace_back(0.0f, 0.0f, 1.0f, 1.0f);
+	return mesh;
+}
+
+Mesh*
+Mesh::generateRectangle(GLdouble w, GLdouble h) {
+	Mesh* mesh = new Mesh();
+	return mesh;
+}
+
+Mesh*
+Mesh::generateRGBRectangle(GLdouble w, GLdouble h) {
+	Mesh* mesh = new Mesh();
 	return mesh;
 }

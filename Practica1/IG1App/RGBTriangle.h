@@ -2,6 +2,9 @@
 #include "Entity.h"
 class RGBTriangle : public EntityWithColors
 {
-	RGBTriangle();
+private:
+	GLdouble radius;
+public:
+	RGBTriangle(GLdouble radius);
 };
 
