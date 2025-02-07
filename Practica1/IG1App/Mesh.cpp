@@ -135,10 +135,10 @@ Mesh::generateRegularPolygon(GLuint num, GLdouble r) {
 }
 
 Mesh*
-Mesh::generateRGBTriangle(GLdouble r) {
-	Mesh* mesh = new Mesh();
+Mesh::generateRGBTriangle(GLdouble r) {	
+	Mesh* mesh = Mesh::generateRegularPolygon(3, r);
+	mesh->mPrimitive = GL_TRIANGLES;
 	mesh->vColors.reserve(3);
-	mesh = Mesh::generateRegularPolygon(3, r);
 	mesh->vColors.emplace_back(1.0f, 0.0f, 0.0f, 1.0f);
 	mesh->vColors.emplace_back(0.0f, 1.0f, 0.0f, 1.0f);
 	mesh->vColors.emplace_back(0.0f, 0.0f, 1.0f, 1.0f);
@@ -148,11 +148,24 @@ Mesh::generateRGBTriangle(GLdouble r) {
 Mesh*
 Mesh::generateRectangle(GLdouble w, GLdouble h) {
 	Mesh* mesh = new Mesh();
+	mesh->mPrimitive = GL_TRIANGLE_STRIP;
+	mesh->mNumVertices = 4;
+	//PLANO X, PLANO Y, PLANO Z
+	GLdouble x = w, y = h, z = 10.0f;
+	mesh->vVertices.emplace_back(x, y, z);
+	mesh->vVertices.emplace_back(-x, y, z);
+	mesh->vVertices.emplace_back(x, -y, z);
+	mesh->vVertices.emplace_back(-x, -y, z);
 	return mesh;
 }
 
 Mesh*
 Mesh::generateRGBRectangle(GLdouble w, GLdouble h) {
-	Mesh* mesh = new Mesh();
+	Mesh* mesh = generateRectangle(w, h);
+	mesh->vVertices.reserve(4);
+	mesh->vColors.emplace_back(1.0f, 0.0f, 0.0f, 1.0f);
+	mesh->vColors.emplace_back(0.0f, 1.0f, 0.0f, 1.0f);
+	mesh->vColors.emplace_back(0.0f, 1.0f, 0.0f, 1.0f);
+	mesh->vColors.emplace_back(0.0f, 0.0f, 1.0f, 1.0f);
 	return mesh;
 }

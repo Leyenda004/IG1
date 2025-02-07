@@ -7,7 +7,7 @@ SingleColorEntity::SingleColorEntity() {
 	mShader = Shader::get("simple");
 }
 // hay que usar esta!!!
-SingleColorEntity::SingleColorEntity(glm::dvec4 color /*= glm::dvec4(1)*//*?*/) {
+SingleColorEntity::SingleColorEntity(dvec4 color = {0.f, 0.f, 0.f, 1.f}/*?*/) {
 	mColor = color;
 	mShader = Shader::get("simple");
 }

@@ -7,4 +7,3 @@ private:
 public:
 	RGBTriangle(GLdouble radius);
 };
-

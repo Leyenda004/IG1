@@ -1,6 +1,7 @@
 #include "Scene.h"
 #include "RegularPolygon.h"
 #include "RGBTriangle.h"
+#include "RGBRectangle.h"
 
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
@@ -25,6 +26,7 @@ Scene::init()
 	gObjects.push_back(new RegularPolygon(dvec4(0.0f,1.0f,1.0f,1.0f),3,200.0f));
 	gObjects.push_back(new RegularPolygon(dvec4(1.0f,0.0f,1.0f,1.0f),32,200.0f));
 	gObjects.push_back(new RGBTriangle(100.0f));
+	gObjects.push_back(new RGBRectangle(200.0f, 100.0f));
 }
 
 Scene::~Scene()
