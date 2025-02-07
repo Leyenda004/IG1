@@ -47,7 +47,7 @@ EntityWithColors::render(mat4 const& modelViewMat) const
 
 RGBAxes::RGBAxes(GLdouble l)
 {
-	mShader = Shader::get("vcolors");
+	//mShader = Shader::get("vcolors");
 	mMesh = Mesh::createRGBAxes(l);
-	load();
+	//load();
 }

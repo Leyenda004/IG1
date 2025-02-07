@@ -6,7 +6,9 @@
 #include <glm/glm.hpp>   // OpenGL Mathematics
 
 #include "Camera.h"
-#include "Scene.h"
+//#include "Scene.h"
+#include "Scene0.h"
+#include "Scene1.h"
 #include "Viewport.h"
 
 class IG1App

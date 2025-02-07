@@ -78,6 +78,8 @@
     <ClInclude Include="RGBRectangle.h" />
     <ClInclude Include="RGBTriangle.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="Scene0.h" />
+    <ClInclude Include="Scene1.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="SingleColorEntity.h" />
     <ClInclude Include="Texture.h" />
@@ -94,6 +96,8 @@
     <ClCompile Include="RGBRectangle.cpp" />
     <ClCompile Include="RGBTriangle.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="Scene0.cpp" />
+    <ClCompile Include="Scene1.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="SingleColorEntity.cpp" />
     <ClCompile Include="Texture.cpp" />
