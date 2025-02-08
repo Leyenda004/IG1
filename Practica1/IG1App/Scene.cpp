@@ -18,15 +18,6 @@ Scene::init()
 	// Textures
 
 	// Graphics objects (entities) of the scene
-	//gObjects.push_back(new RGBAxes(400.0));
-	//gObjects.push_back(new RGBAxes(1200.0));
-
-	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	// COLOR , LADOS, DISTANCIA DESDE EL CENTRO
-	//gObjects.push_back(new RegularPolygon(dvec4(0.0f,1.0f,1.0f,1.0f),3,200.0f));
-	//gObjects.push_back(new RegularPolygon(dvec4(1.0f,0.0f,1.0f,1.0f),32,200.0f));
-	//gObjects.push_back(new RGBTriangle(100.0f));
-	//gObjects.push_back(new RGBRectangle(200.0f, 100.0f));
 }
 
 Scene::~Scene()
@@ -80,4 +71,12 @@ Scene::render(Camera const& cam) const
 
 	for (Abs_Entity* el : gObjects)
 		el->render(cam.viewMat());
+}
+
+
+void
+Scene::update() {
+	for (Abs_Entity* el : gObjects) {
+		el->update();
+	}
 }

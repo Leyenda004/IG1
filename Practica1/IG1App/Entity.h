@@ -28,6 +28,11 @@ public:
 	void load();
 	void unload();
 
+	// EDITABLE
+
+	// Definicion de metodo vacío? Para que no de error? Por qué se usa el inline?
+	virtual void update() const {};
+
 protected:
 	Mesh* mMesh = nullptr; // the mesh
 	glm::mat4 mModelMat;  // modeling matrix

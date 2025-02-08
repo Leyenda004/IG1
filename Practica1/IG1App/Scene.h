@@ -26,6 +26,9 @@ public:
 	void load();
 	void unload();
 
+	// EDITABLE
+	virtual void update();
+
 protected:
 	void destroy();
 	void setGL();

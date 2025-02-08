@@ -6,4 +6,5 @@ private:
 	GLdouble radius;
 public:
 	RGBTriangle(GLdouble radius);
+	void update() const override;
 };
