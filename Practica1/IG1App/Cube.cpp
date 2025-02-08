@@ -11,7 +11,7 @@ void Cube::render(glm::mat4 const& modelViewMat) const {
 		//mShader->use();
 		//mShader->setUniform("modelView", aMat);
 
-		glDrawArrays(GL_TRIANGLE_STRIP, 0, 36);
+		glDrawArrays(GL_TRIANGLE_STRIP, 0, 14);
 		
 		//// Culling enable
 		//glEnable(GL_CULL_FACE);
