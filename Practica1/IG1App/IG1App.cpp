@@ -29,7 +29,7 @@ IG1App::run() // enters the main event processing loop
 {
 	if (mWindow == 0) // if not intilialized
 		init();
-
+	
 	// IG1App main loop
 	while (!glfwWindowShouldClose(mWindow)) {
 		// Redisplay the window if needed
@@ -37,9 +37,21 @@ IG1App::run() // enters the main event processing loop
 			display();
 			mNeedsRedisplay = false;
 		}
+		if (mUpdateEnabled) {
+			GLdouble time = glfwGetTime();
+			if (time >= (mNextUpdate)){
+				mNextUpdate = time + FRAME_DURATION;
+				mScenes[mCurrentScene]->update();
+				cout << "updating scene: " << mScenes[mCurrentScene] << endl;
+			}
+		}
+		else{
+			cout << "NOT UPDATING SCENE: " << mScenes[mCurrentScene] << endl;
+		}
 
 		// Stop and wait for new events
-		glfwWaitEvents();
+		//glfwWaitEvents();
+		glfwWaitEventsTimeout(mNextUpdate - glfwGetTime());
 	}
 
 	destroy();
@@ -171,8 +183,9 @@ IG1App::key(unsigned int key)
 			mCamera->set2D();
 			break;
 		case 'u':
-			mScenes[mCurrentScene]->update();
+			mUpdateEnabled = !mUpdateEnabled;
 			cout << "pressed u" << endl;
+			break;
 		default:
 			if (key >= '0' && key <= '9' && !changeScene(key - '0'))
 				cout << "[NOTE] There is no scene " << char(key) << ".\n";

@@ -64,6 +64,14 @@ protected:
 	GLFWwindow* mWindow = nullptr; // window's handle
 	int mWinW = 800;               // window's width
 	int mWinH = 600;               // window's height
+
+	//EDITABLE
+
+	const GLdouble FRAME_DURATION = 1.0f;
+	bool mUpdateEnabled = false;
+	GLdouble mNextUpdate = 10.0f;
+	//GLdouble glfwGetTime() { return };
+
 };
 
 #endif //_H_IG1App_H_

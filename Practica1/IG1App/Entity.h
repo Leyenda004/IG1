@@ -31,7 +31,7 @@ public:
 	// EDITABLE
 
 	// Definicion de metodo vacío? Para que no de error? Por qué se usa el inline?
-	virtual void update() const {};
+	virtual void update() {};
 
 protected:
 	Mesh* mMesh = nullptr; // the mesh
