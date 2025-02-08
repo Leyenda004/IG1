@@ -42,16 +42,13 @@ IG1App::run() // enters the main event processing loop
 			if (time >= (mNextUpdate)){
 				mNextUpdate = time + FRAME_DURATION;
 				mScenes[mCurrentScene]->update();
-				cout << "updating scene: " << mScenes[mCurrentScene] << endl;
+				//cout << "updating scene" << endl;
 			}
-		}
-		else{
-			cout << "NOT UPDATING SCENE: " << mScenes[mCurrentScene] << endl;
 		}
 
 		// Stop and wait for new events
 		//glfwWaitEvents();
-		glfwWaitEventsTimeout(mNextUpdate - glfwGetTime());
+		glfwWaitEventsTimeout(glfwGetTime() - mNextUpdate);
 	}
 
 	destroy();
@@ -69,6 +66,7 @@ IG1App::init()
 	mCamera = new Camera(mViewPort);
 	mScenes.push_back(new Scene0);
 	mScenes.push_back(new Scene1);
+	mScenes.push_back(new Scene2);
 
 	mCamera->set2D();
 
@@ -183,8 +181,9 @@ IG1App::key(unsigned int key)
 			mCamera->set2D();
 			break;
 		case 'u':
-			mUpdateEnabled = !mUpdateEnabled;
 			cout << "pressed u" << endl;
+			mUpdateEnabled = !mUpdateEnabled;
+			cout << "mUpdateEnabled = " << mUpdateEnabled << endl;
 			break;
 		default:
 			if (key >= '0' && key <= '9' && !changeScene(key - '0'))

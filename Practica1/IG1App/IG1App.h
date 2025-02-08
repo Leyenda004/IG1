@@ -9,6 +9,7 @@
 //#include "Scene.h"
 #include "Scene0.h"
 #include "Scene1.h"
+#include "Scene2.h"
 #include "Viewport.h"
 
 class IG1App
@@ -66,11 +67,9 @@ protected:
 	int mWinH = 600;               // window's height
 
 	//EDITABLE
-
-	const GLdouble FRAME_DURATION = 1.0f;
+	const GLdouble FRAME_DURATION = 1/24.;
 	bool mUpdateEnabled = false;
-	GLdouble mNextUpdate = 10.0f;
-	//GLdouble glfwGetTime() { return };
+	GLdouble mNextUpdate;
 
 };
 

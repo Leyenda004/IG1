@@ -34,7 +34,3 @@ void RGBTriangle::update() {
 		setModelMat(m2 * m1);
 	}
 }
-
-//RGBTriangle* trian = new RGBTriangle(30.f);
-//trian->setModelMat(translate(trian->modelMat(), vec3(r, 0, 0)));
-//gObjects.push_back(trian);

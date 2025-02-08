@@ -169,3 +169,30 @@ Mesh::generateRGBRectangle(GLdouble w, GLdouble h) {
 	mesh->vColors.emplace_back(0.0f, 0.0f, 1.0f, 1.0f);
 	return mesh;
 }
+
+Mesh*
+Mesh::generateCube(GLdouble length) {
+	int l = length/2;
+	Mesh* mesh = new Mesh();
+	mesh->mPrimitive = GL_TRIANGLE_STRIP;
+	mesh->mNumVertices = 8;
+
+	mesh->vVertices.emplace_back(l, l, l);
+	mesh->vVertices.emplace_back(l, -l, l);
+	mesh->vVertices.emplace_back(l, l, -l);
+	mesh->vVertices.emplace_back(l, -l, -l);
+	mesh->vVertices.emplace_back(-l, -l, -l);
+	mesh->vVertices.emplace_back(-l, l, -l);
+	mesh->vVertices.emplace_back(-l, -l, l);
+	mesh->vVertices.emplace_back(-l, l, l);
+
+
+	//mesh->vVertices.emplace_back(l, -l, l);
+	//mesh->vVertices.emplace_back(-l, -l, l);
+	//mesh->vVertices.emplace_back(-l, l, l);
+	//mesh->vVertices.emplace_back(l, -l, l); //
+	//mesh->vVertices.emplace_back(l, l, l);
+	//mesh->vVertices.emplace_back(-l, l, l); //
+
+	return mesh;
+}
