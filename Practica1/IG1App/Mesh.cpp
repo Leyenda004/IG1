@@ -177,14 +177,19 @@ Mesh::generateCube(GLdouble length) {
 	mesh->mPrimitive = GL_TRIANGLE_STRIP;
 	mesh->mNumVertices = 8;
 
-	mesh->vVertices.emplace_back(l, l, l);
-	mesh->vVertices.emplace_back(l, -l, l);
-	mesh->vVertices.emplace_back(l, l, -l);
-	mesh->vVertices.emplace_back(l, -l, -l);
-	mesh->vVertices.emplace_back(-l, -l, -l);
-	mesh->vVertices.emplace_back(-l, l, -l);
-	mesh->vVertices.emplace_back(-l, -l, l);
-	mesh->vVertices.emplace_back(-l, l, l);
+	mesh->vVertices.emplace_back(l, -l, l);		//1
+	mesh->vVertices.emplace_back(-l, -l, l);	//2
+	mesh->vVertices.emplace_back(-l, -l, -l);	//3
+	mesh->vVertices.emplace_back(-l, l, -l);	//4
+	mesh->vVertices.emplace_back(l, -l, -l);	//5
+	mesh->vVertices.emplace_back(l, l, -l);		//6
+	mesh->vVertices.emplace_back(l, l, l);		//7
+	mesh->vVertices.emplace_back(-l, l, l);		//8
+
+	mesh->vVertices.emplace_back(l, -l, l);		//1
+	mesh->vVertices.emplace_back(-l, -l, l);	//2
+	mesh->vVertices.emplace_back(-l, l, l);		//8
+	mesh->vVertices.emplace_back(-l, l, -l);	//4
 
 
 	//mesh->vVertices.emplace_back(l, -l, l);
