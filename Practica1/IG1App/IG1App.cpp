@@ -42,13 +42,15 @@ IG1App::run() // enters the main event processing loop
 			if (time >= (mNextUpdate)){
 				mNextUpdate = time + FRAME_DURATION;
 				mScenes[mCurrentScene]->update();
-				//cout << "updating scene" << endl;
+				//SE PONE AQUI? :D
+				mNeedsRedisplay = true;
 			}
 		}
 
 		// Stop and wait for new events
 		//glfwWaitEvents();
-		glfwWaitEventsTimeout(glfwGetTime() - mNextUpdate);
+		if (mUpdateEnabled) glfwWaitEventsTimeout(glfwGetTime() - mNextUpdate);
+		else glfwWaitEvents();
 	}
 
 	destroy();

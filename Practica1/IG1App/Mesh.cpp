@@ -174,26 +174,76 @@ Mesh*
 Mesh::generateCube(GLdouble length) {
 	int l = length/2;
 	Mesh* mesh = new Mesh();
-	mesh->mPrimitive = GL_TRIANGLE_STRIP;
-	mesh->mNumVertices = 14;
+
+	mesh->mNumVertices = 36;
 
 	mesh->vVertices.reserve(mesh->mNumVertices);
 
-	mesh->vVertices.emplace_back(l, l, l);		//1
-	mesh->vVertices.emplace_back(-l, l, l);	//2
-	mesh->vVertices.emplace_back(-l, l, -l);	//3
-	mesh->vVertices.emplace_back(-l, -l, -l);	//4
-	mesh->vVertices.emplace_back(l, l, -l);	//5
-	mesh->vVertices.emplace_back(l, -l, -l);		//6
-	mesh->vVertices.emplace_back(l, -l, l);		//7
-	mesh->vVertices.emplace_back(-l, -l, l);		//8
+	//-Y
+	mesh->vVertices.emplace_back(-l, -l, -l);//0
+	mesh->vVertices.emplace_back(l, -l, -l);//1
+	mesh->vVertices.emplace_back(l, -l, l);//2
+	mesh->vVertices.emplace_back(-l, -l, -l);//0
+	mesh->vVertices.emplace_back(l, -l, l);//2
+	mesh->vVertices.emplace_back(-l, -l, l);//3
 
-	mesh->vVertices.emplace_back(l, l, l);		//1
-	mesh->vVertices.emplace_back(-l, l, l);	//2
-	mesh->vVertices.emplace_back(-l, -l, l);		//8
-	mesh->vVertices.emplace_back(-l, l, -l);	//4
+	//-X
+	mesh->vVertices.emplace_back(-l, -l, l);//3
+	mesh->vVertices.emplace_back(-l, l, l);//4
+	mesh->vVertices.emplace_back(-l, l, -l);//5
+	mesh->vVertices.emplace_back(-l, -l, l);//3
+	mesh->vVertices.emplace_back(-l, l, -l);//5
+	mesh->vVertices.emplace_back(-l, -l, -l);//0
+
+	//-Z
+	mesh->vVertices.emplace_back(-l, -l, -l);//0
+	mesh->vVertices.emplace_back(-l, l, -l);//5
+	mesh->vVertices.emplace_back(l, -l, -l);//1
+	mesh->vVertices.emplace_back(l, -l, -l);//1
+	mesh->vVertices.emplace_back(-l, l, -l);//5
+	mesh->vVertices.emplace_back(l, l, -l);//6
+
+	//Y
+	mesh->vVertices.emplace_back(-l, l, l);//4
+	mesh->vVertices.emplace_back(l, l, -l);//6
+	mesh->vVertices.emplace_back(-l, l, -l);//5
+	mesh->vVertices.emplace_back(-l, l, l);//4
+	mesh->vVertices.emplace_back(l, l, l);//7
+	mesh->vVertices.emplace_back(l, l, -l);//6
+
+	//X
+	mesh->vVertices.emplace_back(l, l, -l);//6
+	mesh->vVertices.emplace_back(l, l, l);//7
+	mesh->vVertices.emplace_back(l, -l, -l);//1
+	mesh->vVertices.emplace_back(l, -l, -l);//1
+	mesh->vVertices.emplace_back(l, l, l);//7
+	mesh->vVertices.emplace_back(l, -l, l);//2
+
+	//Z
+	mesh->vVertices.emplace_back(l, -l, l);//2
+	mesh->vVertices.emplace_back(l, l, l);//7
+	mesh->vVertices.emplace_back(-l, -l, l);//3
+	mesh->vVertices.emplace_back(l, l, l);//7
+	mesh->vVertices.emplace_back(-l, l, l);//4
+	mesh->vVertices.emplace_back(-l, -l, l);//3
 
 
+	mesh->mPrimitive = GL_TRIANGLES;
+
+	//mesh->vVertices.emplace_back(l, l, l);		//1
+	//mesh->vVertices.emplace_back(-l, l, l);	//2
+	//mesh->vVertices.emplace_back(-l, l, -l);	//3
+	//mesh->vVertices.emplace_back(-l, -l, -l);	//4
+	//mesh->vVertices.emplace_back(l, l, -l);	//5
+	//mesh->vVertices.emplace_back(l, -l, -l);		//6
+	//mesh->vVertices.emplace_back(l, -l, l);		//7
+	//mesh->vVertices.emplace_back(-l, -l, l);		//8
+	//mesh->vVertices.emplace_back(l, l, l);		//1
+	//mesh->vVertices.emplace_back(-l, l, l);	//2
+	//mesh->vVertices.emplace_back(-l, -l, l);		//8
+	//mesh->vVertices.emplace_back(-l, l, -l);	//4
+
+	//PRUEBA 1
 	//mesh->vVertices.emplace_back(l, -l, l);
 	//mesh->vVertices.emplace_back(-l, -l, l);
 	//mesh->vVertices.emplace_back(-l, l, l);
@@ -202,4 +252,64 @@ Mesh::generateCube(GLdouble length) {
 	//mesh->vVertices.emplace_back(-l, l, l); //
 
 	return mesh;
+}
+
+Mesh* 
+Mesh::generateRGBCubeTriangles(GLdouble length) {
+	Mesh* mesh = generateCube(length);
+	mesh->vColors.reserve(36);
+
+	int r = 0, g = 0, b = 0;
+
+	for (int i = 0; i < 36; ++i) {
+		if ((i >= 0 && i <= 5) || (i >= 18 && i <= 23)) { r = 0; g = 0; b = 1; }
+		if ((i >= 6 && i <= 11) || (i >= 24 && i <= 29)) { r = 0; g = 1; b = 0; }
+		if ((i >= 12 && i <= 17) || (i >= 30 && i <= 35)) { r = 1; g = 0; b = 0; }
+		mesh->vColors.emplace_back(r, g, b, 1.0f);
+	}
+
+	return mesh;
+	
+	////-Y AZUL
+	//mesh->vColors.emplace_back(0.0f, 0.0f, 1.0f, 1.0f);//0
+	//mesh->vColors.emplace_back(0.0f, 0.0f, 1.0f, 1.0f);
+	//mesh->vColors.emplace_back(0.0f, 0.0f, 1.0f, 1.0f);
+	//mesh->vColors.emplace_back(0.0f, 0.0f, 1.0f, 1.0f);
+	//mesh->vColors.emplace_back(0.0f, 0.0f, 1.0f, 1.0f);
+	//mesh->vColors.emplace_back(0.0f, 0.0f, 1.0f, 1.0f);//5
+	////-X VERDE
+	//mesh->vColors.emplace_back(0.0f, 1.0f, 0.0f, 1.0f);//6
+	//mesh->vColors.emplace_back(0.0f, 1.0f, 0.0f, 1.0f);
+	//mesh->vColors.emplace_back(0.0f, 1.0f, 0.0f, 1.0f);
+	//mesh->vColors.emplace_back(0.0f, 1.0f, 0.0f, 1.0f);
+	//mesh->vColors.emplace_back(0.0f, 1.0f, 0.0f, 1.0f);
+	//mesh->vColors.emplace_back(0.0f, 1.0f, 0.0f, 1.0f);//11
+	////-Z ROJO
+	//mesh->vColors.emplace_back(1.0f, 0.0f, 0.0f, 1.0f);//12
+	//mesh->vColors.emplace_back(1.0f, 0.0f, 0.0f, 1.0f);
+	//mesh->vColors.emplace_back(1.0f, 0.0f, 0.0f, 1.0f);
+	//mesh->vColors.emplace_back(1.0f, 0.0f, 0.0f, 1.0f);
+	//mesh->vColors.emplace_back(1.0f, 0.0f, 0.0f, 1.0f);
+	//mesh->vColors.emplace_back(1.0f, 0.0f, 0.0f, 1.0f);//17
+	////Y AZUL
+	//mesh->vColors.emplace_back(0.0f, 0.0f, 1.0f, 1.0f);//18
+	//mesh->vColors.emplace_back(0.0f, 0.0f, 1.0f, 1.0f);
+	//mesh->vColors.emplace_back(0.0f, 0.0f, 1.0f, 1.0f);
+	//mesh->vColors.emplace_back(0.0f, 0.0f, 1.0f, 1.0f);
+	//mesh->vColors.emplace_back(0.0f, 0.0f, 1.0f, 1.0f);
+	//mesh->vColors.emplace_back(0.0f, 0.0f, 1.0f, 1.0f);//23
+	////X VERDE
+	//mesh->vColors.emplace_back(0.0f, 1.0f, 0.0f, 1.0f);//24
+	//mesh->vColors.emplace_back(0.0f, 1.0f, 0.0f, 1.0f);
+	//mesh->vColors.emplace_back(0.0f, 1.0f, 0.0f, 1.0f);
+	//mesh->vColors.emplace_back(0.0f, 1.0f, 0.0f, 1.0f);
+	//mesh->vColors.emplace_back(0.0f, 1.0f, 0.0f, 1.0f);
+	//mesh->vColors.emplace_back(0.0f, 1.0f, 0.0f, 1.0f);//29
+	////Z ROJO
+	//mesh->vColors.emplace_back(1.0f, 0.0f, 0.0f, 1.0f);//30
+	//mesh->vColors.emplace_back(1.0f, 0.0f, 0.0f, 1.0f);
+	//mesh->vColors.emplace_back(1.0f, 0.0f, 0.0f, 1.0f);
+	//mesh->vColors.emplace_back(1.0f, 0.0f, 0.0f, 1.0f);
+	//mesh->vColors.emplace_back(1.0f, 0.0f, 0.0f, 1.0f);
+	//mesh->vColors.emplace_back(1.0f, 0.0f, 0.0f, 1.0f);//35
 }

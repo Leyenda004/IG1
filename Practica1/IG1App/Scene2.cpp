@@ -1,5 +1,5 @@
 #include "Scene2.h"
-#include "Cube.h"
+#include "RGBCube.h"
 
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
@@ -15,7 +15,15 @@ Scene2::init() {
 	// Textures
 
 	// Graphics objects (entities) of the scene
-	gObjects.push_back(new RGBAxes(400.0));
+	gObjects.push_back(new RGBAxes(400.0f));
 
-	gObjects.push_back(new Cube(200.));
+	GLdouble length = 200.f;
+	RGBCube* cubito = new RGBCube(length);
+	// Movemos el cubo
+	cubito->setModelMat(translate(cubito->modelMat(), vec3(length/2, length/2, -length/2)));
+	gObjects.push_back(cubito);
+
+	//gObjects.push_back(new RGBCube(200.0f));
+
+
 }

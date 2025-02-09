@@ -29,7 +29,7 @@ void RGBTriangle::update() {
 
 		//const_cast<RGBTriangle*>(this)->setModelMat();
 
-		mat4 m1 = rotate(mModelMat, radians(-4.0f), vec3(0.0f, 0.0f, 1.0f));
+		mat4 m1 = rotate(mModelMat, radians(4.0f), vec3(0.0f, 0.0f, 1.0f));
 		mat4 m2 = rotate(mat4(1.0f), radians(2.0f), vec3(0.0f, 0.0f, 1.0f));
 		setModelMat(m2 * m1);
 	}
