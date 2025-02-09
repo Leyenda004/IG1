@@ -3,7 +3,6 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-using namespace std;
 using namespace glm;
 
 RGBCube::RGBCube(GLdouble length) {
@@ -44,7 +43,7 @@ RGBCube::update()
 
 	//EJE X
 	if (index == 0) {
-		if (angle <= radians(180.f)) {
+		if (angle < radians(179.9f)) {
 			mat4 mT1 = translate(mModelMat, vec3(-100.0f, -100.0f, 100.0f));
 			mat4 m1 = rotate(mat4(1.0f), radians(1.0f), vec3(1.0f, 0.0f, 0.0f));
 			setModelMat(mT1 * m1);
@@ -60,7 +59,7 @@ RGBCube::update()
 
 	//EJE Z
 	if (index == 1) {
-		if (angle <= radians(180.f)) {
+		if (angle < radians(179.9f)) {
 			mat4 mT1 = translate(mModelMat, vec3(-100.0f, -100.0f, 100.0f));
 			mat4 m1 = rotate(mat4(1.0f), radians(-1.0f), vec3(0.0f, 0.0f, 1.0f));
 			setModelMat(mT1 * m1);
@@ -77,7 +76,7 @@ RGBCube::update()
 	//EJE Y
 	if (index == 2) {
 		GLfloat a = glm::length(vec3(mModelMat[1]));
-		if (angle <= radians(180.f)) {
+		if (angle < radians(179.9f)) {
 			mat4 mT1 = translate(mModelMat, vec3(-100.0f, -100.0f, 100.0f));
 			mat4 m1 = rotate(mat4(1.0f), radians(1.0f), vec3(0.0f, 1.0f, 0.0f));
 			setModelMat(mT1 * m1);
