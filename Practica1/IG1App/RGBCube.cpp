@@ -12,54 +12,42 @@ RGBCube::RGBCube(GLdouble length) {
 void 
 RGBCube::render(const glm::mat4& modelViewMat) const
 {
+	//SI QUITO ESTAS 3 LINEAS SE VA AL CENTRO REVISAR??????
 	mat4 aMat = modelViewMat * mModelMat;
 	mShader->use();
 	mShader->setUniform("modelView", aMat);
 
-			// Culling enable
-	glEnable(GL_CULL_FACE);
-
-	// Back
-	glCullFace(GL_BACK);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	mMesh->render();
-
-	// Front
-	glCullFace(GL_FRONT);
-	glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
-	mMesh->render();
-
-	// Culling disable
-	glDisable(GL_CULL_FACE);
 }
 
 void 
 RGBCube::update()
 {
 
-	int r = 0.0f, g = 0.0f, b = 0.0f;
+	int x = 0.0f, y = 0.0f, z = 0.0f;
 	 
 	switch (index) {
 		case 0:
-			r = 1.0f; 
-			g = 0.0f; 
-			b = 0.0f;
+			x = 1.0f; 
+			y = 0.0f; 
+			z = 0.0f;
 			break;
 		case 1:
-			r = 0.0f; 
-			g = 0.0f; 
-			b = 1.0f;
+			x = 0.0f; 
+			y = 0.0f; 
+			z = 1.0f;
 			break;
 		case 2:
-			r = 0.0f; 
-			g = 1.0f; 
-			b = 0.0f;
+			x = 0.0f; 
+			y = 1.0f; 
+			z = 0.0f;
 			break;
 	}
 
 	if (angle < radians(179.9f)) {
 		mat4 mT1 = translate(mModelMat, vec3(-100.0f, -100.0f, 100.0f));
-		mat4 m1 = rotate(mat4(1.0f), radians(1.0f), vec3(r,g,b));
+		mat4 m1 = rotate(mat4(1.0f), radians(1.0f), vec3(x,y,z));
 		setModelMat(mT1 * m1);
 		mat4 mT2 = translate(mModelMat, vec3(100.0f, 100.0f, -100.0f));
 		setModelMat(mT2);
