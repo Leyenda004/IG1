@@ -260,56 +260,15 @@ Mesh::generateRGBCubeTriangles(GLdouble length) {
 	mesh->vColors.reserve(36);
 
 	int r = 0, g = 0, b = 0;
+	int minusYI = 0, minusYF = 5, minusXI = 6, minusXF = 11, minusZI = 12,minusZF = 17,
+		YI = 18, YF = 23, XI = 24, XF = 29, ZI = 30, ZF = 35;
 
 	for (int i = 0; i < 36; ++i) {
-		if ((i >= 0 && i <= 5) || (i >= 18 && i <= 23)) { r = 0; g = 0; b = 1; }
-		if ((i >= 6 && i <= 11) || (i >= 24 && i <= 29)) { r = 0; g = 1; b = 0; }
-		if ((i >= 12 && i <= 17) || (i >= 30 && i <= 35)) { r = 1; g = 0; b = 0; }
+		if ((i >= minusYI && i <= minusYF) || (i >= YI && i <= YF)) { r = 0; g = 0; b = 1; }
+		if ((i >= minusXI && i <= minusXF) || (i >= XI && i <= XF)) { r = 0; g = 1; b = 0; }
+		if ((i >= minusZI && i <= minusZF) || (i >= ZI && i <= ZF)) { r = 1; g = 0; b = 0; }
 		mesh->vColors.emplace_back(r, g, b, 1.0f);
 	}
 
 	return mesh;
-	
-	////-Y AZUL
-	//mesh->vColors.emplace_back(0.0f, 0.0f, 1.0f, 1.0f);//0
-	//mesh->vColors.emplace_back(0.0f, 0.0f, 1.0f, 1.0f);
-	//mesh->vColors.emplace_back(0.0f, 0.0f, 1.0f, 1.0f);
-	//mesh->vColors.emplace_back(0.0f, 0.0f, 1.0f, 1.0f);
-	//mesh->vColors.emplace_back(0.0f, 0.0f, 1.0f, 1.0f);
-	//mesh->vColors.emplace_back(0.0f, 0.0f, 1.0f, 1.0f);//5
-	////-X VERDE
-	//mesh->vColors.emplace_back(0.0f, 1.0f, 0.0f, 1.0f);//6
-	//mesh->vColors.emplace_back(0.0f, 1.0f, 0.0f, 1.0f);
-	//mesh->vColors.emplace_back(0.0f, 1.0f, 0.0f, 1.0f);
-	//mesh->vColors.emplace_back(0.0f, 1.0f, 0.0f, 1.0f);
-	//mesh->vColors.emplace_back(0.0f, 1.0f, 0.0f, 1.0f);
-	//mesh->vColors.emplace_back(0.0f, 1.0f, 0.0f, 1.0f);//11
-	////-Z ROJO
-	//mesh->vColors.emplace_back(1.0f, 0.0f, 0.0f, 1.0f);//12
-	//mesh->vColors.emplace_back(1.0f, 0.0f, 0.0f, 1.0f);
-	//mesh->vColors.emplace_back(1.0f, 0.0f, 0.0f, 1.0f);
-	//mesh->vColors.emplace_back(1.0f, 0.0f, 0.0f, 1.0f);
-	//mesh->vColors.emplace_back(1.0f, 0.0f, 0.0f, 1.0f);
-	//mesh->vColors.emplace_back(1.0f, 0.0f, 0.0f, 1.0f);//17
-	////Y AZUL
-	//mesh->vColors.emplace_back(0.0f, 0.0f, 1.0f, 1.0f);//18
-	//mesh->vColors.emplace_back(0.0f, 0.0f, 1.0f, 1.0f);
-	//mesh->vColors.emplace_back(0.0f, 0.0f, 1.0f, 1.0f);
-	//mesh->vColors.emplace_back(0.0f, 0.0f, 1.0f, 1.0f);
-	//mesh->vColors.emplace_back(0.0f, 0.0f, 1.0f, 1.0f);
-	//mesh->vColors.emplace_back(0.0f, 0.0f, 1.0f, 1.0f);//23
-	////X VERDE
-	//mesh->vColors.emplace_back(0.0f, 1.0f, 0.0f, 1.0f);//24
-	//mesh->vColors.emplace_back(0.0f, 1.0f, 0.0f, 1.0f);
-	//mesh->vColors.emplace_back(0.0f, 1.0f, 0.0f, 1.0f);
-	//mesh->vColors.emplace_back(0.0f, 1.0f, 0.0f, 1.0f);
-	//mesh->vColors.emplace_back(0.0f, 1.0f, 0.0f, 1.0f);
-	//mesh->vColors.emplace_back(0.0f, 1.0f, 0.0f, 1.0f);//29
-	////Z ROJO
-	//mesh->vColors.emplace_back(1.0f, 0.0f, 0.0f, 1.0f);//30
-	//mesh->vColors.emplace_back(1.0f, 0.0f, 0.0f, 1.0f);
-	//mesh->vColors.emplace_back(1.0f, 0.0f, 0.0f, 1.0f);
-	//mesh->vColors.emplace_back(1.0f, 0.0f, 0.0f, 1.0f);
-	//mesh->vColors.emplace_back(1.0f, 0.0f, 0.0f, 1.0f);
-	//mesh->vColors.emplace_back(1.0f, 0.0f, 0.0f, 1.0f);//35
 }

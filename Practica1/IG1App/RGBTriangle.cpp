@@ -9,6 +9,29 @@ RGBTriangle::RGBTriangle(GLdouble radius) : EntityWithColors() {
 	mMesh = Mesh::generateRGBTriangle(radius);
 }
 
+void RGBTriangle::render(const glm::mat4& modelViewMat) const
+{
+	mat4 aMat = modelViewMat * mModelMat;
+	mShader->use();
+	mShader->setUniform("modelView", aMat);
+
+	// Culling enable
+	glEnable(GL_CULL_FACE);
+
+	// Back
+	glCullFace(GL_BACK);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	mMesh->render();
+
+	// Front
+	glCullFace(GL_FRONT);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	mMesh->render();
+
+	// Culling disable
+	glDisable(GL_CULL_FACE);
+}
+
 void RGBTriangle::update() {
 	if (mMesh != nullptr) {
 		//// Sentido horario sobre s� mismo

@@ -253,6 +253,8 @@ IG1App::changeScene(size_t sceneNr)
 		mScenes[mCurrentScene]->unload();
 		mCurrentScene = sceneNr;
 		mScenes[mCurrentScene]->load();
+		//CUIDADO
+		mNeedsRedisplay = true;
 	}
 
 	return true;

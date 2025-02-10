@@ -36,58 +36,38 @@ RGBCube::render(const glm::mat4& modelViewMat) const
 void 
 RGBCube::update()
 {
-	//mat4 mT1 = translate(mModelMat, vec3(0,-100.0f, 100.0f));
-	//mat4 mR = rotate(mat4(1.0f), radians(1.0f), vec3(1,0,0));
-	//mat4 mT2 = translate(mModelMat, vec3(0, 100.0f, -100.0f));
-	//setModelMat(mT1 * mR * mT2);
 
-	//EJE X
-	if (index == 0) {
-		if (angle < radians(179.9f)) {
-			mat4 mT1 = translate(mModelMat, vec3(-100.0f, -100.0f, 100.0f));
-			mat4 m1 = rotate(mat4(1.0f), radians(1.0f), vec3(1.0f, 0.0f, 0.0f));
-			setModelMat(mT1 * m1);
-			mat4 mT2 = translate(mModelMat, vec3(100.0f, 100.0f, -100.0f));
-			setModelMat(mT2);
-			angle += radians(1.0f);
-		}
-		else {
-			index++;
-			angle = 0.0f;
-		}
+	int r = 0.0f, g = 0.0f, b = 0.0f;
+	 
+	switch (index) {
+		case 0:
+			r = 1.0f; 
+			g = 0.0f; 
+			b = 0.0f;
+			break;
+		case 1:
+			r = 0.0f; 
+			g = 0.0f; 
+			b = 1.0f;
+			break;
+		case 2:
+			r = 0.0f; 
+			g = 1.0f; 
+			b = 0.0f;
+			break;
 	}
 
-	//EJE Z
-	if (index == 1) {
-		if (angle < radians(179.9f)) {
-			mat4 mT1 = translate(mModelMat, vec3(-100.0f, -100.0f, 100.0f));
-			mat4 m1 = rotate(mat4(1.0f), radians(-1.0f), vec3(0.0f, 0.0f, 1.0f));
-			setModelMat(mT1 * m1);
-			mat4 mT2 = translate(mModelMat, vec3(100.0f, 100.0f, -100.0f));
-			setModelMat(mT2);
-			angle += radians(1.0f);
-		}
-		else {
-			index++;
-			angle = 0.0f;
-		}
+	if (angle < radians(179.9f)) {
+		mat4 mT1 = translate(mModelMat, vec3(-100.0f, -100.0f, 100.0f));
+		mat4 m1 = rotate(mat4(1.0f), radians(1.0f), vec3(r,g,b));
+		setModelMat(mT1 * m1);
+		mat4 mT2 = translate(mModelMat, vec3(100.0f, 100.0f, -100.0f));
+		setModelMat(mT2);
+		angle += radians(1.0f);
 	}
-
-	//EJE Y
-	if (index == 2) {
-		GLfloat a = glm::length(vec3(mModelMat[1]));
-		if (angle < radians(179.9f)) {
-			mat4 mT1 = translate(mModelMat, vec3(-100.0f, -100.0f, 100.0f));
-			mat4 m1 = rotate(mat4(1.0f), radians(1.0f), vec3(0.0f, 1.0f, 0.0f));
-			setModelMat(mT1 * m1);
-			mat4 mT2 = translate(mModelMat, vec3(100.0f, 100.0f, -100.0f));
-			setModelMat(mT2);
-			angle += radians(1.0f);
-		}
-		else {
-			index++;
-			angle = 0.0f;
-		}
+	else {
+		index++;
+		angle = 0.0f;
 	}
 
 	if (index >= 3) index = 0;
