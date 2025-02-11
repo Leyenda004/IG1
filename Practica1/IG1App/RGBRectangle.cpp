@@ -12,7 +12,9 @@ void RGBRectangle::render(glm::mat4 const& modelViewMat) const {
 		mShader->use();
 		mShader->setUniform("modelView", aMat);
 
+		//upload(aMat); // analizar y preguntar
 		glEnable(GL_CULL_FACE);
+
 
 		// Back
 		glCullFace(GL_BACK);
@@ -22,7 +24,6 @@ void RGBRectangle::render(glm::mat4 const& modelViewMat) const {
 		// Front
 		glCullFace(GL_FRONT);
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-		//upload(aMat); // por qué no se usa?
 		mMesh->render();
 
 		glDisable(GL_CULL_FACE);

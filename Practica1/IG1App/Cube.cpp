@@ -11,9 +11,9 @@ Cube::Cube(GLdouble length) {
 void Cube::render(glm::mat4 const& modelViewMat) const {
 	if (mMesh != nullptr) {
 
-		//mat4 aMat = modelViewMat * mModelMat;
-		//mShader->use();
-		//mShader->setUniform("modelView", aMat);
+		mat4 aMat = modelViewMat * mModelMat;
+		mShader->use();
+		mShader->setUniform("modelView", aMat);
 
 		// Culling enable
 		glEnable(GL_CULL_FACE);

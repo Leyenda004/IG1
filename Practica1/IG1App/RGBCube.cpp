@@ -12,13 +12,15 @@ RGBCube::RGBCube(GLdouble length) {
 void 
 RGBCube::render(const glm::mat4& modelViewMat) const
 {
-	//SI QUITO ESTAS 3 LINEAS SE VA AL CENTRO REVISAR??????
-	mat4 aMat = modelViewMat * mModelMat;
-	mShader->use();
-	mShader->setUniform("modelView", aMat);
+	if (mMesh != nullptr) {
+		//SI QUITO ESTAS 3 LINEAS SE VA AL CENTRO REVISAR??????
+		mat4 aMat = modelViewMat * mModelMat;
+		mShader->use();
+		mShader->setUniform("modelView", aMat);
 
-	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-	mMesh->render();
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+		mMesh->render();
+	}
 }
 
 void 
@@ -60,4 +62,3 @@ RGBCube::update()
 
 	if (index >= 3) index = 0;
 }
-
