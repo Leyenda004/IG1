@@ -22,14 +22,11 @@ Scene1::init() {
 	// COLOR , LADOS, DISTANCIA DESDE EL CENTRO
 	GLdouble r = 200.f;
 
-
-	// Orden? Los modelos que se van creando aparecen detrás de todo?
 	RGBTriangle* trian = new RGBTriangle(30.f);
 	// Movemos el triangulo en el círculo creado
 	trian->setModelMat(translate(trian->modelMat(), vec3(r, 0, 0)));
 	gObjects.push_back(trian);
 
-	//gObjects.push_back(new RGBTriangle(30.0f));
 	gObjects.push_back(new RegularPolygon(dvec4(1.0f, 1.0f, 1.0f, 1.0f), 32, r));
 	gObjects.push_back(new RGBRectangle(200.0f, 100.0f));
 }

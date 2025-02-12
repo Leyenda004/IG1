@@ -12,9 +12,7 @@ void RGBRectangle::render(glm::mat4 const& modelViewMat) const {
 		mShader->use();
 		mShader->setUniform("modelView", aMat);
 
-		//upload(aMat); // analizar y preguntar
 		glEnable(GL_CULL_FACE);
-
 
 		// Back
 		glCullFace(GL_BACK);

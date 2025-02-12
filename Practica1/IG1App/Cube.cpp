@@ -11,6 +11,7 @@ Cube::Cube(GLdouble length) {
 void Cube::render(glm::mat4 const& modelViewMat) const {
 	if (mMesh != nullptr) {
 
+		// Se cargan los shaders en la matriz que relaciona el objeto con la cámara
 		mat4 aMat = modelViewMat * mModelMat;
 		mShader->use();
 		mShader->setUniform("modelView", aMat);
@@ -18,12 +19,12 @@ void Cube::render(glm::mat4 const& modelViewMat) const {
 		// Culling enable
 		glEnable(GL_CULL_FACE);
 
-		// Back
+		// Back (cara que vemos)
 		glCullFace(GL_BACK);
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 		mMesh->render();
 
-		// Front
+		// Front (cara trasera)
 		glCullFace(GL_FRONT);
 		glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
 		mMesh->render();

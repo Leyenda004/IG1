@@ -6,8 +6,7 @@ class SingleColorEntity :
 private:
     glm::dvec4 mColor;
 public:
-
-    SingleColorEntity();
+    inline SingleColorEntity() {};
     SingleColorEntity(glm::dvec4 color);
 
     inline glm::dvec4 color() const { return mColor; }
@@ -15,4 +14,3 @@ public:
 
     void render(const glm::mat4&) const override;
 };
-

@@ -114,6 +114,7 @@ Mesh::createRGBAxes(GLdouble l)
 
 //EDITABLE
 
+// Crea un polígono regular de n lados y radio r
 Mesh*
 Mesh::generateRegularPolygon(GLuint num, GLdouble r) {
 	Mesh* mesh = new Mesh();
@@ -134,6 +135,7 @@ Mesh::generateRegularPolygon(GLuint num, GLdouble r) {
 	return mesh;
 }
 
+// Crea un triángulo equilátero de colores de lado r partiendo de la maya de un polígono regular de 3 lados
 Mesh*
 Mesh::generateRGBTriangle(GLdouble r) {	
 	Mesh* mesh = Mesh::generateRegularPolygon(3, r);
@@ -145,20 +147,30 @@ Mesh::generateRGBTriangle(GLdouble r) {
 	return mesh;
 }
 
+// Crea un rectángulo de lados w y h
 Mesh*
 Mesh::generateRectangle(GLdouble w, GLdouble h) {
 	Mesh* mesh = new Mesh();
 	mesh->mPrimitive = GL_TRIANGLE_STRIP;
 	mesh->mNumVertices = 4;
 	//PLANO X, PLANO Y, PLANO Z
-	GLdouble x = w, y = h, z = 0.f;
+	GLdouble x = w, y = h, z = -0.1f;
+
 	mesh->vVertices.emplace_back(x, y, z);
 	mesh->vVertices.emplace_back(-x, y, z);
 	mesh->vVertices.emplace_back(x, -y, z);
 	mesh->vVertices.emplace_back(-x, -y, z);
+
+	// En este orden devuelve el rectángulo relleno?
+	//mesh->vVertices.emplace_back(x, -y, z);
+	//mesh->vVertices.emplace_back(-x, -y, z);
+	//mesh->vVertices.emplace_back(x, y, z);
+	//mesh->vVertices.emplace_back(-x, y, z);
+
 	return mesh;
 }
 
+// Crea un rectángulo de lados w y h con colores
 Mesh*
 Mesh::generateRGBRectangle(GLdouble w, GLdouble h) {
 	Mesh* mesh = generateRectangle(w, h);
@@ -170,13 +182,13 @@ Mesh::generateRGBRectangle(GLdouble w, GLdouble h) {
 	return mesh;
 }
 
+// Crea un cubo de lado length
 Mesh*
 Mesh::generateCube(GLdouble length) {
 	int l = length/2;
 	Mesh* mesh = new Mesh();
 
 	mesh->mNumVertices = 36;
-
 	mesh->vVertices.reserve(mesh->mNumVertices);
 
 	//-Y
@@ -229,7 +241,9 @@ Mesh::generateCube(GLdouble length) {
 
 
 	mesh->mPrimitive = GL_TRIANGLES;
+	return mesh;
 
+	// PRUEBA MENOS VÉRTICES, A OPTIMIZAR EN FUTURO
 	//mesh->vVertices.emplace_back(l, l, l);		//1
 	//mesh->vVertices.emplace_back(-l, l, l);	//2
 	//mesh->vVertices.emplace_back(-l, l, -l);	//3
@@ -243,26 +257,21 @@ Mesh::generateCube(GLdouble length) {
 	//mesh->vVertices.emplace_back(-l, -l, l);		//8
 	//mesh->vVertices.emplace_back(-l, l, -l);	//4
 
-	//PRUEBA 1
-	//mesh->vVertices.emplace_back(l, -l, l);
-	//mesh->vVertices.emplace_back(-l, -l, l);
-	//mesh->vVertices.emplace_back(-l, l, l);
-	//mesh->vVertices.emplace_back(l, -l, l); //
-	//mesh->vVertices.emplace_back(l, l, l);
-	//mesh->vVertices.emplace_back(-l, l, l); //
-
-	return mesh;
 }
 
+// Crea un cubo a partir del método GenerateCube y le asigna colores a cada cara
 Mesh* 
 Mesh::generateRGBCubeTriangles(GLdouble length) {
 	Mesh* mesh = generateCube(length);
+	// Reservar los vértices a los que les vas a asignar color
 	mesh->vColors.reserve(36);
 
+	// Definir los colores de cada cara y los números de vértices en los que se cambia de cara
 	int r = 0, g = 0, b = 0;
-	int minusYI = 0, minusYF = 5, minusXI = 6, minusXF = 11, minusZI = 12,minusZF = 17,
+	int minusYI = 0, minusYF = 5, minusXI = 6, minusXF = 11, minusZI = 12, minusZF = 17,
 		YI = 18, YF = 23, XI = 24, XF = 29, ZI = 30, ZF = 35;
 
+	// Asignar colores a cada vértice
 	for (int i = 0; i < 36; ++i) {
 		if ((i >= minusYI && i <= minusYF) || (i >= YI && i <= YF)) { r = 0; g = 0; b = 1; }
 		if ((i >= minusXI && i <= minusXF) || (i >= XI && i <= XF)) { r = 0; g = 1; b = 0; }

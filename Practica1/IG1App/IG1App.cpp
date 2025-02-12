@@ -37,19 +37,19 @@ IG1App::run() // enters the main event processing loop
 			display();
 			mNeedsRedisplay = false;
 		}
-		if (mUpdateEnabled) {
-			GLdouble time = glfwGetTime();
-			if (time >= (mNextUpdate)){
-				mNextUpdate = time + FRAME_DURATION;
-				mScenes[mCurrentScene]->update();
-				//SE PONE AQUI? :D
+		if (mUpdateEnabled) { // Si se ha presionado la u
+			GLdouble time = glfwGetTime(); // coges el tiempo en el que se actualiza por última vez
+			if (time >= (mNextUpdate)){ // si el tiempo llega a cuando se tiene que volver a actualizar
+				mNextUpdate = time + FRAME_DURATION; // cambias cuándo se tiene que volver a actualizar
+				mScenes[mCurrentScene]->update(); // y actualizas
+				// Cuando hay que actualizar se establece el booleano a true
 				mNeedsRedisplay = true;
 			}
 		}
 
 		// Stop and wait for new events
 		//glfwWaitEvents();
-		if (mUpdateEnabled) glfwWaitEventsTimeout(glfwGetTime() - mNextUpdate);
+		if (mUpdateEnabled) glfwWaitEventsTimeout(mNextUpdate - glfwGetTime()); // Si se ha presionado la u, calcula el tiempo que queda
 		else glfwWaitEvents();
 	}
 
@@ -183,9 +183,9 @@ IG1App::key(unsigned int key)
 			mCamera->set2D();
 			break;
 		case 'u':
-			cout << "pressed u" << endl;
+			//cout << "pressed u" << endl; // Depuración
 			mUpdateEnabled = !mUpdateEnabled;
-			cout << "mUpdateEnabled = " << mUpdateEnabled << endl;
+			//cout << "mUpdateEnabled = " << mUpdateEnabled << endl; // Depuración
 			break;
 		default:
 			if (key >= '0' && key <= '9' && !changeScene(key - '0'))
@@ -253,7 +253,7 @@ IG1App::changeScene(size_t sceneNr)
 		mScenes[mCurrentScene]->unload();
 		mCurrentScene = sceneNr;
 		mScenes[mCurrentScene]->load();
-		//CUIDADO
+		// El cambio de escena requiere un redisplay
 		mNeedsRedisplay = true;
 	}
 

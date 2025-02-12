@@ -24,7 +24,5 @@ Scene2::init() {
 	cubito->setModelMat(translate(cubito->modelMat(), vec3(length/2, length/2, -length/2)));
 	gObjects.push_back(cubito);
 
-	//gObjects.push_back(new RGBCube(200.0f));
-
 
 }

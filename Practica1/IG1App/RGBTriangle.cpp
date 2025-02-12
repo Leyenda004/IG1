@@ -37,22 +37,28 @@ void RGBTriangle::update() {
 		//// Sentido horario sobre s� mismo
 		//setModelMat(rotate(modelMat(), radians(-10.f), vec3(0, 0, 1)));
 
-		//// Sentido antihorario sobre la circunferencia
+		//// Coordenadas
 		//GLdouble x, y, z;
-
-		//// Coordenadas?????
 		//x = modelMat()[3][0];
 		//y = modelMat()[3][1];
 		//z = modelMat()[3][2];
 
+		//// Sentido antihorario sobre la circunferencia
 		//mat4 mT1 = translate(mat4(1.0f), vec3(x, y, z));
 		//mat4 mR = rotate(mat4(1.0f), radians(10.f), vec3(0, 0, 1));
 		//mat4 mT2 = translate(mat4(1.0f), vec3(-x, -y, -z));
 
 		//setModelMat(mModelMat * mT1 * mR * mT2);
 
-		mat4 m1 = rotate(mModelMat, radians(4.0f), vec3(0.0f, 0.0f, 1.0f));
+
+		// RECORDATORIO PARA ELENA: En el enunciado de la práctica, el giro sobre sí mismo es en horario y en la demo es en antihorario
+
+		// Se gira la malla sobre sí misma pasándole el mModelMat, y se gira sobre el eje
+		// pasándole la matriz identidad, ya que rotas sobre el punto de origen
+		mat4 m1 = rotate(mModelMat, radians(-4.0f), vec3(0.0f, 0.0f, 1.0f));
 		mat4 m2 = rotate(mat4(1.0f), radians(2.0f), vec3(0.0f, 0.0f, 1.0f));
-		setModelMat(m2 * m1);
+
+		// Se le aplican los cambios a la matriz
+		mModelMat = m2 * m1;
 	}
 }

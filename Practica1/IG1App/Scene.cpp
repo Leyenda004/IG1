@@ -8,6 +8,8 @@
 
 using namespace glm;
 
+// SCENE ACTUALIZA TODOS LOS OBJETOS DENTRO DE ELLA EN SUS HIJOS
+
 void
 Scene::init()
 {
