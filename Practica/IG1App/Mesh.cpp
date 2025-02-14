@@ -154,7 +154,7 @@ Mesh::generateRectangle(GLdouble w, GLdouble h) {
 	mesh->mPrimitive = GL_TRIANGLE_STRIP;
 	mesh->mNumVertices = 4;
 	//PLANO X, PLANO Y, PLANO Z
-	GLdouble x = w, y = h, z = -0.1f;
+	GLdouble x = w, y = h, z = 0.f;
 
 	mesh->vVertices.emplace_back(x, y, z);
 	mesh->vVertices.emplace_back(-x, y, z);
