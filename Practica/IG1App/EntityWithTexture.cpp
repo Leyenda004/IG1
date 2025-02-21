@@ -11,12 +11,14 @@ EntityWithTexture::EntityWithTexture() {
 
 void EntityWithTexture::render(mat4 const& modelViewMat) const
 {
-	if (mTexture != nullptr) {
-		glBindTexture(GL_TEXTURE_2D, 1);
+	if (mMesh != nullptr && mTexture != nullptr) {
 		mat4 aMat = modelViewMat * mModelMat; // glm matrix multiplication
 		mShader->use();
+		mShader->setUniform("modulate",aMat);
 		upload(aMat);
+
+		mTexture->bind();
 		mMesh->render();
-		glBindTexture(GL_TEXTURE_2D, 0);
+		mTexture->unbind();
 	}
 }

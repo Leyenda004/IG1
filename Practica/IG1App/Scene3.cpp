@@ -17,7 +17,13 @@ Scene3::init() {
 	// Graphics objects (entities) of the scene
 	gObjects.push_back(new RGBAxes(400.0f));
 
-	gObjects.push_back(new Ground);
+	Ground* ground = new Ground();
+
+	Texture* tex = new Texture();
+	tex->load("../assets/images/baldosaC.png", 255);
+	ground->setTexture(tex);
+
+	gObjects.push_back(ground);
 
 
 }

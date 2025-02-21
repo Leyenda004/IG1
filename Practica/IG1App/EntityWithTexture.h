@@ -6,10 +6,11 @@
 class EntityWithTexture : public Abs_Entity
 {
 private:
-	Texture* mTexture;
+	Texture* mTexture = nullptr;
 	GLboolean mModulate = false;
 public:
 	EntityWithTexture();
+	void setTexture(Texture* tex) { mTexture = tex; }
 	void render(glm::mat4 const& modelViewMat) const override;
 };
 

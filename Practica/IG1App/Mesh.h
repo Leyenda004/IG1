@@ -34,6 +34,8 @@ public:
 	static Mesh* generateRGBRectangle(GLdouble w, GLdouble h);
 	static Mesh* generateCube(GLdouble length);
 	static Mesh* generateRGBCubeTriangles(GLdouble length);
+	static Mesh* generateRectangleTexCor(GLdouble w, GLdouble h);
+	static Mesh* generateRectangleTexCor(GLdouble w, GLdouble h, GLuint rw, GLuint rh);
 
 protected:
 	GLuint mPrimitive =
@@ -41,6 +43,11 @@ protected:
 	GLuint mNumVertices = 0; // number of elements ( = vVertices.size())
 	std::vector<glm::vec3> vVertices; // vertex array
 	std::vector<glm::vec4> vColors;   // color array
+
+	//EDITABLE
+
+	std::vector<glm::dvec2> vTexCoords;
+
 	virtual void draw() const;
 
 	GLuint mVAO;  // vertex array object
@@ -48,6 +55,10 @@ protected:
 private:
 	GLuint mVBO;  // vertex buffer object
 	GLuint mCBO;  // color buffer object
+
+	//EDITABLE
+
+	GLuint mTCO; // texture buffer object
 };
 
 #endif //_H_Scene_H_
