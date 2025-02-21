@@ -9,18 +9,14 @@ EntityWithTexture::EntityWithTexture() {
 	mShader = Shader::get("texture");
 }
 
-void
-EntityWithTexture::render() const {
+void EntityWithTexture::render(mat4 const& modelViewMat) const
+{
 	if (mTexture != nullptr) {
+		glBindTexture(GL_TEXTURE_2D, 1);
 		mat4 aMat = modelViewMat * mModelMat; // glm matrix multiplication
 		mShader->use();
 		upload(aMat);
 		mMesh->render();
-		GLuint Name; 
-		GLuint Names[3]; 
-		glGenTextures(1, &Name); 
-		glGenTextures(3, Names);
-		glBindTexture(GL_TEXTURE_2D, 1);
 		glBindTexture(GL_TEXTURE_2D, 0);
 	}
 }

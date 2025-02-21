@@ -1,13 +1,15 @@
 #pragma once
 #include "Texture.h"
 
-class EntityWithTexture
+#include "Entity.h"
+
+class EntityWithTexture : public Abs_Entity
 {
 private:
 	Texture* mTexture;
 	GLboolean mModulate = false;
 public:
 	EntityWithTexture();
-	void render(mat4 const& modelViewMat) const;
+	void render(glm::mat4 const& modelViewMat) const override;
 };
 
