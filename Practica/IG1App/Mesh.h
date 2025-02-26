@@ -46,7 +46,7 @@ protected:
 
 	//EDITABLE
 
-	std::vector<glm::dvec2> vTexCoords;
+	std::vector<glm::vec2> vTexCoords;
 
 	virtual void draw() const;
 
