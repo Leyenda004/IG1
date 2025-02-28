@@ -36,6 +36,8 @@ public:
 	static Mesh* generateRGBCubeTriangles(GLdouble length);
 	static Mesh* generateRectangleTexCor(GLdouble w, GLdouble h);
 	static Mesh* generateRectangleTexCor(GLdouble w, GLdouble h, GLuint rw, GLuint rh);
+	static Mesh* generateBoxOutline(GLdouble length);
+	static Mesh* generateBoxOutlineTexCor(GLdouble length);
 
 protected:
 	GLuint mPrimitive =

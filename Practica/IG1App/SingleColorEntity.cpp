@@ -1,7 +1,10 @@
 #include "SingleColorEntity.h"
 using namespace glm;
-
-SingleColorEntity::SingleColorEntity(dvec4 color = {0.f, 0.f, 0.f, 1.f}) {
+SingleColorEntity::SingleColorEntity() {
+	mColor = { 0.f, 0.f, 0.f, 1.f };
+	mShader = Shader::get("simple");
+}
+SingleColorEntity::SingleColorEntity(dvec4 color) {
 	mColor = color;
 	mShader = Shader::get("simple");
 }

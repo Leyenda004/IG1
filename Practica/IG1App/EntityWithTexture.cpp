@@ -16,7 +16,6 @@ void EntityWithTexture::render(mat4 const& modelViewMat) const
 		mShader->use();
 		mShader->setUniform("modulate",aMat);
 		upload(aMat);
-
 		mTexture->bind();
 		mMesh->render();
 		mTexture->unbind();

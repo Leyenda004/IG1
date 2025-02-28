@@ -10,6 +10,7 @@ Mesh::Mesh()
  : mVAO(NONE)
  , mVBO(NONE)
  , mCBO(NONE)
+ , mTCO(NONE)
 {
 }
 
@@ -304,22 +305,88 @@ Mesh* Mesh::generateRectangleTexCor(GLdouble w, GLdouble h)
 {
 	Mesh* mesh = generateRectangle(w,h);
 	mesh->vTexCoords.reserve(mesh->mNumVertices);
-	mesh->vTexCoords.emplace_back(0, 1); //2
-	mesh->vTexCoords.emplace_back(0, 0); //4
 	mesh->vTexCoords.emplace_back(1, 1); //1
+	mesh->vTexCoords.emplace_back(0, 1); //2
 	mesh->vTexCoords.emplace_back(1, 0); //3
+	mesh->vTexCoords.emplace_back(0, 0); //4
 	return mesh;
 }
 
 Mesh* Mesh::generateRectangleTexCor(GLdouble w, GLdouble h, GLuint rw, GLuint rh) {
 	Mesh* mesh = generateRectangle(w, h);
 	mesh->vTexCoords.reserve(mesh->mNumVertices);
-	std::cout << "no quiero estar aquí" << std::endl;
-	for (int i = 0; i < 4; ++i) {
-		// mesh->vTexCoords.emplace_back(0, 1);
-		// mesh->vTexCoords.emplace_back(0, 0.5);
-		// mesh->vTexCoords.emplace_back(0.5, 1);
-		// mesh->vTexCoords.emplace_back(0.5, 0.5);
+	mesh->vTexCoords.emplace_back(rw, rh); //1
+	mesh->vTexCoords.emplace_back(0, rh); //2
+	mesh->vTexCoords.emplace_back(rw, 0); //3
+	mesh->vTexCoords.emplace_back(0, 0); //4
+	return mesh;
+}
+
+Mesh* Mesh::generateBoxOutline(GLdouble length)
+{
+	Mesh* mesh = new Mesh();
+	int l = length / 2;
+
+	mesh->mNumVertices = 10;
+	mesh->vVertices.reserve(mesh->mNumVertices);
+
+	//4,8,7,6,5,1,2,3,4,8
+
+	//mesh->vVertices.emplace_back(-l, -l, -l);
+	//mesh->vVertices.emplace_back(-l, -l, l);
+	//mesh->vVertices.emplace_back(l, -l, l);
+	//mesh->vVertices.emplace_back(l, -l, -l);
+	//mesh->vVertices.emplace_back(l, l, -l);
+	//mesh->vVertices.emplace_back(l, l, l);
+	//mesh->vVertices.emplace_back(-l, l, l);
+	//mesh->vVertices.emplace_back(-l, l, -l);
+	//mesh->vVertices.emplace_back(-l, -l, -l);
+	//mesh->vVertices.emplace_back(-l, -l, l);
+	//
+	//mesh->vVertices.emplace_back(-l, l, l);
+	//mesh->vVertices.emplace_back(-l, -l, l);
+	//mesh->vVertices.emplace_back(l, l, l);
+	//mesh->vVertices.emplace_back(l, l, l);
+	
+	mesh->vVertices.emplace_back(-l, l, -l);
+	mesh->vVertices.emplace_back(-l, -l, -l);
+	mesh->vVertices.emplace_back(l, l, -l);
+	mesh->vVertices.emplace_back(l, -l, -l);
+	mesh->vVertices.emplace_back(l, l, l);
+	mesh->vVertices.emplace_back(l, -l, l);
+	mesh->vVertices.emplace_back(-l, l, l);
+	mesh->vVertices.emplace_back(-l, -l, l);
+	mesh->vVertices.emplace_back(-l, l, -l);
+	mesh->vVertices.emplace_back(-l, -l, -l);
+
+
+
+
+	//mesh->vVertices.emplace_back(l, l, l);		//1
+	//mesh->vVertices.emplace_back(-l, l, l);	//2
+	//mesh->vVertices.emplace_back(-l, l, -l);	//3
+	//mesh->vVertices.emplace_back(-l, -l, -l);	//4		
+	//mesh->vVertices.emplace_back(l, l, -l);	//5
+	//mesh->vVertices.emplace_back(l, -l, -l);		//6
+	//mesh->vVertices.emplace_back(l, -l, l);		//7
+	//mesh->vVertices.emplace_back(-l, -l, l);		//8
+
+	mesh->mPrimitive = GL_TRIANGLE_STRIP;
+	return mesh;
+
+
+	return nullptr;
+}
+
+Mesh* Mesh::generateBoxOutlineTexCor(GLdouble length)
+{
+	Mesh* mesh = generateBoxOutline(length);
+	mesh->vTexCoords.reserve(mesh->mNumVertices);
+
+	for (int i = 0; i < 5; ++i) {
+		mesh->vTexCoords.emplace_back(i * 0.25, 0);
+		mesh->vTexCoords.emplace_back(i * 0.25, 1);
 	}
+
 	return mesh;
 }

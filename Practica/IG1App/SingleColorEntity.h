@@ -6,7 +6,7 @@ class SingleColorEntity :
 private:
     glm::dvec4 mColor;
 public:
-    inline SingleColorEntity() {};
+    SingleColorEntity();
     SingleColorEntity(glm::dvec4 color);
 
     inline glm::dvec4 color() const { return mColor; }

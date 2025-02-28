@@ -1,12 +1,14 @@
 #pragma once
-#include "Entity.h"
-
+//#include "SingleColorEntity.h"
 #include "EntityWithTexture.h"
-class Ground :
+
+class BoxOutline :
     public EntityWithTexture
 {
+private:
+    double length;
 public:
-    Ground();
+    BoxOutline(GLdouble length/* = 100.f*/);
     //void render(const glm::mat4& modelViewMat) const override;
 };
 
