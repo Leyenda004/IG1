@@ -304,21 +304,22 @@ Mesh* Mesh::generateRectangleTexCor(GLdouble w, GLdouble h)
 {
 	Mesh* mesh = generateRectangle(w,h);
 	mesh->vTexCoords.reserve(mesh->mNumVertices);
-	mesh->vTexCoords.emplace_back(1, 1);
-	mesh->vTexCoords.emplace_back(0, 1);
-	mesh->vTexCoords.emplace_back(1, 0);
-	mesh->vTexCoords.emplace_back(0, 0);
+	mesh->vTexCoords.emplace_back(0, 1); //2
+	mesh->vTexCoords.emplace_back(0, 0); //4
+	mesh->vTexCoords.emplace_back(1, 1); //1
+	mesh->vTexCoords.emplace_back(1, 0); //3
 	return mesh;
 }
 
 Mesh* Mesh::generateRectangleTexCor(GLdouble w, GLdouble h, GLuint rw, GLuint rh) {
 	Mesh* mesh = generateRectangle(w, h);
 	mesh->vTexCoords.reserve(mesh->mNumVertices);
+	std::cout << "no quiero estar aquí" << std::endl;
 	for (int i = 0; i < 4; ++i) {
-		mesh->vTexCoords.emplace_back(0, 1);
-		mesh->vTexCoords.emplace_back(0, 0.5);
-		mesh->vTexCoords.emplace_back(0.5, 1);
-		mesh->vTexCoords.emplace_back(0.5, 0.5);
+		// mesh->vTexCoords.emplace_back(0, 1);
+		// mesh->vTexCoords.emplace_back(0, 0.5);
+		// mesh->vTexCoords.emplace_back(0.5, 1);
+		// mesh->vTexCoords.emplace_back(0.5, 0.5);
 	}
 	return mesh;
 }
