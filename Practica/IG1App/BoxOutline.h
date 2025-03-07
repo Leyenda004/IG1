@@ -1,5 +1,5 @@
 #pragma once
-//#include "SingleColorEntity.h"
+#include "SingleColorEntity.h"
 #include "EntityWithTexture.h"
 
 class BoxOutline :

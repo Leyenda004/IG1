@@ -392,3 +392,48 @@ Mesh* Mesh::generateBoxOutlineTexCor(GLdouble length)
 
 	return mesh;
 }
+
+Mesh* Mesh::generateStar3D(GLdouble re, GLuint np, GLdouble h)
+{
+	Mesh* mesh = new Mesh();
+
+	GLdouble ri = re / 2;
+
+	mesh->mNumVertices = (np * 2) + 2;
+	mesh->vVertices.reserve(mesh->mNumVertices);
+
+	mesh->mPrimitive = GL_TRIANGLE_FAN;
+	
+	mesh->vVertices.emplace_back(0, 0, 0); //ORIGEN
+
+	GLdouble ang = 90.0f;
+	GLdouble diff = 360.0f / np;
+	GLdouble x = 0.0f, y = 0.0f;
+
+	for (GLint i = 0; i < mesh->mNumVertices; ++i) {
+		if ((i % 2) == 0) {
+			x = re * cos(radians(ang));
+			y = re * sin(radians(ang));
+		}
+		else {
+			x = ri * cos(radians(ang));
+			y = ri * sin(radians(ang));
+		}
+		ang += diff;
+		mesh->vVertices.emplace_back(x, y, h);
+	}
+
+	return mesh;
+
+	//PLANO X, PLANO Y, PLANO Z
+	//GLdouble ang = 90.0f;
+	//GLdouble diff = 360.0f / num;
+	//GLdouble x = 0.0f, y = 0.0f;
+	//for (GLint i = 0; i < num; ++i) {
+	//	x = r * cos(radians(ang));
+	//	y = r * sin(radians(ang));
+	//	ang += diff;
+	//	mesh->vVertices.emplace_back(x, y, 0.0f);
+	//}
+	//return mesh;
+}

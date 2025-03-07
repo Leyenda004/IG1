@@ -12,6 +12,8 @@
 
 #include "RGBCube.h"
 
+#include "Star3D.h"
+
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
@@ -36,7 +38,11 @@ Scene3::init() {
 	//
 	//gObjects.push_back(ground);
 
-	BoxOutline* box = new BoxOutline(100.f,"../assets/images/container.jpg","../assets/images/papelE.png");
-	
-	gObjects.push_back(box);
+	//BoxOutline* box = new BoxOutline(100.f,"../assets/images/container.jpg","../assets/images/papelE.png");
+	//
+	//gObjects.push_back(box);
+
+	Star3D* star = new Star3D(100.f, 16, 100.f);
+
+	gObjects.push_back(star);
 }
