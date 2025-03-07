@@ -36,11 +36,7 @@ Scene3::init() {
 	//
 	//gObjects.push_back(ground);
 
-	BoxOutline* box = new BoxOutline(100.f);
-
-	Texture* tex = new Texture();
-	tex->load("../assets/images/container.jpg", 255);
-	box->setTexture(tex);
-
+	BoxOutline* box = new BoxOutline(100.f,"../assets/images/container.jpg","../assets/images/papelE.png");
+	
 	gObjects.push_back(box);
 }

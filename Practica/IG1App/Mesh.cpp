@@ -384,8 +384,10 @@ Mesh* Mesh::generateBoxOutlineTexCor(GLdouble length)
 	mesh->vTexCoords.reserve(mesh->mNumVertices);
 
 	for (int i = 0; i < 5; ++i) {
-		mesh->vTexCoords.emplace_back(i * 0.25, 0);
-		mesh->vTexCoords.emplace_back(i * 0.25, 1);
+		mesh->vTexCoords.emplace_back(i/* * 0.25*/, 0);
+		mesh->vTexCoords.emplace_back(i/* * 0.25*/, 1);
+		//Nota para amiel, sirve tambien esto porque el GLRepeat se adapta a cada cuadrado de la caja
+		//Asi aparecen las texturas completas en cada cara
 	}
 
 	return mesh;
