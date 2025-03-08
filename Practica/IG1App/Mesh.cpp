@@ -437,3 +437,31 @@ Mesh* Mesh::generateStar3D(GLdouble re, GLuint np, GLdouble h)
 	//}
 	//return mesh;
 }
+
+Mesh* Mesh::generateStar3DTexCor(GLdouble re, GLuint np, GLdouble h){
+	Mesh* mesh = generateStar3D(re, np, h);
+	mesh->vTexCoords.reserve((np * 2) + 2);
+
+	GLdouble ri = re / 2;
+	
+	GLdouble ang = 90.0f;
+	GLdouble diff = 360.0f / np;
+	GLdouble x = 0.0f, y = 0.0f;
+	
+	mesh->vTexCoords.emplace_back(0, 0, 0); //ORIGEN
+	
+	for (GLint i = 0; i < mesh->mNumVertices; ++i) {
+		if ((i % 2) == 0) {
+			x = re * cos(radians(ang));
+			y = re * sin(radians(ang));
+		}
+		else {
+			x = ri * cos(radians(ang));
+			y = ri * sin(radians(ang));
+		}
+		ang += diff;
+		mesh->vTexCoords.emplace_back(x, y, h);
+	}
+
+	return mesh;
+}

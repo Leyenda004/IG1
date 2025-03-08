@@ -42,7 +42,7 @@ Scene3::init() {
 	//
 	//gObjects.push_back(box);
 
-	Star3D* star = new Star3D(100.f, 16, 100.f);
-
+	Star3D* star = new Star3D(100.f, 16, 100.f,"../assets/images/baldosaP.png");
+	
 	gObjects.push_back(star);
 }

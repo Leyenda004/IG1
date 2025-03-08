@@ -8,8 +8,10 @@ using namespace glm;
 BoxOutline::BoxOutline(GLdouble length, std::string mTextureOut, std::string mTextureInside) {
 	mMesh = Mesh::generateBoxOutlineTexCor(length);
 	mShader = Shader::get("texture");
+	
 	_mTextureOut = new Texture();
 	_mTextureOut->load(mTextureOut, 255);
+
 	_mTextureInside = new Texture();
 	_mTextureInside->load(mTextureInside, 255);
 }
