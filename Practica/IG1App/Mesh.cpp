@@ -133,7 +133,7 @@ Mesh::createRGBAxes(GLdouble l)
 
 //EDITABLE
 
-// Crea un polígono regular de n lados y radio r
+// Crea un polï¿½gono regular de n lados y radio r
 Mesh*
 Mesh::generateRegularPolygon(GLuint num, GLdouble r) {
 	Mesh* mesh = new Mesh();
@@ -154,7 +154,7 @@ Mesh::generateRegularPolygon(GLuint num, GLdouble r) {
 	return mesh;
 }
 
-// Crea un triángulo equilátero de colores de lado r partiendo de la maya de un polígono regular de 3 lados
+// Crea un triï¿½ngulo equilï¿½tero de colores de lado r partiendo de la maya de un polï¿½gono regular de 3 lados
 Mesh*
 Mesh::generateRGBTriangle(GLdouble r) {	
 	Mesh* mesh = Mesh::generateRegularPolygon(3, r);
@@ -166,7 +166,7 @@ Mesh::generateRGBTriangle(GLdouble r) {
 	return mesh;
 }
 
-// Crea un rectángulo de lados w y h
+// Crea un rectï¿½ngulo de lados w y h
 Mesh*
 Mesh::generateRectangle(GLdouble w, GLdouble h) {
 	Mesh* mesh = new Mesh();
@@ -180,7 +180,7 @@ Mesh::generateRectangle(GLdouble w, GLdouble h) {
 	mesh->vVertices.emplace_back(x, -y, z);
 	mesh->vVertices.emplace_back(-x, -y, z);
 
-	// En este orden devuelve el rectángulo relleno?
+	// En este orden devuelve el rectï¿½ngulo relleno?
 	//mesh->vVertices.emplace_back(x, -y, z);
 	//mesh->vVertices.emplace_back(-x, -y, z);
 	//mesh->vVertices.emplace_back(x, y, z);
@@ -189,7 +189,7 @@ Mesh::generateRectangle(GLdouble w, GLdouble h) {
 	return mesh;
 }
 
-// Crea un rectángulo de lados w y h con colores
+// Crea un rectï¿½ngulo de lados w y h con colores
 Mesh*
 Mesh::generateRGBRectangle(GLdouble w, GLdouble h) {
 	Mesh* mesh = generateRectangle(w, h);
@@ -262,7 +262,7 @@ Mesh::generateCube(GLdouble length) {
 	mesh->mPrimitive = GL_TRIANGLES;
 	return mesh;
 
-	// PRUEBA MENOS VÉRTICES, A OPTIMIZAR EN FUTURO
+	// PRUEBA MENOS Vï¿½RTICES, A OPTIMIZAR EN FUTURO
 	//mesh->vVertices.emplace_back(l, l, l);		//1
 	//mesh->vVertices.emplace_back(-l, l, l);	//2
 	//mesh->vVertices.emplace_back(-l, l, -l);	//3
@@ -278,19 +278,19 @@ Mesh::generateCube(GLdouble length) {
 
 }
 
-// Crea un cubo a partir del método GenerateCube y le asigna colores a cada cara
+// Crea un cubo a partir del mï¿½todo GenerateCube y le asigna colores a cada cara
 Mesh* 
 Mesh::generateRGBCubeTriangles(GLdouble length) {
 	Mesh* mesh = generateCube(length);
-	// Reservar los vértices a los que les vas a asignar color
+	// Reservar los vï¿½rtices a los que les vas a asignar color
 	mesh->vColors.reserve(36);
 
-	// Definir los colores de cada cara y los números de vértices en los que se cambia de cara
+	// Definir los colores de cada cara y los nï¿½meros de vï¿½rtices en los que se cambia de cara
 	int r = 0, g = 0, b = 0;
 	int minusYI = 0, minusYF = 5, minusXI = 6, minusXF = 11, minusZI = 12, minusZF = 17,
 		YI = 18, YF = 23, XI = 24, XF = 29, ZI = 30, ZF = 35;
 
-	// Asignar colores a cada vértice
+	// Asignar colores a cada vï¿½rtice
 	for (int i = 0; i < 36; ++i) {
 		if ((i >= minusYI && i <= minusYF) || (i >= YI && i <= YF)) { r = 0; g = 0; b = 1; }
 		if ((i >= minusXI && i <= minusXF) || (i >= XI && i <= XF)) { r = 0; g = 1; b = 0; }
@@ -440,28 +440,34 @@ Mesh* Mesh::generateStar3D(GLdouble re, GLuint np, GLdouble h)
 
 Mesh* Mesh::generateStar3DTexCor(GLdouble re, GLuint np, GLdouble h){
 	Mesh* mesh = generateStar3D(re, np, h);
-	mesh->vTexCoords.reserve((np * 2) + 2);
+	mesh->vTexCoords.reserve(18/*19*/);
 
-	GLdouble ri = re / 2;
-	
-	GLdouble ang = 90.0f;
-	GLdouble diff = 360.0f / np;
-	GLdouble x = 0.0f, y = 0.0f;
-	
-	mesh->vTexCoords.emplace_back(0, 0, 0); //ORIGEN
-	
-	for (GLint i = 0; i < mesh->mNumVertices; ++i) {
-		if ((i % 2) == 0) {
-			x = re * cos(radians(ang));
-			y = re * sin(radians(ang));
-		}
-		else {
-			x = ri * cos(radians(ang));
-			y = ri * sin(radians(ang));
-		}
-		ang += diff;
-		mesh->vTexCoords.emplace_back(x, y, h);
-	}
+	mesh->mPrimitive = GL_TRIANGLE_FAN;
+
+	mesh->vTexCoords.emplace_back(0.5f, 0.5f);
+
+	mesh->vTexCoords.emplace_back(0, 0);
+	mesh->vTexCoords.emplace_back(0, 0.25f);
+	mesh->vTexCoords.emplace_back(0, 0.5f);
+	mesh->vTexCoords.emplace_back(0, 0.75f);
+
+	mesh->vTexCoords.emplace_back(0, 1);
+	mesh->vTexCoords.emplace_back(0.25f, 1);
+	mesh->vTexCoords.emplace_back(0.5f, 1);
+	mesh->vTexCoords.emplace_back(0.75f, 1);
+
+	mesh->vTexCoords.emplace_back(1, 1);
+	mesh->vTexCoords.emplace_back(1, 0.75f);
+	mesh->vTexCoords.emplace_back(1, 0.5f);
+	mesh->vTexCoords.emplace_back(1, 0.25f);
+
+	mesh->vTexCoords.emplace_back(1, 0);
+	mesh->vTexCoords.emplace_back(0.75f, 0);
+	mesh->vTexCoords.emplace_back(0.5f, 0);
+	mesh->vTexCoords.emplace_back(0.25f, 0);
+
+	//mesh->vTexCoords.emplace_back(0, 0);
+	mesh->vTexCoords.emplace_back(0.5f, 0.5f);
 
 	return mesh;
 }

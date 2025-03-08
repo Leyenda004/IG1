@@ -21,7 +21,7 @@ void Star3D::render(const glm::mat4& modelViewMat) const
 
 		_starTexture->bind();
 
-		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
 		mat4 aMat = modelViewMat * mModelMat;
 		// Cambiar orden?? Duda
