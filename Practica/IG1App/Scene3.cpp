@@ -14,6 +14,10 @@
 
 #include "Star3D.h"
 
+#include "Box.h"
+
+#include "GlassParapet.h"
+
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
@@ -42,7 +46,9 @@ Scene3::init() {
 	//
 	//gObjects.push_back(box);
 
-	Star3D* star = new Star3D(100.f, 16, 100.f,"../assets/images/baldosaP.png");
+	//Star3D* star = new Star3D(100.f, 16, 100.f,"../assets/images/baldosaP.png");
+	//gObjects.push_back(star);
 	
-	gObjects.push_back(star);
+	GlassParapet* glass = new GlassParapet(100.f, "../assets/images/windowC.png");
+	gObjects.push_back(glass);
 }
