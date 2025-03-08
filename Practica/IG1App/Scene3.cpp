@@ -40,11 +40,9 @@ Scene3::init() {
 	Texture* tex = new Texture();
 	tex->load("../assets/images/baldosaC.png", 255);
 	ground->setTexture(tex);
-	
 	gObjects.push_back(ground);
 
 	//BoxOutline* box = new BoxOutline(100.f,"../assets/images/container.jpg","../assets/images/papelE.png");
-	//
 	//gObjects.push_back(box);
 
 	//Star3D* star = new Star3D(100.f, 16, 100.f,"../assets/images/baldosaP.png");
@@ -53,6 +51,9 @@ Scene3::init() {
 	//GlassParapet* glass = new GlassParapet(100.f, "../assets/images/windowV.jpg");
 	//gObjects.push_back(glass);
 
-	Photo* photo = new Photo();
-	gObjects.push_back(photo);
+	//Photo* photo = new Photo();
+	//gObjects.push_back(photo);
+
+	Box* boxComplete = new Box(100.f);
+	gObjects.push_back(boxComplete);
 }

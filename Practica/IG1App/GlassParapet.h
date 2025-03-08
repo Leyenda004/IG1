@@ -6,7 +6,5 @@ class GlassParapet :
 public:
     GlassParapet(GLdouble length, std::string mTextureOut);
     void render(glm::mat4 const& modelViewMat) const override;
-private:
-	Texture* mTextureAux;
 };
 

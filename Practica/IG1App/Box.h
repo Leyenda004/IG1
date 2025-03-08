@@ -4,9 +4,18 @@
 class Box :
     public EntityWithTexture
 {
-	Box();
+public:
+	Box(GLdouble);
+	void render(const glm::mat4& modelViewMat) const override;
+
 private:
 	Mesh* mMeshTapa;
 	Mesh* mMeshFondo;
+	glm::mat4 mModelMatTapa;
+	glm::mat4 mModelMatFondo;
+
+	Texture* _mTextureOut;
+	Texture* _mTextureInside;
+
 };
 
