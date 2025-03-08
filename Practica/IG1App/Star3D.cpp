@@ -38,16 +38,26 @@ void Star3D::render(const glm::mat4& modelViewMat) const
 void Star3D::update()
 {
 	if (mMesh != nullptr) {
-		mat4 rotY = rotate(mat4(1.0f), radians(5.0f), vec3(0, 1, 0));
-		mat4 rotZ = rotate(mat4(1.0f), radians(5.0f), vec3(0, 0, 1));
-		mat4 rotYNeg = rotate(mat4(1.0f), radians(5.0f), vec3(0, 1, 0));
-		//mat4 rotZNeg = rotate(mat4(1.0f), radians(-10.0f), vec3(0, 0, -1));
-		//mat4 rotX = rotate(mat4(1.0f), radians(-10.0f), vec3(1, 0, 0));
-		mModelMat = (mModelMat * rotZ);
+		//mat4 modelMatPrev = mModelMat;
+		//mat4 rotY = rotate(mModelMaty, radians(5.0f), vec3(0, 1, 0));
+		//mat4 rotZ = rotate(mat4(1.0f), radians(5.0f), vec3(0, 0, 1));
+		//mat4 rotYNeg = rotate(mat4(1.0f), radians(-5.0f), vec3(0, 1, 0));
+		//mat4 rotZNeg = rotate(mat4(1.0f), radians(-5.0f), vec3(0, 0, 1));
+		//mat4 rotX = rotate(mat4(1.0f), radians(5.0f), vec3(1, 0, 0));
+		//mat4 rotXNeg = rotate(mat4(1.0f), radians(-5.0f), vec3(1, 0, 0));
+		//mModelMat = (mModelMat * rotZ * rotY * rotZNeg * rotYNeg);
+		//mModelMat = (mModelMat * rotY);
+
+		mat4 mT1 = translate(mat4(1.0f), vec3(7.5, 0, 7.5));
+		mat4 mRotY = rotate(mat4(1.0f), radians(1.0f), vec3(0, 1, 0));
+		mat4 mTi1 = translate(mat4(1.0f), vec3(-7.5, 0, -7.5));
+		mat4 mRotZ = rotate(mat4(1.0f), radians(1.0f), vec3(0, 0, 1));
+
+		mModelMat = (mModelMat * mT1 * mRotY, mTi1, mRotZ);
 
 		//GUARDAR LA ROTACION INICIAL DEL MAT4 PARA VOLVER ATRAS A LA HORA DE APLICAR LA ROTACION EN Z Y DESPUES APLICAR DE NUEVO LA Y
 
-		//mModelMat = (mModelMat * rotYNeg);
+		//mModelMat = (mModelMat * rotY);
 		//
 		//mModelMat = (mModelMat * rotZ);
 		//
