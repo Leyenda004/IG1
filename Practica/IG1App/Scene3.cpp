@@ -17,6 +17,7 @@
 #include "Box.h"
 
 #include "GlassParapet.h"
+#include "Photo.h"
 
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
@@ -34,13 +35,13 @@ Scene3::init() {
 	// Graphics objects (entities) of the scene
 	gObjects.push_back(new RGBAxes(400.0f));
 
-	//Ground* ground = new Ground();
-	//
-	//Texture* tex = new Texture();
-	//tex->load("../assets/images/baldosaC.png", 255);
-	//ground->setTexture(tex);
-	//
-	//gObjects.push_back(ground);
+	Ground* ground = new Ground();
+	
+	Texture* tex = new Texture();
+	tex->load("../assets/images/baldosaC.png", 255);
+	ground->setTexture(tex);
+	
+	gObjects.push_back(ground);
 
 	//BoxOutline* box = new BoxOutline(100.f,"../assets/images/container.jpg","../assets/images/papelE.png");
 	//
@@ -49,6 +50,9 @@ Scene3::init() {
 	//Star3D* star = new Star3D(100.f, 16, 100.f,"../assets/images/baldosaP.png");
 	//gObjects.push_back(star);
 	
-	GlassParapet* glass = new GlassParapet(100.f, "../assets/images/windowC.png");
-	gObjects.push_back(glass);
+	//GlassParapet* glass = new GlassParapet(100.f, "../assets/images/windowV.jpg");
+	//gObjects.push_back(glass);
+
+	Photo* photo = new Photo();
+	gObjects.push_back(photo);
 }

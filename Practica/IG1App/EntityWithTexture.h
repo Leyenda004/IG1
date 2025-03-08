@@ -5,7 +5,7 @@
 
 class EntityWithTexture : public Abs_Entity
 {
-private:
+protected:
 	Texture* mTexture = nullptr;
 	GLboolean mModulate = false;
 public:

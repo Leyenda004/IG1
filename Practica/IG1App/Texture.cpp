@@ -8,6 +8,16 @@ Texture::~Texture()
 		glDeleteTextures(1, &mId);
 }
 
+void Texture::loadColorBuffer(GLsizei width, GLsizei height, GLuint buffer)
+{
+	glBindTexture(GL_TEXTURE_2D, mId);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
+	glBindBuffer(GL_PIXEL_UNPACK_BUFFER, buffer);
+	glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, width, height, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
+	glBindBuffer(GL_PIXEL_UNPACK_BUFFER, 0);
+	glBindTexture(GL_TEXTURE_2D, 0);
+}
+
 void
 Texture::init()
 {
