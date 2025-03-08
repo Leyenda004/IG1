@@ -56,7 +56,6 @@ void Star3D::update()
 		//mat4 RotZNeg = rotate(mat4(1.0f), radians(-1.0f), vec3(0, 0, -1));
 		//mat4 RotXNeg2 = rotate(mat4(1.0f), radians(-2.0f), vec3(-1, 0, 0));
 
-		mModelMat = (mModelMat * RotY * RotZ * RotXNeg2);
 		//mModelMat = (mModelMat * RotY * RotZ * RotYNeg * RotZNeg);
 
 		//GUARDAR LA ROTACION INICIAL DEL MAT4 PARA VOLVER ATRAS A LA HORA DE APLICAR LA ROTACION EN Z Y DESPUES APLICAR DE NUEVO LA Y
@@ -66,6 +65,8 @@ void Star3D::update()
 		//mModelMat = (mModelMat * rotZ);
 		//
 		//mModelMat = (mModelMat * rotY);
+
+		mModelMat = rotate(mModelMat, radians(1.f), vec3(0.f, 1.f, 1.f));
 	}
 
 }
