@@ -10,11 +10,17 @@ Texture::~Texture()
 
 void Texture::loadColorBuffer(GLsizei width, GLsizei height, GLuint buffer)
 {
+	if (mId == 0) init();
+
+	mWidth = width;
+	mHeight = height;
+
+	glReadBuffer(buffer);
+
 	glBindTexture(GL_TEXTURE_2D, mId);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
-	glBindBuffer(GL_PIXEL_UNPACK_BUFFER, buffer);
-	glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, width, height, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
-	glBindBuffer(GL_PIXEL_UNPACK_BUFFER, 0);
+
+	glCopyTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 0, 0, mWidth, mHeight, 0);
+
 	glBindTexture(GL_TEXTURE_2D, 0);
 }
 

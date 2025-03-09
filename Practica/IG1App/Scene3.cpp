@@ -45,15 +45,16 @@ Scene3::init() {
 	//BoxOutline* box = new BoxOutline(100.f,"../assets/images/container.jpg","../assets/images/papelE.png");
 	//gObjects.push_back(box);
 
-	//Star3D* star = new Star3D(100.f, 16, 100.f,"../assets/images/baldosaP.png");
-	//gObjects.push_back(star);
+	Star3D* star = new Star3D(100.f, 16, 100.f,"../assets/images/baldosaP.png");
+	gObjects.push_back(star);
 	
 	//GlassParapet* glass = new GlassParapet(100.f, "../assets/images/windowV.jpg");
 	//gObjects.push_back(glass);
 
-	//Photo* photo = new Photo();
-	//gObjects.push_back(photo);
+	Texture* photoTex = new Texture();
+	Photo* photo = new Photo(photoTex);
+	gObjects.push_back(photo);
 
-	Box* boxComplete = new Box(100.f);
-	gObjects.push_back(boxComplete);
+	//Box* boxComplete = new Box(100.f);
+	//gObjects.push_back(boxComplete);
 }
