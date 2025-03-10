@@ -26,13 +26,13 @@ void Star3D::render(const glm::mat4& modelViewMat) const
 		mat4 aMat = modelViewMat * mModelMat;
 		// Cambiar orden?? Duda
 		mShader->use();
-		mShader->setUniform("modulate", aMat);
+		mShader->setUniform("Modulate", aMat);
 		upload(aMat);
 		mMesh->render();
 
 		mat4 bMat = modelViewMat * mModelMat;
 		mShader->use();
-		mShader->setUniform("modulate", bMat);
+		mShader->setUniform("Modulate", bMat);
 		bMat = rotate(bMat, radians(180.f), vec3(1.0, 0.0, 0.0));
 		upload(bMat);
 		mMesh->render();

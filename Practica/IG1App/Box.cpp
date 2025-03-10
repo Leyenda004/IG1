@@ -40,18 +40,18 @@ void Box::render(const glm::mat4& modelViewMat) const
 		mat4 cMat = modelViewMat * mModelMatFondo;
 
 		glEnable(GL_CULL_FACE);
-
+		
 		// BACK
 		glCullFace(GL_BACK); // 1. Culling
 		_mTextureInside->bind(); // 2. Bind
 		// 3. Render caja
 		mShader->use();
-		mShader->setUniform("modulate", aMat);
+		mShader->setUniform("Modulate", aMat);
 		upload(aMat);
 		mMesh->render();
 		// 3. Render tapa
 		mShader->use();
-		mShader->setUniform("modulate", bMat);
+		mShader->setUniform("Modulate", bMat);
 		upload(bMat);
 		mMeshTapa->render();
 		// 3. Render fondo
@@ -66,12 +66,12 @@ void Box::render(const glm::mat4& modelViewMat) const
 		_mTextureOut->bind(); // 2. Bind
 		// 3. Render caja
 		mShader->use();
-		mShader->setUniform("modulate", aMat);
+		mShader->setUniform("Modulate", aMat);
 		upload(aMat);
 		mMesh->render();
 		// 3. Render tapa
 		mShader->use();
-		mShader->setUniform("modulate", bMat);
+		mShader->setUniform("Modulate", bMat);
 		upload(bMat);
 		mMeshTapa->render();
 		// 3. Render fondo

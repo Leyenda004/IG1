@@ -44,14 +44,14 @@ Scene3::init() {
 
 	BoxOutline* box = new BoxOutline(100.f,"../assets/images/container.jpg","../assets/images/papelE.png");
 	gObjects.push_back(box);
-	
+	//
 	Star3D* star = new Star3D(100.f, 16, 100.f,"../assets/images/baldosaP.png");
 	gObjects.push_back(star);
-
+	
 	Texture* photoTex = new Texture();
 	Photo* photo = new Photo(photoTex);
 	gObjects.push_back(photo);
-
+	
 	GlassParapet* glass = new GlassParapet(200.f, "../assets/images/windowV.jpg");
 	gObjects.push_back(glass);
 

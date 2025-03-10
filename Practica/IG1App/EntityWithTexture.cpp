@@ -14,7 +14,7 @@ void EntityWithTexture::render(mat4 const& modelViewMat) const
 	if (mMesh != nullptr && mTexture != nullptr) {
 		mat4 aMat = modelViewMat * mModelMat; // glm matrix multiplication
 		mShader->use();
-		mShader->setUniform("modulate",aMat);
+		mShader->setUniform("Modulate",aMat);
 		upload(aMat);
 		mTexture->bind();
 		mMesh->render();

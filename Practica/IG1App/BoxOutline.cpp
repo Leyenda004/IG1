@@ -21,7 +21,7 @@ void BoxOutline::render(const glm::mat4& modelViewMat) const
 	if (mMesh != nullptr && _mTextureOut != nullptr && _mTextureInside != nullptr) {
 		mat4 aMat = modelViewMat * mModelMat; // glm matrix multiplication
 		mShader->use();
-		mShader->setUniform("modulate", aMat);
+		mShader->setUniform("Modulate", aMat);
 		upload(aMat);
 		
 		glEnable(GL_CULL_FACE);
