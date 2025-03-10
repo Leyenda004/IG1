@@ -1,10 +1,13 @@
 #include "GlassParapet.h"
 
+#include "Texture.h"
+
 GlassParapet::GlassParapet(GLdouble length, std::string mTextureOut)
 {
 	mMesh = Mesh::generateBoxOutlineTexCor(length);
 	mShader = Shader::get("texture");
 
+	mTexture = new Texture();
 	mTexture->load(mTextureOut, 255 / 2);
 	setTexture(mTexture);
 }

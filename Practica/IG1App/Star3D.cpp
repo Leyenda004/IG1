@@ -44,38 +44,10 @@ void Star3D::render(const glm::mat4& modelViewMat) const
 	}
 }
 
-//APARTADO 27 PENDIENTE
-
 void Star3D::update()
 {
 	if (mMesh != nullptr) {
-		//mat4 modelMatPrev = mModelMat;
-		//mat4 rotY = rotate(mModelMaty, radians(5.0f), vec3(0, 1, 0));
-		//mat4 rotZ = rotate(mat4(1.0f), radians(5.0f), vec3(0, 0, 1));
-		//mat4 rotYNeg = rotate(mat4(1.0f), radians(-5.0f), vec3(0, 1, 0));
-		//mat4 rotZNeg = rotate(mat4(1.0f), radians(-5.0f), vec3(0, 0, 1));
-		//mat4 rotX = rotate(mat4(1.0f), radians(5.0f), vec3(1, 0, 0));
-		//mat4 rotXNeg = rotate(mat4(1.0f), radians(-5.0f), vec3(1, 0, 0));
-		//mModelMat = (mModelMat * rotZ * rotY * rotZNeg * rotYNeg);
-		//mModelMat = (mModelMat * rotY);
-
-		//mat4 RotY = rotate(mat4(1.0f), radians(1.0f), vec3(0, 1, 0));
-		//mat4 RotZ= rotate(mat4(1.0f), radians(1.0f), vec3(0, 0, 1));
-		//mat4 RotYNeg = rotate(mat4(1.0f), radians(-1.0f), vec3(0, -1, 0));
-		//mat4 RotZNeg = rotate(mat4(1.0f), radians(-1.0f), vec3(0, 0, -1));
-		//mat4 RotXNeg2 = rotate(mat4(1.0f), radians(-2.0f), vec3(-1, 0, 0));
-
-		//mModelMat = (mModelMat * RotY * RotZ * RotYNeg * RotZNeg);
-
-		//GUARDAR LA ROTACION INICIAL DEL MAT4 PARA VOLVER ATRAS A LA HORA DE APLICAR LA ROTACION EN Z Y DESPUES APLICAR DE NUEVO LA Y
-
-		//mModelMat = (mModelMat * rotY);
-		//
-		//mModelMat = (mModelMat * rotZ);
-		//
-		//mModelMat = (mModelMat * rotY);
-
-		mModelMat = rotate(mat4(1.0f), radians(1.f), vec3(0.f, 1.f, 1.f));
+		mModelMat = rotate(mModelMat, radians(1.f), vec3(0.f, 1.f, 1.f));
 	}
 
 }
