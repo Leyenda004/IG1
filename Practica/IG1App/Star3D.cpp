@@ -15,6 +15,11 @@ Star3D::Star3D(GLdouble re, GLuint np, GLdouble h, std::string mTexturePar)
 	_starTexture->load(mTexturePar, 255);
 }
 
+Star3D::~Star3D()
+{
+	delete _starTexture;
+}
+
 void Star3D::render(const glm::mat4& modelViewMat) const
 {
 	if (mMesh != nullptr && _starTexture != nullptr) {

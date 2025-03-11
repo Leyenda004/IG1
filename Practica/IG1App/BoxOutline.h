@@ -10,6 +10,7 @@ private:
     Texture* _mTextureInside;
 public:
     BoxOutline(GLdouble length/* = 100.f*/,std::string mTextureOut, std::string mTextureInside);
+    ~BoxOutline();
     void render(const glm::mat4& modelViewMat) const override;
 };
 

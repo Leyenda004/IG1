@@ -10,6 +10,7 @@ protected:
 	GLboolean mModulate = false;
 public:
 	EntityWithTexture();
+	~EntityWithTexture();
 	void setTexture(Texture* tex) { mTexture = tex; }
 	void render(glm::mat4 const& modelViewMat) const override;
 };

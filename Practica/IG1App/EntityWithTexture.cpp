@@ -9,6 +9,11 @@ EntityWithTexture::EntityWithTexture() {
 	mShader = Shader::get("texture");
 }
 
+EntityWithTexture::~EntityWithTexture()
+{
+	delete mTexture;
+}
+
 void EntityWithTexture::render(mat4 const& modelViewMat) const
 {
 	if (mMesh != nullptr && mTexture != nullptr) {

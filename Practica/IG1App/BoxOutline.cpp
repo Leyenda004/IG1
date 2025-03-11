@@ -16,6 +16,12 @@ BoxOutline::BoxOutline(GLdouble length, std::string mTextureOut, std::string mTe
 	_mTextureInside->load(mTextureInside, 255);
 }
 
+BoxOutline::~BoxOutline()
+{
+	delete _mTextureOut;
+	delete _mTextureInside;
+}
+
 void BoxOutline::render(const glm::mat4& modelViewMat) const
 {
 	if (mMesh != nullptr && _mTextureOut != nullptr && _mTextureInside != nullptr) {
