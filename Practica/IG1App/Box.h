@@ -21,7 +21,7 @@ private:
 	Texture* _mTextureInside;
 
 	bool giroFuera = true;
-	int velGiro = 7;
+	int velGiro = 3;
 	int giroTotal = 90;
 	int c = 0; //contador de giro
 
