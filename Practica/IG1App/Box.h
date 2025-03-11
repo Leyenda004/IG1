@@ -9,8 +9,8 @@ public:
 	void render(const glm::mat4& modelViewMat) const override;
 
 private:
-	Mesh* mMeshTapa;
-	Mesh* mMeshFondo;
+	Mesh* mMeshTapa = nullptr;
+	Mesh* mMeshFondo = nullptr;
 	glm::mat4 mModelMatTapa;
 	glm::mat4 mModelMatFondo;
 

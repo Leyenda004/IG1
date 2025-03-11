@@ -34,12 +34,15 @@ Box::Box(GLdouble l) {
 
 void Box::render(const glm::mat4& modelViewMat) const
 {
-	if (mMesh != nullptr && mMeshTapa != nullptr && mMeshFondo != nullptr) {
+	if (mMesh != nullptr && mMeshTapa != nullptr && mMeshFondo != nullptr
+		&& _mTextureOut != nullptr && _mTextureInside != nullptr) {
 		mat4 aMat = modelViewMat * mModelMat;
 		mat4 bMat = modelViewMat * mModelMatTapa;
 		mat4 cMat = modelViewMat * mModelMatFondo;
 
 		glEnable(GL_CULL_FACE);
+
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 		
 		// BACK
 		glCullFace(GL_BACK); // 1. Culling
