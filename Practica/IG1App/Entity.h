@@ -30,6 +30,7 @@ public:
 
 	// EDITABLE
 
+	// Duda??
 	// Definicion de metodo vacío? Para que no de error? Por qué se usa el inline?
 	virtual void update() {};
 

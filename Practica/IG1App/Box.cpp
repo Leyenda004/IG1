@@ -3,9 +3,13 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+// Opcional
+#include <iostream>
+
 using namespace glm;
 
-Box::Box(GLdouble l) {
+Box::Box(GLdouble lenght, GLdouble x, GLdouble y, GLdouble z) {
+	l = lenght;
 	mShader = Shader::get("texture");
 
 	_mTextureOut = new Texture();
@@ -16,20 +20,20 @@ Box::Box(GLdouble l) {
 
 
 	mMesh = Mesh::generateBoxOutlineTexCor(l);
-	mMeshTapa = Mesh::generateRectangleTexCor(l, l);
-	mMeshFondo = Mesh::generateRectangleTexCor(l, l);
+	mMeshTapa = Mesh::generateRectangleTexCor(l/2, l/2);
+	mMeshFondo = Mesh::generateRectangleTexCor(l/2, l/2);
+
+	mat4 trasBox = translate(mat4(1.0f), vec3(x, y, z));
+	mat4 trasTapa = translate(mat4(1.0f), vec3(x, y + l/2, z));
+	mat4 trasFondo = translate(mat4(1.0f), vec3(x, y - l/2, z));
 
 	mat4 rotTapa = rotate(mat4(1.0f), glm::radians(90.f), vec3(1.0f, 0.0f, 0.0f));
 	mat4 rotFondo = rotate(mat4(1.0f), glm::radians(-90.f), vec3(1.0f, 0.0f, 0.0f));
 
-	mModelMatTapa = rotTapa;
-	mModelMatFondo = rotFondo;
-
-	mat4 trasTapa = translate(mat4(1.0f), vec3(0.0f, l/2, 0.0f));
-	mat4 trasFondo = translate(mat4(1.0f), vec3(0.0f, -l/2, 0.0f));
-
-	mModelMatTapa = trasTapa * mModelMatTapa;
-	mModelMatFondo = trasFondo * mModelMatFondo;
+	mModelMat = trasBox;
+	mModelMatTapa = trasTapa * rotTapa;
+	//mModelMatTapaDestino = mModelMatTapa;
+	mModelMatFondo = trasFondo * rotFondo;
 }
 
 void Box::render(const glm::mat4& modelViewMat) const
@@ -40,9 +44,11 @@ void Box::render(const glm::mat4& modelViewMat) const
 		mat4 bMat = modelViewMat * mModelMatTapa;
 		mat4 cMat = modelViewMat * mModelMatFondo;
 
-		glEnable(GL_CULL_FACE);
+		// LOAD
+		mMeshTapa->load();
+		mMeshFondo->load();
 
-		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+		glEnable(GL_CULL_FACE);
 		
 		// BACK
 		glCullFace(GL_BACK); // 1. Culling
@@ -53,15 +59,15 @@ void Box::render(const glm::mat4& modelViewMat) const
 		upload(aMat);
 		mMesh->render();
 		// 3. Render tapa
-		// mShader->use();
-		// mShader->setUniform("Modulate", bMat);
-		// upload(bMat);
-		// mMeshTapa->render();
+		 mShader->use();
+		 mShader->setUniform("Modulate", bMat);
+		 upload(bMat);
+		 mMeshTapa->render();
 		// 3. Render fondo
-		//mShader->use();
-		//mShader->setUniform("modulate", cMat);
-		//upload(cMat);
-		//mMeshFondo->render();
+		mShader->use();
+		mShader->setUniform("Modulate", cMat);
+		upload(cMat);
+		mMeshFondo->render();
 		_mTextureInside->unbind(); // 4. Unbind
 
 		// FRONT
@@ -73,17 +79,54 @@ void Box::render(const glm::mat4& modelViewMat) const
 		upload(aMat);
 		mMesh->render();
 		// 3. Render tapa
-		// mShader->use();
-		// mShader->setUniform("Modulate", bMat);
-		// upload(bMat);
-		// mMeshTapa->render();
+		mShader->use();
+		mShader->setUniform("Modulate", bMat);
+		upload(bMat);
+		mMeshTapa->render();
 		// 3. Render fondo
-		//mShader->use();
-		//mShader->setUniform("modulate", cMat);
-		//upload(cMat);
-		//mMeshFondo->render();
+		mShader->use();
+		mShader->setUniform("Modulate", cMat);
+		upload(cMat);
+		mMeshFondo->render();
 		_mTextureOut->unbind(); // 4. Unbind
 
 		glDisable(GL_CULL_FACE);
+
+
+		// UNLOAD
+		mMeshTapa->unload();
+		mMeshFondo->unload();
 	}
+}
+
+void Box::update()
+{
+	//if (mModelMatTapa == mModelMatTapaDestino) {
+	//	giroFuera = !giroFuera;
+
+	//	mModelMatTapaDestino = mModelMatTapa *
+	//	translate(mat4(1.0f), vec3(-l/2, 0, 0)) *
+	//	rotate(mat4(1.0f), glm::radians((giroFuera ? 1 : -1) * 90.f), vec3(0.0f, 1.0f, 0.0f)) *
+	//	translate(mat4(1.0f), vec3(l/2, 0, 0));
+
+	//	std::cout << "giroFuera: " << giroFuera << std::endl;
+	//}
+
+	// Esto asegura que la rotación sea exacta
+	assert(giroTotal % velGiro == 0);
+	if (c < (giroTotal / velGiro) ) {
+		c++;
+		std::cout << "c: " << c << std::endl;
+	}
+	else
+	{
+		c = 0;
+		giroFuera = !giroFuera;
+		std::cout << "giroFuera: " << giroFuera << std::endl;
+	}
+
+	mat4 trasTapa1 = translate(mat4(1.0f), vec3(-l/2, 0, 0));
+	mat4 rotTapa = rotate(mat4(1.0f), glm::radians((giroFuera ? 1 : -1) * (float)velGiro), vec3(0.0f, 1.0f, 0.0f));
+	mat4 trasTapa2 = translate(mat4(1.0f), vec3(l/2, 0, 0));
+	mModelMatTapa = mModelMatTapa * trasTapa1 * rotTapa * trasTapa2;
 }

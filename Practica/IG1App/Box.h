@@ -5,17 +5,25 @@ class Box :
     public EntityWithTexture
 {
 public:
-	Box(GLdouble);
+	Box(GLdouble lenght, GLdouble x, GLdouble y, GLdouble z);
 	void render(const glm::mat4& modelViewMat) const override;
+	void update() override;
 
 private:
-	Mesh* mMeshTapa = nullptr;
-	Mesh* mMeshFondo = nullptr;
+	GLdouble l;
+
+	Mesh* mMeshTapa;
+	Mesh* mMeshFondo;
 	glm::mat4 mModelMatTapa;
 	glm::mat4 mModelMatFondo;
 
 	Texture* _mTextureOut;
 	Texture* _mTextureInside;
 
-};
+	bool giroFuera = true;
+	int velGiro = 7;
+	int giroTotal = 90;
+	int c = 0; //contador de giro
 
+	//glm::mat4 mModelMatTapaDestino;
+};

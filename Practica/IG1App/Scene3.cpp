@@ -46,9 +46,7 @@ Scene3::init() {
 	//BoxOutline* box = new BoxOutline(100.f,"../assets/images/container.jpg","../assets/images/papelE.png");
 	//gObjects.push_back(box);
 
-	Box* boxComplete = new Box(75.f);
-	mat4 boxTras = translate(mat4(1.0f), vec3(-62.5f, 37.5f, -62.5f));
-	boxComplete->setModelMat(boxTras * boxComplete->modelMat());
+	Box* boxComplete = new Box(75.f, -62.5f, 37.5f, -62.5f);
 	gObjects.push_back(boxComplete);
 
 	Grass* grass1 = new Grass(25.f, 25.f, -25.f/2, 12.5f, -25.f/2, "../assets/images/grass_alpha.png");
