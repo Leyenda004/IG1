@@ -11,5 +11,6 @@ public:
     void update() override;
 private:
     Texture* _starTexture;
+    float rotY = 0.0f, rotZ = 0.0f, rotationSpeed = 0.1f;
 };
 

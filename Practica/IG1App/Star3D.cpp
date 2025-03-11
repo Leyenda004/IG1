@@ -52,7 +52,8 @@ void Star3D::render(const glm::mat4& modelViewMat) const
 void Star3D::update()
 {
 	if (mMesh != nullptr) {
-		mModelMat = rotate(mModelMat, radians(1.f), vec3(0.f, 1.f, 1.f));
+		mModelMat = rotate(mat4(1.0f), rotY += rotationSpeed, vec3(0,1,0));
+		mModelMat = rotate(mModelMat, rotZ += rotationSpeed, vec3(0,0,1));
 	}
 
 }
