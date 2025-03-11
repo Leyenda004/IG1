@@ -116,13 +116,13 @@ void Box::update()
 	assert(giroTotal % velGiro == 0);
 	if (c < (giroTotal / velGiro) ) {
 		c++;
-		std::cout << "c: " << c << std::endl;
+		//std::cout << "c: " << c << std::endl;
 	}
 	else
 	{
 		c = 0;
 		giroFuera = !giroFuera;
-		std::cout << "giroFuera: " << giroFuera << std::endl;
+		//std::cout << "giroFuera: " << giroFuera << std::endl;
 	}
 
 	mat4 trasTapa1 = translate(mat4(1.0f), vec3(-l/2, 0, 0));
