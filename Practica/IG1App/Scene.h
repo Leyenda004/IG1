@@ -31,6 +31,8 @@ public:
 	// EDITABLE
 	virtual void update();
 
+	void takePhoto();
+
 protected:
 	void destroy();
 	void setGL();

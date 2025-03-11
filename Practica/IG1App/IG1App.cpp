@@ -188,6 +188,9 @@ IG1App::key(unsigned int key)
 			mUpdateEnabled = !mUpdateEnabled;
 			//cout << "mUpdateEnabled = " << mUpdateEnabled << endl; // Depuración
 			break;
+		case 'f' :
+			mScenes[mCurrentScene]->takePhoto();
+			break;
 		default:
 			if (key >= '0' && key <= '9' && !changeScene(key - '0'))
 				cout << "[NOTE] There is no scene " << char(key) << ".\n";

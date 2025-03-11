@@ -84,3 +84,13 @@ Scene::update() {
 		el->update();
 	}
 }
+
+void 
+Scene::takePhoto()
+{
+	Texture* t = new Texture();
+	t->loadColorBuffer(800.f, 600.f);
+	glGetTexImage(GL_TEXTURE_2D, 0, GL_RGBA, GL_UNSIGNED_BYTE, t);
+	//t->saveData("../bmps/Pachoclo.bmp");
+	delete t;
+}
