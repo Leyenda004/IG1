@@ -53,10 +53,10 @@ void Box::render(const glm::mat4& modelViewMat) const
 		upload(aMat);
 		mMesh->render();
 		// 3. Render tapa
-		mShader->use();
-		mShader->setUniform("Modulate", bMat);
-		upload(bMat);
-		mMeshTapa->render();
+		// mShader->use();
+		// mShader->setUniform("Modulate", bMat);
+		// upload(bMat);
+		// mMeshTapa->render();
 		// 3. Render fondo
 		//mShader->use();
 		//mShader->setUniform("modulate", cMat);
@@ -73,10 +73,10 @@ void Box::render(const glm::mat4& modelViewMat) const
 		upload(aMat);
 		mMesh->render();
 		// 3. Render tapa
-		mShader->use();
-		mShader->setUniform("Modulate", bMat);
-		upload(bMat);
-		mMeshTapa->render();
+		// mShader->use();
+		// mShader->setUniform("Modulate", bMat);
+		// upload(bMat);
+		// mMeshTapa->render();
 		// 3. Render fondo
 		//mShader->use();
 		//mShader->setUniform("modulate", cMat);

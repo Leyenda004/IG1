@@ -88,8 +88,13 @@ Scene::update() {
 void 
 Scene::takePhoto()
 {
-	Texture* t = new Texture();
-	t->loadColorBuffer(800.f, 600.f);
-	glGetTexImage(GL_TEXTURE_2D, 0, GL_RGBA, GL_UNSIGNED_BYTE, t);
-	delete t;
+	//Texture* t = new Texture();
+	//GLuint texture_map;
+	//char* archivo = "archivo";
+	//t->loadColorBuffer(800.f, 600.f);
+	//glGenTextures(1, &texture_map);
+	//glBindTexture(GL_TEXTURE_2D, texture_map);
+	glTexImage2D(GL_TEXTURE_2D, 0, 3, 800.f, 600.f, 0, GL_RGB, GL_UNSIGNED_BYTE, "../assets/Prueba.bmp");
+	//glGetTexImage(GL_TEXTURE_2D, 0, GL_RGBA, GL_UNSIGNED_BYTE, t);
+	//delete t;
 }
