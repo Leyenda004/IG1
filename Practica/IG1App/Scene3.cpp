@@ -46,13 +46,21 @@ Scene3::init() {
 	//BoxOutline* box = new BoxOutline(100.f,"../assets/images/container.jpg","../assets/images/papelE.png");
 	//gObjects.push_back(box);
 
-	Box* boxComplete = new Box(50.f);
-	mat4 boxTras = translate(mat4(1.0f), vec3(0.0f, 25.0f, 0.0f));
+	Box* boxComplete = new Box(75.f);
+	mat4 boxTras = translate(mat4(1.0f), vec3(-62.5f, 37.5f, -62.5f));
 	boxComplete->setModelMat(boxTras * boxComplete->modelMat());
 	gObjects.push_back(boxComplete);
 
-	Grass* grass = new Grass(20.f, 20.f, 10.f, 10.f, 10.f, "../assets/images/grass_alpha.png");
-	gObjects.push_back(grass);
+	Grass* grass1 = new Grass(25.f, 25.f, -25.f/2, 12.5f, -25.f/2, "../assets/images/grass_alpha.png");
+	Grass* grass2 = new Grass(25.f, 25.f, -25.f/2, 12.5f, 25.f/2, "../assets/images/grass_alpha.png");
+	Grass* grass3 = new Grass(25.f, 25.f, 25.f/2, 12.5f, -25.f/2, "../assets/images/grass_alpha.png");
+	Grass* grass4 = new Grass(25.f, 25.f, 25.f/2, 12.5f, 25.f/2, "../assets/images/grass_alpha.png");
+	//mat4 grassTras = translate(mat4(1.0f), vec3(-75.0f, 25.0f, -75.0f));
+	//grass->setModelMat(grassTras * grass->modelMat());
+	gObjects.push_back(grass1);
+	gObjects.push_back(grass2);
+	gObjects.push_back(grass3);
+	gObjects.push_back(grass4);
 
 	GlassParapet* glass = new GlassParapet(200.f, "../assets/images/windowV.jpg");
 	mat4 glassTras = translate(mat4(1.0f), vec3(0.0f, -100.0f, 0.0f));
@@ -60,13 +68,13 @@ Scene3::init() {
 	gObjects.push_back(glass);
 
 	Star3D* star = new Star3D(25.f, 16, 25.f, "../assets/images/baldosaP.png");
-	mat4 starTras = translate(mat4(1.0f), vec3(-25.0f, -25.0f, 50.0f));
+	mat4 starTras = translate(mat4(1.0f), vec3(-62.5f, 25.0f, -62.5f));
 	star->setModelMat(starTras * star->modelMat());
 	gObjects.push_back(star);
 
-	Photo* photo = new Photo();
+	Photo* photo = new Photo(100.f);
 	mat4 photoRot = rotate(mat4(1.0f), glm::radians(-90.f), vec3(1.0f, 0.0f, 0.0f));
-	mat4 photoTras = translate(mat4(1.0f), vec3(0.0f, 0.0f, -100.0f));
+	mat4 photoTras = translate(mat4(1.0f), vec3(0.0f, 100.0f, -100.0f));
 	photo->setModelMat(photoTras * photoRot * photo->modelMat());
 	gObjects.push_back(photo);
 }
