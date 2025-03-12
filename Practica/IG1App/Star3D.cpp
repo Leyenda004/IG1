@@ -5,9 +5,12 @@
 
 using namespace glm;
 
-Star3D::Star3D(GLdouble re, GLuint np, GLdouble h, std::string mTexturePar)
+Star3D::Star3D(GLdouble re, GLuint np, GLdouble h, GLdouble posX, GLdouble posY, GLdouble posZ, std::string mTexturePar)
 {
 	mMesh = Mesh::generateStar3DTexCor(re,np,h);
+	
+	mModelMat = translate(mat4(1.0f), vec3(posX, posY, posZ));
+	axeY = translate(mat4(1.0f), vec3(posX, posY, posZ));
 
 	mShader = Shader::get("texture");
 
@@ -52,8 +55,8 @@ void Star3D::render(const glm::mat4& modelViewMat) const
 void Star3D::update()
 {
 	if (mMesh != nullptr) {
-		mModelMat = rotate(mat4(1.0f), rotY += rotationSpeed, vec3(0,1,0));
-		mModelMat = rotate(mModelMat, rotZ += rotationSpeed, vec3(0,0,1));
+		mModelMat = rotate(axeY, _rotY += _rotationSpeed, vec3(0,1,0));
+		mModelMat = rotate(mModelMat, _rotZ += _rotationSpeed, vec3(0,0,1));
 	}
 
 }

@@ -65,9 +65,7 @@ Scene3::init() {
 	glass->setModelMat(glassTras * glass->modelMat());
 	gObjects.push_back(glass);
 
-	Star3D* star = new Star3D(25.f, 16, 25.f, "../assets/images/baldosaP.png");
-	mat4 starTras = translate(mat4(1.0f), vec3(62.5f, 25.0f, 62.5f));
-	star->setModelMat(starTras * star->modelMat());
+	Star3D* star = new Star3D(25.f, 16, 25.f, 62.5f, 25.0f, 62.5f,"../assets/images/baldosaP.png");
 	gObjects.push_back(star);
 
 	Photo* photo = new Photo(100.f);
