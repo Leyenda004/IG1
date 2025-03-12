@@ -35,6 +35,9 @@ public:
 	void run();   // the main event processing loop
 	void close(); // the application
 
+	int getWinWidth() { return mWinW; }
+	int getWinHeight() { return mWinH; }
+
 protected:
 	IG1App() = default;
 	~IG1App() { close(); };

@@ -1,4 +1,5 @@
 #include "Photo.h"
+#include "IG1App.h"
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
@@ -16,5 +17,5 @@ Photo::Photo(int l) : EntityWithTexture()
 
 void Photo::update()
 {
-    mTexture->loadColorBuffer(800.f, 600.f);
+    mTexture->loadColorBuffer(IG1App::s_ig1app.getWinWidth(), IG1App::s_ig1app.getWinWidth());
 }

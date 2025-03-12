@@ -60,11 +60,6 @@ Scene3::init() {
 	gObjects.push_back(grass3);
 	gObjects.push_back(grass4);
 
-	GlassParapet* glass = new GlassParapet(200.f, "../assets/images/windowV.jpg");
-	mat4 glassTras = translate(mat4(1.0f), vec3(0.0f, -100.0f, 0.0f));
-	glass->setModelMat(glassTras * glass->modelMat());
-	gObjects.push_back(glass);
-
 	Star3D* star = new Star3D(25.f, 16, 25.f, 62.5f, 25.0f, 62.5f,"../assets/images/baldosaP.png");
 	gObjects.push_back(star);
 
@@ -73,4 +68,9 @@ Scene3::init() {
 	mat4 photoTras = translate(mat4(1.0f), vec3(0.0f, 100.0f, -100.0f));
 	photo->setModelMat(photoTras * photoRot * photo->modelMat());
 	gObjects.push_back(photo);
+
+	GlassParapet* glass = new GlassParapet(200.f, "../assets/images/windowV.jpg");
+	mat4 glassTras = translate(mat4(1.0f), vec3(0.0f, -0.0f, 0.0f));
+	glass->setModelMat(glassTras * glass->modelMat());
+	gObjects.push_back(glass);
 }
