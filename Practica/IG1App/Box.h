@@ -6,6 +6,7 @@ class Box :
 {
 public:
 	Box(GLdouble lenght, GLdouble x, GLdouble y, GLdouble z);
+	~Box();
 	void render(const glm::mat4& modelViewMat) const override;
 	void update() override;
 

@@ -36,6 +36,14 @@ Box::Box(GLdouble lenght, GLdouble x, GLdouble y, GLdouble z) {
 	mModelMatFondo = trasFondo * rotFondo;
 }
 
+Box::~Box()
+{
+	delete _mTextureInside;
+	delete _mTextureOut;
+	delete mMeshTapa;
+	delete mMeshFondo;
+}
+
 void Box::render(const glm::mat4& modelViewMat) const
 {
 	if (mMesh != nullptr && mMeshTapa != nullptr && mMeshFondo != nullptr
