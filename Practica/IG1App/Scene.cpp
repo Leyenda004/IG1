@@ -6,6 +6,8 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include "IG1App.h"
+
 using namespace glm;
 
 // SCENE ACTUALIZA TODOS LOS OBJETOS DENTRO DE ELLA EN SUS HIJOS
@@ -89,7 +91,8 @@ void
 Scene::takePhoto()
 {
 	Texture* t = new Texture();
-	t->loadColorBuffer(800.f, 600.f);
-	glGetTexImage(GL_TEXTURE_2D, 0, GL_RGBA, GL_UNSIGNED_BYTE, t);
+	t->loadColorBuffer(IG1App::s_ig1app.getWinWidth(), IG1App::s_ig1app.getWinHeight());
+	t->savePhoto("../assets/images/example.bmp");
+	//glGetTexImage(GL_TEXTURE_2D, 0, GL_RGBA, GL_UNSIGNED_BYTE, t);
 	delete t;
 }

@@ -24,6 +24,8 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include "IG1App.h"
+
 using namespace glm;
 
 void
@@ -63,14 +65,14 @@ Scene3::init() {
 	Star3D* star = new Star3D(25.f, 16, 25.f, -62.5f, 25.0f, -62.5f,"../assets/images/baldosaP.png");
 	gObjects.push_back(star);
 
-	Photo* photo = new Photo(100.f);
-	mat4 photoRot = rotate(mat4(1.0f), glm::radians(-90.f), vec3(1.0f, 0.0f, 0.0f));
-	mat4 photoTras = translate(mat4(1.0f), vec3(0.0f, 100.0f, -100.0f));
-	photo->setModelMat(photoTras * photoRot * photo->modelMat());
+	Photo* photo = new Photo(40,30);
+	//mat4 photoRot = rotate(mat4(1.0f), glm::radians(-90.f), vec3(1.0f, 0.0f, 0.0f));
+	mat4 photoTras = translate(mat4(1.0f), vec3(50.0f, 10.0f, 50.0f));
+	photo->setModelMat(photoTras * photo->modelMat());
 	gObjects.push_back(photo);
 
 	GlassParapet* glass = new GlassParapet(200.f, "../assets/images/windowV.jpg");
-	mat4 glassTras = translate(mat4(1.0f), vec3(0.0f, -100.0f, 0.0f));
+	mat4 glassTras = translate(mat4(1.0f), vec3(0.0f, -50.0f, 0.0f));
 	glass->setModelMat(glassTras * glass->modelMat());
 	gObjects.push_back(glass);
 }

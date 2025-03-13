@@ -117,6 +117,8 @@ Image::load(const rgba_color* data, GLsizei width, GLsizei height)
 	height_ = height;
 	fromSTB = false;
 
+	data_ = new rgba_color[width * height];
+
 	memcpy(data_, data, width * height * sizeof(rgba_color));
 }
 

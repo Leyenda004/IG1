@@ -28,6 +28,7 @@ public:
 	//EDITABLE
 
 	void loadColorBuffer(GLsizei width, GLsizei height, GLuint buffer = GL_FRONT);
+	void savePhoto(const std::string& filename, GLubyte alpha = 255);
 
 protected:
 	void init();

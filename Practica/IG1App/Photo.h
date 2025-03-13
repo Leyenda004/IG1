@@ -4,7 +4,7 @@ class Photo :
     public EntityWithTexture
 {
 public:
-    Photo(int l);
+    Photo(GLdouble w, GLdouble h);
 private:
     void update() override;
 };

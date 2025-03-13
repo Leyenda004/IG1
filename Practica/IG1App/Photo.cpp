@@ -5,9 +5,9 @@
 
 using namespace glm;
 
-Photo::Photo(int l) : EntityWithTexture()
+Photo::Photo(GLdouble w, GLdouble h) : EntityWithTexture()
 {
-    mMesh = Mesh::generateRectangleTexCor(l,l);
+    mMesh = Mesh::generateRectangleTexCor(w,h);
     mat4 rot = rotate(mat4(1.0f), glm::radians(90.f), vec3(1.0f, 0.0f, 0.0f));
     mat4 trans = translate(mat4(1.0f), vec3(0.0f, /*1.0f*/0.0f, 0.0f)); //ya no es necesario
     setModelMat(trans * rot * mModelMat);
@@ -17,5 +17,5 @@ Photo::Photo(int l) : EntityWithTexture()
 
 void Photo::update()
 {
-    mTexture->loadColorBuffer(IG1App::s_ig1app.getWinWidth(), IG1App::s_ig1app.getWinWidth());
+    mTexture->loadColorBuffer(IG1App::s_ig1app.getWinWidth(), IG1App::s_ig1app.getWinHeight());
 }
