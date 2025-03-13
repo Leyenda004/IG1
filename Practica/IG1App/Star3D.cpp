@@ -29,25 +29,21 @@ void Star3D::render(const glm::mat4& modelViewMat) const
 
 		_starTexture->bind();
 
-		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-
+		//Estrella 1
 		mat4 aMat = modelViewMat * mModelMat;
-		// Cambiar orden?? Duda
 		mShader->use();
 		mShader->setUniform("Modulate", aMat);
 		upload(aMat);
 		mMesh->render();
 
+		//Estrella 2
 		mat4 bMat = modelViewMat * mModelMat;
 		mShader->use();
 		mShader->setUniform("Modulate", bMat);
-		bMat = rotate(bMat, radians(180.f), vec3(1.0, 0.0, 0.0));
+		bMat = rotate(bMat, radians(180.f), vec3(1.0, 0.0, 0.0)); //Rotacion aplicada
 		upload(bMat);
 		mMesh->render();
-		//rotate(mat4(1.0f), radians(90.0f), vec3(1, 0, 0));
-		//mMesh->render();
 
-		
 		_starTexture->unbind();
 	}
 }
@@ -55,6 +51,8 @@ void Star3D::render(const glm::mat4& modelViewMat) const
 void Star3D::update()
 {
 	if (mMesh != nullptr) {
+		//Guardamos la rotacion en variables y vamos incrementandolos en cada iteracion del update
+		//AxeY es la modificacion de la matriz identidad adaptada a la posicion de la estrella para que rote en ejeY a partir de esté.
 		mModelMat = rotate(axeY, _rotY += _rotationSpeed, vec3(0,1,0));
 		mModelMat = rotate(mModelMat, _rotZ += _rotationSpeed, vec3(0,0,1));
 	}

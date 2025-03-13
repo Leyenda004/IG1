@@ -90,9 +90,12 @@ Scene::update() {
 void
 Scene::takePhoto()
 {
+	//Creamos una textura nueva
 	Texture* t = new Texture();
+	//Guardamos la imagen de la pantalla actual
 	t->loadColorBuffer(IG1App::s_ig1app.getWinWidth(), IG1App::s_ig1app.getWinHeight());
+	//Guardamos la foto en una direccion designada
 	t->savePhoto("../assets/images/example.bmp");
-	//glGetTexImage(GL_TEXTURE_2D, 0, GL_RGBA, GL_UNSIGNED_BYTE, t);
+	//Borramos la textura por crearla aparte
 	delete t;
 }

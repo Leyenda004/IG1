@@ -30,13 +30,14 @@ void Texture::savePhoto(const std::string& filename, GLubyte alpha)
 {
 	if (mId == 0) return;
 
-	// Obtener las dimensiones de la textura
+	//Dimensiones
 	GLint width = mWidth;
 	GLint height = mHeight;
 
 	if (width == 0 || height == 0) return;
 
-	// Crear un buffer para almacenar los datos de la textura
+	//Creamos un vector de rgba_colors, ya que rgba_colors: 
+	//using rgba_color = glm::u8vec4; 
 	std::vector<Image::rgba_color> pixels(width * height);
 
 	glBindTexture(GL_TEXTURE_2D, mId);
@@ -45,11 +46,13 @@ void Texture::savePhoto(const std::string& filename, GLubyte alpha)
 	glBindTexture(GL_TEXTURE_2D, 0);
 
 	Image image;
+	//Cargamos los datos de la imagen
 	image.load(pixels.data(), width, height);
 
 	if (alpha != 255)
 		image.setAlpha(alpha);
 
+	//Guardamos en la direccion designada
 	image.save(filename);
 }
 
