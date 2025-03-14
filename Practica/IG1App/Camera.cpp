@@ -3,6 +3,10 @@
 
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include <glm/gtc/matrix_access.hpp>
+// otros includes Elena
+#define GLM_ENABLE_EXPERIMENTAL
+#include <glm/gtx/rotate_vector.hpp>
 
 using namespace glm;
 
@@ -16,6 +20,7 @@ Camera::Camera(Viewport* vp)
   , mViewPort(vp)
 {
 	setPM();
+	setAxes();
 }
 
 void
@@ -28,6 +33,7 @@ void
 Camera::setVM()
 {
 	mViewMat = lookAt(mEye, mLook, mUp); // glm::lookAt defines the view matrix
+	setAxes();
 }
 
 void
@@ -53,6 +59,7 @@ Camera::pitch(GLdouble a)
 {
 	mViewMat = rotate(mViewMat, glm::radians(a), glm::dvec3(1.0, 0, 0));
 	// glm::rotate returns mViewMat * rotationMatrix
+	setAxes();
 }
 
 void
@@ -60,6 +67,7 @@ Camera::yaw(GLdouble a)
 {
 	mViewMat = rotate(mViewMat, glm::radians(a), glm::dvec3(0, 1.0, 0));
 	// glm::rotate returns mViewMat * rotationMatrix
+	setAxes();
 }
 
 void
@@ -67,6 +75,7 @@ Camera::roll(GLdouble a)
 {
 	mViewMat = rotate(mViewMat, glm::radians(a), glm::dvec3(0, 0, 1.0));
 	// glm::rotate returns mViewMat * rotationMatrix
+	setAxes();
 }
 
 void
@@ -114,4 +123,30 @@ Camera::upload() const
 	mViewPort->upload();
 	uploadVM();
 	uploadPM();
+}
+
+void Camera::setAxes() {
+	mRight = row(mViewMat, 0);
+	mUpward = row(mViewMat, 1);
+	mFront = row(mViewMat, 2);
+
+	// ?? Lo hemos añadido a todos los metodos necesarios?
+}
+
+void Camera::moveLR(GLfloat cs)
+{
+
+	setAxes();
+}
+
+void Camera::moveFB(GLfloat cs)
+{
+
+	setAxes();
+}
+
+void Camera::moveUD(GLfloat cs)
+{
+
+	setAxes();
 }

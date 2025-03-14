@@ -9,7 +9,9 @@ Star3D::Star3D(GLdouble re, GLuint np, GLdouble h, GLdouble posX, GLdouble posY,
 {
 	mMesh = Mesh::generateStar3DTexCor(re,np,h);
 	
+	// Posición inicial deseada
 	mModelMat = translate(mat4(1.0f), vec3(posX, posY, posZ));
+	// Guardar eje Y
 	axeY = translate(mat4(1.0f), vec3(posX, posY, posZ));
 
 	mShader = Shader::get("texture");

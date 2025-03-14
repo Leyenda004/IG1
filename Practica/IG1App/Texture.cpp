@@ -12,11 +12,13 @@ Texture::~Texture()
 
 void Texture::loadColorBuffer(GLsizei width, GLsizei height, GLuint buffer)
 {
+	// Establece mId
 	if (mId == 0) init();
 
 	mWidth = width;
 	mHeight = height;
 
+	// Buffer por defecto es GL_FRONT
 	glReadBuffer(buffer);
 
 	glBindTexture(GL_TEXTURE_2D, mId);

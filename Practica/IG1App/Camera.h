@@ -56,6 +56,17 @@ protected:
 
 	void setVM();
 	void setPM();
+
+	// EDITABLE
+	glm::vec3 mRight;
+	glm::vec3 mUpward;
+	glm::vec3 mFront;
+
+	void setAxes();
+
+	void moveLR(GLfloat cs); // A izquierda/A derecha
+	void moveFB(GLfloat cs); // Adelante/Atrás
+	void moveUD(GLfloat cs); // Arriba/Abajo
 };
 
 #endif //_H_Camera_H_

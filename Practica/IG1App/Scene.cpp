@@ -77,6 +77,9 @@ Scene::render(Camera const& cam) const
 
 	for (Abs_Entity* el : gObjects)
 		el->render(cam.viewMat());
+
+	for (Abs_Entity* el : gObjectsTranslucid)
+		el->render(cam.viewMat());
 }
 
 
