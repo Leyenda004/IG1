@@ -109,6 +109,14 @@ Camera::setPM()
 		                 mFarVal);
 		// glm::ortho defines the orthogonal projection matrix
 	}
+	else {
+		mProjMat = frustum(	xLeft * mScaleFact,
+							xRight * mScaleFact,
+							yBot * mScaleFact,
+							yTop * mScaleFact,
+							mNearVal,
+							mFarVal);
+	}
 }
 
 void
@@ -128,25 +136,45 @@ Camera::upload() const
 void Camera::setAxes() {
 	mRight = row(mViewMat, 0);
 	mUpward = row(mViewMat, 1);
-	mFront = row(mViewMat, 2);
+	mFront = -row(mViewMat, 2); // Importante el (-)
 
 	// ?? Lo hemos añadido a todos los metodos necesarios?
 }
 
+// (-n = look - eye)
+// Movimientos relativos a la camara, no global
 void Camera::moveLR(GLfloat cs)
 {
+	// Global
+	//mEye += mRight * cs;
+	//mLook += mRight * cs;
 
-	setAxes();
+	// Local
+	mEye.x += cs;
+	mLook.x += cs;
+	setVM();
 }
 
 void Camera::moveFB(GLfloat cs)
 {
+	// Global
+	//mEye += mFront * cs;
+	//mLook += mFront * cs;
 
-	setAxes();
+	// Local
+	mEye.z += cs;
+	mLook.z += cs;
+	setVM();
 }
 
 void Camera::moveUD(GLfloat cs)
 {
+	// Global
+	//mEye += mUpward * cs;
+	//mLook += mUpward * cs;
 
-	setAxes();
+	// Local
+	mEye.y += cs;
+	mLook.y += cs;
+	setVM();
 }

@@ -191,6 +191,27 @@ IG1App::key(unsigned int key)
 		case 'f' :
 			mScenes[mCurrentScene]->takePhoto();
 			break;
+		case 'a':
+			mCamera->moveLR(-1 * cameraSpeed);
+			break;
+		case 'd':
+			mCamera->moveLR(1 * cameraSpeed);
+			break;
+		case 'w':
+			mCamera->moveUD(1 * cameraSpeed);
+			break;
+		case 's':
+			mCamera->moveUD(-1 * cameraSpeed);
+			break;
+		// Esto lo pilla bien (just in case)
+		case 'W':
+			mCamera->moveFB(1 * cameraSpeed);
+			std::cout << "W" << std::endl;
+			break;
+		case 'S':
+			mCamera->moveFB(-1 * cameraSpeed);
+			std::cout << "S" << std::endl;
+			break;
 		default:
 			if (key >= '0' && key <= '9' && !changeScene(key - '0'))
 				cout << "[NOTE] There is no scene " << char(key) << ".\n";
@@ -220,21 +241,25 @@ IG1App::specialkey(int key, int scancode, int action, int mods)
 			break;
 		case GLFW_KEY_RIGHT:
 			if (mods == GLFW_MOD_CONTROL)
-				mCamera->pitch(-1); // rotates -1 on the X axis
+				mCamera->pitch(-1 * cameraSpeed); // rotates -1 on the X axis
 			else
-				mCamera->pitch(1); // rotates 1 on the X axis
+				mCamera->pitch(1 * cameraSpeed); // rotates 1 on the X axis
 			break;
 		case GLFW_KEY_LEFT:
 			if (mods == GLFW_MOD_CONTROL)
-				mCamera->yaw(1); // rotates 1 on the Y axis
+				mCamera->yaw(1 * cameraSpeed); // rotates 1 on the Y axis
 			else
-				mCamera->yaw(-1); // rotate -1 on the Y axis
+				mCamera->yaw(-1 * cameraSpeed); // rotate -1 on the Y axis
 			break;
 		case GLFW_KEY_UP:
-			mCamera->roll(1); // rotates 1 on the Z axis
+			mCamera->roll(1 * cameraSpeed); // rotates 1 on the Z axis
 			break;
 		case GLFW_KEY_DOWN:
-			mCamera->roll(-1); // rotates -1 on the Z axis
+			mCamera->roll(-1 * cameraSpeed); // rotates -1 on the Z axis
+			break;
+		case GLFW_KEY_TAB:
+			mCamera->changePrj();
+			std::cout << "changePrj()" << std::endl;
 			break;
 		default:
 			need_redisplay = false;
