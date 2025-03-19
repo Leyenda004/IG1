@@ -42,7 +42,7 @@ public:
 	void moveFB(GLfloat cs); // Adelante/Atrás
 	void moveUD(GLfloat cs); // Arriba/Abajo
 
-	void changePrj() { bOrto = !bOrto; }
+	void changePrj();
 
 protected:
 	glm::dvec3 mEye = {0.0, 0.0, 500.0}; // camera's position

@@ -178,3 +178,9 @@ void Camera::moveUD(GLfloat cs)
 	mLook.y += cs;
 	setVM();
 }
+
+void Camera::changePrj()
+{
+	bOrto = !bOrto;
+	setPM();
+}
