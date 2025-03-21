@@ -110,10 +110,10 @@ Camera::setPM()
 		// glm::ortho defines the orthogonal projection matrix
 	}
 	else {
-		mProjMat = frustum(	xLeft * mScaleFact,
-							xRight * mScaleFact,
-							yBot * mScaleFact,
-							yTop * mScaleFact,
+		mProjMat = frustum(	xLeft * mScaleFact * 0.001f,
+							xRight * mScaleFact * 0.001f,
+							yBot * mScaleFact * 0.001f,
+							yTop * mScaleFact * 0.001f,
 							mNearVal,
 							mFarVal);
 	}
