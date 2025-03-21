@@ -44,6 +44,10 @@ public:
 
 	void changePrj();
 
+	void pitchReal(GLfloat cs);
+	void yawReal(GLfloat cs);
+	void rollReal(GLfloat cs);
+
 protected:
 	glm::dvec3 mEye = {0.0, 0.0, 500.0}; // camera's position
 	glm::dvec3 mLook = {0.0, 0.0, 0.0};  // target's position
@@ -71,6 +75,7 @@ protected:
 	glm::vec3 mFront; //-n
 
 	void setAxes();
+
 };
 
 #endif //_H_Camera_H_

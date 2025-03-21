@@ -39,9 +39,9 @@ Camera::setVM()
 void
 Camera::set2D()
 {
-	mEye = {0, 0, 500};
-	mLook = {0, 0, 0};
-	mUp = {0, 1, 0};
+	mEye = {0, 0, 500}; 
+	mLook = {0, 0, 0}; 
+	mUp = {0, 1, 0}; 
 	setVM();
 }
 
@@ -183,4 +183,27 @@ void Camera::changePrj()
 {
 	bOrto = !bOrto;
 	setPM();
+}
+
+void Camera::pitchReal(GLfloat cs)
+{
+	// mViewMat = rotate(mViewMat, glm::radians(a), glm::dvec3(1.0, 0, 0));
+	mLook += mUpward * cs;
+	setVM();
+}
+
+void Camera::yawReal(GLfloat cs)
+{
+	// mViewMat = rotate(mViewMat, glm::radians(a), glm::dvec3(0, 1.0, 0));
+	mLook += mRight * cs;
+	setVM();
+
+}
+
+void Camera::rollReal(GLfloat cs)
+{
+	// mViewMat = rotate(mViewMat, glm::radians(a), glm::dvec3(0, 0, 1.0));
+	mLook += mFront * cs;
+	setVM();
+
 }

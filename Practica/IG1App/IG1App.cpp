@@ -212,6 +212,10 @@ IG1App::key(unsigned int key)
 			mCamera->moveFB(-1 * cameraSpeed);
 			std::cout << "S" << std::endl;
 			break;
+		case 'p':
+			mCamera->changePrj();
+			std::cout << "changePrj()" << std::endl;
+			break;
 		default:
 			if (key >= '0' && key <= '9' && !changeScene(key - '0'))
 				cout << "[NOTE] There is no scene " << char(key) << ".\n";
@@ -239,27 +243,27 @@ IG1App::specialkey(int key, int scancode, int action, int mods)
 		case GLFW_KEY_ESCAPE:                     // Escape key
 			glfwSetWindowShouldClose(mWindow, true); // stops main loop
 			break;
+
+		// Duda ?? Hemos tenido que cambiar el shift porque no funcionaba el control
 		case GLFW_KEY_RIGHT:
-			if (mods == GLFW_MOD_CONTROL)
-				mCamera->pitch(-1 * cameraSpeed); // rotates -1 on the X axis
+			if (mods == GLFW_MOD_CONTROL) {
+				mCamera->rollReal(1 * cameraSpeed); // rotates -1 on the X axis
+			}
 			else
-				mCamera->pitch(1 * cameraSpeed); // rotates 1 on the X axis
+				mCamera->yawReal(1 * cameraSpeed); // rotates 1 on the X axis
 			break;
 		case GLFW_KEY_LEFT:
-			if (mods == GLFW_MOD_CONTROL)
-				mCamera->yaw(1 * cameraSpeed); // rotates 1 on the Y axis
+			if (mods == GLFW_MOD_CONTROL){
+				mCamera->rollReal(-1 * cameraSpeed); // rotates 1 on the Y axis
+			}
 			else
-				mCamera->yaw(-1 * cameraSpeed); // rotate -1 on the Y axis
+				mCamera->yawReal(-1 * cameraSpeed); // rotate -1 on the Y axis
 			break;
 		case GLFW_KEY_UP:
-			mCamera->roll(1 * cameraSpeed); // rotates 1 on the Z axis
+			mCamera->pitchReal(1 * cameraSpeed); // rotates 1 on the Z axis
 			break;
 		case GLFW_KEY_DOWN:
-			mCamera->roll(-1 * cameraSpeed); // rotates -1 on the Z axis
-			break;
-		case GLFW_KEY_TAB:
-			mCamera->changePrj();
-			std::cout << "changePrj()" << std::endl;
+			mCamera->pitchReal(-1 * cameraSpeed); // rotates -1 on the Z axis
 			break;
 		default:
 			need_redisplay = false;
