@@ -48,6 +48,11 @@ public:
 	void yawReal(GLfloat cs);
 	void rollReal(GLfloat cs);
 
+	void orbit(GLdouble incAng, GLdouble incY);
+
+	bool isOrbiting() { return orbiting; }
+	void setOrbiting(bool orbit) { orbiting = orbit; }
+
 protected:
 	glm::dvec3 mEye = {0.0, 0.0, 500.0}; // camera's position
 	glm::dvec3 mLook = {0.0, 0.0, 0.0};  // target's position
@@ -76,6 +81,10 @@ protected:
 
 	void setAxes();
 
+	GLdouble mRadio = 100.0f;
+	GLdouble mAng = 0;
+
+	bool orbiting = false;
 };
 
 #endif //_H_Camera_H_

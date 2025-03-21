@@ -8,6 +8,8 @@
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtx/rotate_vector.hpp>
 
+#include <iostream>
+
 using namespace glm;
 
 Camera::Camera(Viewport* vp)
@@ -42,6 +44,8 @@ Camera::set2D()
 	mEye = {0, 0, 500}; 
 	mLook = {0, 0, 0}; 
 	mUp = {0, 1, 0}; 
+	mAng = 0;
+
 	setVM();
 }
 
@@ -51,6 +55,8 @@ Camera::set3D()
 	mEye = {500, 500, 500};
 	mLook = {0, 10, 0};
 	mUp = {0, 1, 0};
+	mAng = 0;
+
 	setVM();
 }
 
@@ -200,10 +206,22 @@ void Camera::yawReal(GLfloat cs)
 
 }
 
+// Duda ?? Cómo hacer el roll en el eje Z
 void Camera::rollReal(GLfloat cs)
 {
-	// mViewMat = rotate(mViewMat, glm::radians(a), glm::dvec3(0, 0, 1.0));
-	mLook += mFront * cs;
+	//mUp += mFront * cs;
+	mViewMat = rotate(mViewMat, glm::radians(GLdouble(cs)), glm::dvec3(0, 0, 1.0));
 	setVM();
+}
 
+void Camera::orbit(GLdouble incAng, GLdouble incY)
+{
+	std::cout << "Orbiting" << std::endl;
+	// if (isOrbiting()){	
+	mAng += incAng;
+	mEye.x = mLook.x + cos(radians(mAng)) * mRadio; 
+	mEye.z = mLook.z - sin(radians(mAng)) * mRadio; 
+	mEye.y += incY;
+	setVM();
+	// }
 }
