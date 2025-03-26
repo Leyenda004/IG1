@@ -193,14 +193,12 @@ void Camera::changePrj()
 
 void Camera::pitchReal(GLfloat cs)
 {
-	// mViewMat = rotate(mViewMat, glm::radians(a), glm::dvec3(1.0, 0, 0));
 	mLook += mUpward * cs;
 	setVM();
 }
 
 void Camera::yawReal(GLfloat cs)
 {
-	// mViewMat = rotate(mViewMat, glm::radians(a), glm::dvec3(0, 1.0, 0));
 	mLook += mRight * cs;
 	setVM();
 
@@ -209,8 +207,8 @@ void Camera::yawReal(GLfloat cs)
 // Duda ?? Cómo hacer el roll en el eje Z
 void Camera::rollReal(GLfloat cs)
 {
-	//mUp += mFront * cs;
-	mViewMat = rotate(mViewMat, glm::radians(GLdouble(cs)), glm::dvec3(0, 0, 1.0));
+	mLook += mFront * cs;
+	mUp += mRight * cs;
 	setVM();
 }
 
