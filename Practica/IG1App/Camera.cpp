@@ -12,6 +12,8 @@
 
 using namespace glm;
 
+//N diferencia entre el look y el eye
+
 Camera::Camera(Viewport* vp)
   : mViewMat(1.0)
   , mProjMat(1.0)
@@ -193,13 +195,20 @@ void Camera::changePrj()
 
 void Camera::pitchReal(GLfloat cs)
 {
-	mLook += mUpward * cs;
+	mLook = mEye + rotate(mLook - mEye, radians(double(cs)), dvec3(mRight));
+	mUp = rotate(mUp, radians(double(cs)), dvec3(mRight));
+
+	//mLook += mUpward * cs;
 	setVM();
 }
 
 void Camera::yawReal(GLfloat cs)
 {
-	mLook += mRight * cs;
+	//mLook += mRight * cs;
+	mLook = mEye + rotate(mLook - mEye, radians(double(cs)), dvec3(mUpward));
+	mUp = rotate(mUp, radians(double(cs)), dvec3(mUp));
+	//mUp = rotate(mUp, radians(double(cs)), dvec3(mUpward));
+
 	setVM();
 
 }
@@ -207,8 +216,14 @@ void Camera::yawReal(GLfloat cs)
 // Duda ?? Cómo hacer el roll en el eje Z
 void Camera::rollReal(GLfloat cs)
 {
-	mLook += mFront * cs;
-	mUp += mRight * cs;
+	//mLook += mFront * cs;
+	//mUp += mRight * cs;
+	
+	//mFront es mLook - mEye
+	//-cs porque el giro es inverso
+	mLook = mEye + rotate(mLook - mEye, radians(double(-cs)), dvec3(mFront));
+	mUp = rotate(mUp, radians(double(-cs)), dvec3(mFront));
+	//rotar el up sobre el front
 	setVM();
 }
 
@@ -220,6 +235,7 @@ void Camera::orbit(GLdouble incAng, GLdouble incY)
 	mEye.x = mLook.x + cos(radians(mAng)) * mRadio; 
 	mEye.z = mLook.z - sin(radians(mAng)) * mRadio; 
 	mEye.y += incY;
+	mUp = { 0, 1, 0 };
 	setVM();
 	// }
 }

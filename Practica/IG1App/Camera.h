@@ -82,7 +82,7 @@ protected:
 	void setAxes();
 
 	GLdouble mRadio = 100.0f;
-	GLdouble mAng = 0;
+	GLdouble mAng;
 
 	bool orbiting = false;
 };
