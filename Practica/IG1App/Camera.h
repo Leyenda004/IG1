@@ -50,9 +50,6 @@ public:
 
 	void orbit(GLdouble incAng, GLdouble incY);
 
-	bool isOrbiting() { return orbiting; }
-	void setOrbiting(bool orbit) { orbiting = orbit; }
-
 protected:
 	glm::dvec3 mEye = {0.0, 0.0, 500.0}; // camera's position
 	glm::dvec3 mLook = {0.0, 0.0, 0.0};  // target's position
