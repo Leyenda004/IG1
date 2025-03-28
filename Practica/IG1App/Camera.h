@@ -82,9 +82,7 @@ protected:
 	void setAxes();
 
 	GLdouble mRadio = 100.0f;
-	GLdouble mAng;
-
-	bool orbiting = false;
+	GLdouble mAng = 0;
 };
 
 #endif //_H_Camera_H_

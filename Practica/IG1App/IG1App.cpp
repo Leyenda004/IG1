@@ -205,11 +205,11 @@ IG1App::key(unsigned int key)
 			break;
 		// Esto lo pilla bien (just in case)
 		case 'W':
-			mCamera->moveFB(1 * cameraSpeed);
+			mCamera->moveFB(-1 * cameraSpeed);
 			std::cout << "W" << std::endl;
 			break;
 		case 'S':
-			mCamera->moveFB(-1 * cameraSpeed);
+			mCamera->moveFB(1 * cameraSpeed);
 			std::cout << "S" << std::endl;
 			break;
 		case 'p':
@@ -217,8 +217,8 @@ IG1App::key(unsigned int key)
 			std::cout << "changePrj()" << std::endl;
 			break;
 		case 'O':
-			// mCamera->setOrbiting(!mCamera->isOrbiting());
 			mCamera->orbit(1, 0);
+			break;
 		default:
 			if (key >= '0' && key <= '9' && !changeScene(key - '0'))
 				cout << "[NOTE] There is no scene " << char(key) << ".\n";

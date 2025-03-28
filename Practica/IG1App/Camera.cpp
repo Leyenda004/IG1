@@ -213,7 +213,6 @@ void Camera::yawReal(GLfloat cs)
 
 }
 
-// Duda ?? Cómo hacer el roll en el eje Z
 void Camera::rollReal(GLfloat cs)
 {
 	//mLook += mFront * cs;
@@ -230,13 +229,11 @@ void Camera::rollReal(GLfloat cs)
 
 void Camera::orbit(GLdouble incAng, GLdouble incY)
 {
-	std::cout << "Orbiting" << std::endl;
-	// if (isOrbiting()){	
 	mAng += incAng;
 	mEye.x = mLook.x + cos(radians(mAng)) * mRadio; 
 	mEye.z = mLook.z - sin(radians(mAng)) * mRadio; 
 	mEye.y += incY;
 	mUp = { 0, 1, 0 };
 	setVM();
-	// }
+	mAng = 0;
 }
