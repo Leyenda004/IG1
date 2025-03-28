@@ -48,7 +48,7 @@ public:
 	void yawReal(GLfloat cs);
 	void rollReal(GLfloat cs);
 
-	void orbit(GLdouble incAng, GLdouble incY);
+	void orbit(GLdouble incAng, GLdouble incY = 0);
 
 protected:
 	glm::dvec3 mEye = {0.0, 0.0, 500.0}; // camera's position
@@ -78,8 +78,8 @@ protected:
 
 	void setAxes();
 
-	GLdouble mRadio = 100.0f;
-	GLdouble mAng = 0;
+	GLdouble mRadio;
+	GLdouble mAng;
 };
 
 #endif //_H_Camera_H_

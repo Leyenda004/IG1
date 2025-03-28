@@ -232,7 +232,7 @@ void Camera::orbit(GLdouble incAng, GLdouble incY)
 	mAng += incAng;
 	mEye.x += mLook.x + cos(radians(mAng)) * mRadio;
 	mEye.z += mLook.z - sin(radians(mAng)) * mRadio;
-	mEye.y += mLook.y + incY;
+	mEye.y += incY;
 	mUp = { 0, 1, 0 };
 	setVM();
 }

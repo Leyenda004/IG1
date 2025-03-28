@@ -217,7 +217,7 @@ IG1App::key(unsigned int key)
 			std::cout << "changePrj()" << std::endl;
 			break;
 		case 'O':
-			mCamera->orbit(1 * cameraSpeed, 50);
+			mCamera->orbit(1 * cameraSpeed);
 			break;
 		default:
 			if (key >= '0' && key <= '9' && !changeScene(key - '0'))
