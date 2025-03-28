@@ -47,7 +47,7 @@ Camera::set2D()
 	mLook = {0, 0, 0}; 
 	mUp = {0, 1, 0}; 
 	mAng = 0;
-
+	mRadio = 100.0f;
 	setVM();
 }
 
@@ -58,7 +58,7 @@ Camera::set3D()
 	mLook = {0, 10, 0};
 	mUp = {0, 1, 0};
 	mAng = 0;
-
+	mRadio = 100.0f;
 	setVM();
 }
 
@@ -232,7 +232,7 @@ void Camera::orbit(GLdouble incAng, GLdouble incY)
 	mAng += incAng;
 	mEye.x += mLook.x + cos(radians(mAng)) * mRadio;
 	mEye.z += mLook.z - sin(radians(mAng)) * mRadio;
-	mEye.y += incY;
+	mEye.y += mLook.y + incY;
 	mUp = { 0, 1, 0 };
 	setVM();
 }
