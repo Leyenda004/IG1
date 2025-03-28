@@ -221,7 +221,8 @@ void Camera::rollReal(GLfloat cs)
 	
 	//mFront es mLook - mEye
 	//-cs porque el giro es inverso
-	mLook = mEye + rotate(mLook - mEye, radians(double(-cs)), dvec3(mFront));
+	mRight = rotate(mLook - mEye, radians(double(cs)), dvec3(mFront));
+	//mLook = mEye + rotate(mLook - mEye, radians(double(-cs)), dvec3(mFront));
 	mUp = rotate(mUp, radians(double(-cs)), dvec3(mFront));
 	//rotar el up sobre el front
 	setVM();
