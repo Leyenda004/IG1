@@ -77,6 +77,8 @@ protected:
 
 	GLdouble cameraSpeed = 3.0f;
 
+	void display2V() const;
+	bool m2Vistas = false;
 };
 
 #endif //_H_IG1App_H_

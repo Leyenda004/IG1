@@ -147,7 +147,20 @@ IG1App::display() const
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clears the back buffer
 
+	//Si no activamos la vista doble renderizamos la camara normal
+	if (!m2Vistas) {
+	//Reseteamos la posicion del viewport
+	mViewPort->setPos(0, 0);
+	//Reseteamos el tamaño del viewport
+	mViewPort->setSize(mWinW, mWinH);
+	// Reseteamos el tamaño de la camara
+	mCamera->setSize(mViewPort->width(), mViewPort->height());
+
 	mScenes[mCurrentScene]->render(*mCamera); // uploads the viewport and camera to the GPU
+	}
+	else {
+		display2V(); //Display2V
+	}
 
 	glfwSwapBuffers(mWindow); // swaps the front and back buffer
 }
@@ -219,6 +232,9 @@ IG1App::key(unsigned int key)
 		case 'O':
 			mCamera->orbit(1 * cameraSpeed);
 			break;
+		case 'k':
+			//Llamando al display de 2 vistas
+			m2Vistas = !m2Vistas;
 		default:
 			if (key >= '0' && key <= '9' && !changeScene(key - '0'))
 				cout << "[NOTE] There is no scene " << char(key) << ".\n";
@@ -275,6 +291,32 @@ IG1App::specialkey(int key, int scancode, int action, int mods)
 
 	if (need_redisplay)
 		mNeedsRedisplay = true;
+}
+
+void IG1App::display2V() const
+{
+	//Usamos camara y viewport auxiliar
+	Camera auxCam = *mCamera;
+	Viewport auxVP = *mViewPort;
+
+	//Para dos puertos de vista
+	mViewPort->setSize(mWinW / 2, mWinH);
+
+	//La camara tiene el tamaño del viewport completo, para que siga ocupando la mitad de la pantalla
+	auxCam.setSize(mViewPort->width(), mViewPort->height());
+	//Restauramos el viewport
+	
+	//Primer viewport con camara en perspectiva 2D
+	mViewPort->setPos(0, 0);
+	auxCam.set2D();
+	mScenes[mCurrentScene]->render(auxCam);
+
+	//Segundo viewport con camara en perspectiva 3D
+	mViewPort->setPos(mWinW / 2, 0);
+	auxCam.set3D();
+	mScenes[mCurrentScene]->render(auxCam);
+
+	*mViewPort = auxVP;
 }
 
 bool
