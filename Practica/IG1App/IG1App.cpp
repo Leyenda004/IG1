@@ -117,6 +117,11 @@ IG1App::iniWinOpenGL()
 	glfwSetKeyCallback(mWindow, s_specialkey);
 	glfwSetWindowRefreshCallback(mWindow, s_display);
 
+	//EDITABLE, CALLBACKS DE RATON
+	glfwSetMouseButtonCallback(mWindow, s_mouse);
+	glfwSetCursorPosCallback(mWindow, s_motion);
+	glfwSetScrollCallback(mWindow, s_mouseWheel);
+
 	// Error message callback (all messages)
 	glEnable(GL_DEBUG_OUTPUT);
 	glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0u, 0, GL_TRUE);
@@ -235,6 +240,8 @@ IG1App::key(unsigned int key)
 		case 'k':
 			//Llamando al display de 2 vistas
 			m2Vistas = !m2Vistas;
+			mNeedsRedisplay = true;
+			break;
 		default:
 			if (key >= '0' && key <= '9' && !changeScene(key - '0'))
 				cout << "[NOTE] There is no scene " << char(key) << ".\n";
@@ -317,6 +324,7 @@ void IG1App::display2V() const
 	mScenes[mCurrentScene]->render(auxCam);
 
 	*mViewPort = auxVP;
+
 }
 
 bool
@@ -336,4 +344,39 @@ IG1App::changeScene(size_t sceneNr)
 	}
 
 	return true;
+}
+
+//Captura en mMouseCoord las coordenadas del ratón (x,y), y en mMouseButt, el boton pulsado
+void IG1App::mouse(int button, int state, int x, int y)
+{
+	mMouseButt = button;
+	mMouseCoord = { x, y };
+}
+
+//Captura las coordenadas del ratón, obtiene el desplazamiento con respecto a las anteriores coordenadas y, si el boton pulsado es el derecho, mueve la cámara en sus ejes mRight(horizontal)
+//y mUpward(vertical) el correspondiente desplazamiento, mientras que si es el botón izquierdo rota la cámaara alrededor de la escena.
+void IG1App::motion(int x, int y)
+{
+	glm::dvec2 mp = { mMouseCoord[0] - x, mMouseCoord[1] - y };
+	mMouseCoord = { x, y };
+	//Si el boton izquierdo esta pulsado
+	if (mMouseButt == 0) mCamera->orbit(mp.x * 0.05, mp.y);
+	else if (mMouseButt == 1) {
+		mCamera->moveUD(-mp[1]);
+		mCamera->moveLR(mp[0]);
+	}
+	mNeedsRedisplay = true;
+}
+
+//Si no esta pulsada ninguna tecla modificadora, desplaza la cámara en su dirección de vista (eje mFront), hacia delante/atrás, según sea d
+//positivo/negativo, si se pulsa la tecla control, escala la escena segun el velor de d.
+void IG1App::mouseWheel(GLFWwindow* win, int n, int d, int x, int y)
+{
+	if (!(glfwGetKey(win, GLFW_MOD_CONTROL) == GLFW_PRESS)) {
+		mCamera->setScale(d * 0.1);
+	}
+	else {
+		mCamera->moveFB(d);
+	}
+	mNeedsRedisplay = true;
 }

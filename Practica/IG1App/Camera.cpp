@@ -46,8 +46,8 @@ Camera::set2D()
 	mEye = {0, 0, 500}; 
 	mLook = {0, 0, 0}; 
 	mUp = {0, 1, 0}; 
-	mAng = 0;
-	mRadio = 100.0f;
+	mAng = -90;
+	mRadio = 300.0f;
 	setVM();
 }
 
@@ -57,8 +57,8 @@ Camera::set3D()
 	mEye = {500, 500, 500};
 	mLook = {0, 10, 0};
 	mUp = {0, 1, 0};
-	mAng = 0;
-	mRadio = 100.0f;
+	mAng = 90;
+	mRadio = 300.0f;
 	setVM();
 }
 
@@ -154,24 +154,24 @@ void Camera::setAxes() {
 void Camera::moveLR(GLfloat cs)
 {
 	// Global
-	//mEye += mRight * cs;
-	//mLook += mRight * cs;
+	mEye += mRight * cs;
+	mLook += mRight * cs;
 
 	// Local
-	mEye.x += cs;
-	mLook.x += cs;
+	//mEye.x += cs;
+	//mLook.x += cs;
 	setVM();
 }
 
 void Camera::moveFB(GLfloat cs)
 {
 	// Global
-	//mEye += mFront * cs;
-	//mLook += mFront * cs;
+	mEye += mFront * cs;
+	mLook += mFront * cs;
 
 	// Local
-	mEye.z += cs;
-	mLook.z += cs;
+	//mEye.z += cs;
+	//mLook.z += cs;
 	setVM();
 }
 
@@ -230,8 +230,8 @@ void Camera::rollReal(GLfloat cs)
 void Camera::orbit(GLdouble incAng, GLdouble incY)
 {
 	mAng += incAng;
-	mEye.x += mLook.x + cos(radians(mAng)) * mRadio;
-	mEye.z += mLook.z - sin(radians(mAng)) * mRadio;
+	mEye.x = mLook.x + cos(radians(mAng)) * mRadio;
+	mEye.z = mLook.z - sin(radians(mAng)) * mRadio;
 	mEye.y += incY;
 	mUp = { 0, 1, 0 };
 	setVM();

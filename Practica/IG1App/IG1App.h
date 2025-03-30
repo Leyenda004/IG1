@@ -79,6 +79,51 @@ protected:
 
 	void display2V() const;
 	bool m2Vistas = false;
+
+	glm::dvec2 mMouseCoord;
+	int mMouseButt = 1;
+
+	void mouse(int button, int state, int x, int y);
+	void motion(int x, int y);
+	void mouseWheel(GLFWwindow* win, int n, int d, int x, int y);
+
+	//CALLBACKS DE RATON
+
+	// Callback de teoria
+	//static void s_mouse(GLFWwindow* win, int button, int action, int mods) { s_ig1app.mouse(); };
+	static void s_mouse(GLFWwindow* win, int button, int action, int mods) 
+	{ 
+		////Si pulsamos o soltamos un boton del raton llamamos
+		//if (action == GLFW_PRESS || action == GLFW_RELEASE) {
+		//	//Posiciones del raton a registrar
+		//	double x = 0, double y = 0;
+		//	//Obtenemos la posicion del raton en x e y
+		//	glfwGetCursorPos(win, x, y);
+		//
+		//	//Llamamos a la funcion que guarda los valores del raton
+		//	s_ig1app.mouse(button, mods, (int)x, (int)y);
+		//}
+
+		if (action == GLFW_PRESS || action == GLFW_RELEASE) {
+			double xpos = 0, ypos = 0;
+			glfwGetCursorPos(win, &xpos, &ypos);
+			s_ig1app.mouse(button, mods, xpos, ypos);
+		}
+
+		
+	};
+	
+
+	static void s_motion(GLFWwindow* win, GLdouble x, GLdouble y) { s_ig1app.motion(x, y); };
+
+	//Callback de teoria
+	//static void s_mouseWheel(GLFWwindow* win, double dx, double dy);
+	static void s_mouseWheel(GLFWwindow* win, double dx, double dy/*int n, int d, int x, int y*/) { 
+		double xpos = 0, ypos = 0;
+		glfwGetCursorPos(win, &xpos, &ypos);
+		s_ig1app.mouseWheel(win , 0 , dy, (int)xpos, (int)ypos);
+	};
+
 };
 
 #endif //_H_IG1App_H_
