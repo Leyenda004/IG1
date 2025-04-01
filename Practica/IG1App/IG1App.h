@@ -77,6 +77,8 @@ protected:
 
 	GLdouble cameraSpeed = 3.0f;
 
+	bool ctrlPressed = false;
+
 	void display2V() const;
 	bool m2Vistas = false;
 

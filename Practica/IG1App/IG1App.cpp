@@ -265,6 +265,13 @@ IG1App::specialkey(int key, int scancode, int action, int mods)
 
 	bool need_redisplay = true;
 
+
+	if (mods == GLFW_MOD_CONTROL){
+		ctrlPressed = true;
+	}
+	else {
+		ctrlPressed = false;
+	}
 	// Handle keyboard input
 	// (key reference: https://www.glfw.org/docs/3.4/group__keys.html)
 	switch (key) {
@@ -376,11 +383,12 @@ void IG1App::motion(int x, int y)
 void IG1App::mouseWheel(GLFWwindow* win, int n, int d, int x, int y)
 {
 	//d es lo que has arrastrado del raton
-	if (!(glfwGetKey(win, GLFW_MOD_CONTROL) == GLFW_PRESS)) {
-		mCamera->setScale(d * 0.1); 
+	// if (!(glfwGetKey(win, GLFW_MOD_CONTROL) == GLFW_PRESS)) {
+	if (!ctrlPressed) {
+		mCamera->setScale(d * 0.1);
 	}
 	else {
-		mCamera->moveFB(d);
+		mCamera->moveFB(d * 5);
 	}
 	mNeedsRedisplay = true;
 }
