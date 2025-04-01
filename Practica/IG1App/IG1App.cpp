@@ -38,9 +38,9 @@ IG1App::run() // enters the main event processing loop
 			mNeedsRedisplay = false;
 		}
 		if (mUpdateEnabled) { // Si se ha presionado la u
-			GLdouble time = glfwGetTime(); // coges el tiempo en el que se actualiza por última vez
+			GLdouble time = glfwGetTime(); // coges el tiempo en el que se actualiza por ï¿½ltima vez
 			if (time >= (mNextUpdate)){ // si el tiempo llega a cuando se tiene que volver a actualizar
-				mNextUpdate = time + FRAME_DURATION; // cambias cuándo se tiene que volver a actualizar
+				mNextUpdate = time + FRAME_DURATION; // cambias cuï¿½ndo se tiene que volver a actualizar
 				mScenes[mCurrentScene]->update(); // y actualizas
 				// Cuando hay que actualizar se establece el booleano a true
 				mNeedsRedisplay = true;
@@ -156,9 +156,9 @@ IG1App::display() const
 	if (!m2Vistas) {
 	//Reseteamos la posicion del viewport
 	mViewPort->setPos(0, 0);
-	//Reseteamos el tamaño del viewport
+	//Reseteamos el tamaï¿½o del viewport
 	mViewPort->setSize(mWinW, mWinH);
-	// Reseteamos el tamaño de la camara
+	// Reseteamos el tamaï¿½o de la camara
 	mCamera->setSize(mViewPort->width(), mViewPort->height());
 
 	mScenes[mCurrentScene]->render(*mCamera); // uploads the viewport and camera to the GPU
@@ -195,20 +195,23 @@ IG1App::key(unsigned int key)
 		case '-':
 			mCamera->setScale(-0.01); // zoom out (decreases the scale)
 			break;
+		// VISTA 3D
 		case 'l':
 			mCamera->set3D();
 			break;
+		// VISTA 2D
 		case 'o':
 			mCamera->set2D();
 			break;
+		// UPDATE
 		case 'u':
-			//cout << "pressed u" << endl; // Depuración
 			mUpdateEnabled = !mUpdateEnabled;
-			//cout << "mUpdateEnabled = " << mUpdateEnabled << endl; // Depuración
 			break;
+		// FOTO
 		case 'f' :
 			mScenes[mCurrentScene]->takePhoto();
 			break;
+		// MOVIMIENTO CÃMARA
 		case 'a':
 			mCamera->moveLR(-1 * cameraSpeed);
 			break;
@@ -221,18 +224,14 @@ IG1App::key(unsigned int key)
 		case 's':
 			mCamera->moveUD(-1 * cameraSpeed);
 			break;
-		// Esto lo pilla bien (just in case)
 		case 'W':
-			mCamera->moveFB(-1 * cameraSpeed);
-			std::cout << "W" << std::endl;
+			mCamera->moveFB(1 * cameraSpeed);
 			break;
 		case 'S':
-			mCamera->moveFB(1 * cameraSpeed);
-			std::cout << "S" << std::endl;
+			mCamera->moveFB(-1 * cameraSpeed);
 			break;
 		case 'p':
 			mCamera->changePrj();
-			std::cout << "changePrj()" << std::endl;
 			break;
 		case 'O':
 			mCamera->orbit(1 * cameraSpeed);
@@ -273,26 +272,27 @@ IG1App::specialkey(int key, int scancode, int action, int mods)
 			glfwSetWindowShouldClose(mWindow, true); // stops main loop
 			break;
 
-		// Duda ?? Hemos tenido que cambiar el shift porque no funcionaba el control
+		
+		// ROTACION CAMARA
 		case GLFW_KEY_RIGHT:
 			if (mods == GLFW_MOD_CONTROL) {
-				mCamera->rollReal(1 * cameraSpeed); // rotates -1 on the X axis
+				mCamera->rollReal(1 * cameraSpeed); // rotates 1 on the Z axis
 			}
 			else
-				mCamera->yawReal(1 * cameraSpeed); // rotates 1 on the X axis
+				mCamera->yawReal(1 * cameraSpeed); // rotates 1 on the Y axis
 			break;
 		case GLFW_KEY_LEFT:
 			if (mods == GLFW_MOD_CONTROL){
-				mCamera->rollReal(-1 * cameraSpeed); // rotates 1 on the Y axis
+				mCamera->rollReal(-1 * cameraSpeed); // rotates -1 on the Z axis
 			}
 			else
 				mCamera->yawReal(-1 * cameraSpeed); // rotate -1 on the Y axis
 			break;
 		case GLFW_KEY_UP:
-			mCamera->pitchReal(1 * cameraSpeed); // rotates 1 on the Z axis
+			mCamera->pitchReal(1 * cameraSpeed); // rotates 1 on the X axis
 			break;
 		case GLFW_KEY_DOWN:
-			mCamera->pitchReal(-1 * cameraSpeed); // rotates -1 on the Z axis
+			mCamera->pitchReal(-1 * cameraSpeed); // rotates -1 on the X axis
 			break;
 		default:
 			need_redisplay = false;
@@ -312,7 +312,7 @@ void IG1App::display2V() const
 	//Para dos puertos de vista
 	mViewPort->setSize(mWinW / 2, mWinH);
 
-	//La camara tiene el tamaño del viewport completo, para que siga ocupando la mitad de la pantalla
+	//La camara tiene el tamaï¿½o del viewport completo, para que siga ocupando la mitad de la pantalla
 	auxCam.setSize(mViewPort->width(), mViewPort->height());
 	//Restauramos el viewport
 	
@@ -349,15 +349,15 @@ IG1App::changeScene(size_t sceneNr)
 	return true;
 }
 
-//Captura en mMouseCoord las coordenadas del ratón (x,y), y en mMouseButt, el boton pulsado
+//Captura en mMouseCoord las coordenadas del ratï¿½n (x,y), y en mMouseButt, el boton pulsado
 void IG1App::mouse(int button, int state, int x, int y)
 {
 	mMouseButt = button; //Registro del boton pulsado
-	mMouseCoord = { x, y }; //Registro de la posicoon en x e y del ratón
+	mMouseCoord = { x, y }; //Registro de la posicoon en x e y del ratï¿½n
 }
 
-//Captura las coordenadas del ratón, obtiene el desplazamiento con respecto a las anteriores coordenadas y, si el boton pulsado es el derecho, mueve la cámara en sus ejes mRight(horizontal)
-//y mUpward(vertical) el correspondiente desplazamiento, mientras que si es el botón izquierdo rota la cámaara alrededor de la escena.
+//Captura las coordenadas del ratï¿½n, obtiene el desplazamiento con respecto a las anteriores coordenadas y, si el boton pulsado es el derecho, mueve la cï¿½mara en sus ejes mRight(horizontal)
+//y mUpward(vertical) el correspondiente desplazamiento, mientras que si es el botï¿½n izquierdo rota la cï¿½maara alrededor de la escena.
 void IG1App::motion(int x, int y)
 {
 	glm::dvec2 mp = { mMouseCoord[0] - x, mMouseCoord[1] - y }; //Usamos la nueva posicion
@@ -371,7 +371,7 @@ void IG1App::motion(int x, int y)
 	mNeedsRedisplay = true;
 }
 
-//Si no esta pulsada ninguna tecla modificadora, desplaza la cámara en su dirección de vista (eje mFront), hacia delante/atrás, según sea d
+//Si no esta pulsada ninguna tecla modificadora, desplaza la cï¿½mara en su direcciï¿½n de vista (eje mFront), hacia delante/atrï¿½s, segï¿½n sea d
 //positivo/negativo, si se pulsa la tecla control, escala la escena segun el velor de d.
 void IG1App::mouseWheel(GLFWwindow* win, int n, int d, int x, int y)
 {
