@@ -359,6 +359,7 @@ IG1App::changeScene(size_t sceneNr)
 //Captura en mMouseCoord las coordenadas del rat�n (x,y), y en mMouseButt, el boton pulsado
 void IG1App::mouse(int button, int state, int x, int y)
 {
+	if (button == mMouseButt){ mMouseButt = -1; return; } //Si se pulsa el mismo boton no hacemos nada
 	mMouseButt = button; //Registro del boton pulsado
 	mMouseCoord = { x, y }; //Registro de la posicoon en x e y del rat�n
 }
