@@ -326,6 +326,14 @@ void IG1App::display2V() const
 	//Primer viewport con camara en perspectiva 2D
 	mViewPort->setPos(0, 0);
 	auxCam.set2D();
+
+	// Cambiar loads de las escenas
+	// mScenes[mCurrentScene]->unload();
+	// mScenes[0]->load();
+	// mScenes[0]->render(auxCam); //hemos cambiado mCurrentScene por la escena 0
+	// mScenes[0]->unload();
+	// mScenes[mCurrentScene]->load();
+
 	mScenes[mCurrentScene]->render(auxCam);
 
 	//Segundo viewport con camara en perspectiva 3D
