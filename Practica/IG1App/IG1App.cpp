@@ -386,10 +386,10 @@ void IG1App::mouseWheel(GLFWwindow* win, int n, int d, int x, int y)
 	//d es lo que has arrastrado del raton
 	// if (!(glfwGetKey(win, GLFW_MOD_CONTROL) == GLFW_PRESS)) {
 	if (!ctrlPressed) {
-		mCamera->setScale(d * 0.1);
+		mCamera->moveFB(d * 5);
 	}
 	else {
-		mCamera->moveFB(d * 5);
+		mCamera->setScale(d * 0.1);
 	}
 	mNeedsRedisplay = true;
 }
