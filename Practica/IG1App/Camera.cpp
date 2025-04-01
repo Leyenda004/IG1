@@ -48,7 +48,7 @@ Camera::set2D()
 	mUp = {0, 1, 0}; 
 	mAng = -90;
 	mRadio = 300.0f;
-	setVM();
+	setVM(); //Actualizamos matriz de vista con los nuevos parametros
 }
 
 void
@@ -59,7 +59,7 @@ Camera::set3D()
 	mUp = {0, 1, 0};
 	mAng = 90;
 	mRadio = 300.0f;
-	setVM();
+	setVM(); //Actualizamos matriz de vista con los nuevos parametros
 }
 
 void
@@ -151,6 +151,8 @@ void Camera::setAxes() {
 
 // (-n = look - eye)
 // Movimientos relativos a la camara, no global
+
+//MOVIMIENTO DE CAMARA HACIA LA IZQUIERDA Y DERECHA
 void Camera::moveLR(GLfloat cs)
 {
 	// Global
@@ -163,6 +165,7 @@ void Camera::moveLR(GLfloat cs)
 	setVM();
 }
 
+//MOVIMIENTO DE CAMARA HACIA DELANTE Y HACIA ATRAS (Solo con perspectiva, no ortogonal)
 void Camera::moveFB(GLfloat cs)
 {
 	// Global
@@ -175,24 +178,27 @@ void Camera::moveFB(GLfloat cs)
 	setVM();
 }
 
+//MOVIMIENTO DE CAMARA ARRIBA Y ABAJO
 void Camera::moveUD(GLfloat cs)
 {
 	// Global
-	//mEye += mUpward * cs;
-	//mLook += mUpward * cs;
+	mEye += mUpward * cs;
+	mLook += mUpward * cs;
 
 	// Local
-	mEye.y += cs;
-	mLook.y += cs;
+	//mEye.y += cs;
+	//mLook.y += cs;
 	setVM();
 }
 
+//CAMBIO DE PERSPECTIVA POR PARAMETRO bOrto
 void Camera::changePrj()
 {
 	bOrto = !bOrto;
-	setPM();
+	setPM(); //Actualizamos la matriz de puerto de vista
 }
 
+//ROTACION DESDE LA PROPIA CAMARA ARRIBA/ABAJO
 void Camera::pitchReal(GLfloat cs)
 {
 	mLook = mEye + rotate(mLook - mEye, radians(double(cs)), dvec3(mRight));
@@ -202,10 +208,11 @@ void Camera::pitchReal(GLfloat cs)
 	setVM();
 }
 
+//ROTACION DESDE LA PROPIA CAMARA IZQUIERDA/DERECHA
 void Camera::yawReal(GLfloat cs)
 {
 	//mLook += mRight * cs;
-	mLook = mEye + rotate(mLook - mEye, radians(double(cs)), dvec3(mUpward));
+	mLook = mEye + rotate(mLook - mEye, radians(double(-cs)), dvec3(mUpward));
 	mUp = rotate(mUp, radians(double(cs)), dvec3(mUp));
 	//mUp = rotate(mUp, radians(double(cs)), dvec3(mUpward));
 
@@ -213,6 +220,7 @@ void Camera::yawReal(GLfloat cs)
 
 }
 
+//ROTACION DESDE LA CAMARA EN ESPIRAL SOBRE SU EJE FRONTAL
 void Camera::rollReal(GLfloat cs)
 {
 	//mLook += mFront * cs;
@@ -227,6 +235,7 @@ void Camera::rollReal(GLfloat cs)
 	setVM();
 }
 
+//ROTACION A PARTIR DE UN ANGULO CONCRETO
 void Camera::orbit(GLdouble incAng, GLdouble incY)
 {
 	mAng += incAng;
@@ -234,5 +243,16 @@ void Camera::orbit(GLdouble incAng, GLdouble incY)
 	mEye.z = mLook.z - sin(radians(mAng)) * mRadio;
 	mEye.y += incY;
 	mUp = { 0, 1, 0 };
+	setVM();
+}
+
+void Camera::setCenital()
+{
+	mEye = { 0, 500, 0 }; //Nos situamos arriba de la escena
+	//Look - eye = n, sale negativo pero porque la camara esta en posicion negativa, como el set2D
+	mLook = { 0, 0, 0 }; 
+	mUp = { 0, 0, 1 };
+	mAng = 90;
+	mRadio = 300.0f;
 	setVM();
 }

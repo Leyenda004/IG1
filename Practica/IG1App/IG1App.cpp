@@ -118,9 +118,9 @@ IG1App::iniWinOpenGL()
 	glfwSetWindowRefreshCallback(mWindow, s_display);
 
 	//EDITABLE, CALLBACKS DE RATON
-	glfwSetMouseButtonCallback(mWindow, s_mouse);
-	glfwSetCursorPosCallback(mWindow, s_motion);
-	glfwSetScrollCallback(mWindow, s_mouseWheel);
+	glfwSetMouseButtonCallback(mWindow, s_mouse); //Registrar los botones y posicion del raton
+	glfwSetCursorPosCallback(mWindow, s_motion); //Mover el raton 
+	glfwSetScrollCallback(mWindow, s_mouseWheel); //uso de la rueda del raton
 
 	// Error message callback (all messages)
 	glEnable(GL_DEBUG_OUTPUT);
@@ -237,6 +237,9 @@ IG1App::key(unsigned int key)
 		case 'O':
 			mCamera->orbit(1 * cameraSpeed);
 			break;
+		case 'c':
+			mCamera->setCenital();
+			break;
 		case 'k':
 			//Llamando al display de 2 vistas
 			m2Vistas = !m2Vistas;
@@ -349,21 +352,21 @@ IG1App::changeScene(size_t sceneNr)
 //Captura en mMouseCoord las coordenadas del ratón (x,y), y en mMouseButt, el boton pulsado
 void IG1App::mouse(int button, int state, int x, int y)
 {
-	mMouseButt = button;
-	mMouseCoord = { x, y };
+	mMouseButt = button; //Registro del boton pulsado
+	mMouseCoord = { x, y }; //Registro de la posicoon en x e y del ratón
 }
 
 //Captura las coordenadas del ratón, obtiene el desplazamiento con respecto a las anteriores coordenadas y, si el boton pulsado es el derecho, mueve la cámara en sus ejes mRight(horizontal)
 //y mUpward(vertical) el correspondiente desplazamiento, mientras que si es el botón izquierdo rota la cámaara alrededor de la escena.
 void IG1App::motion(int x, int y)
 {
-	glm::dvec2 mp = { mMouseCoord[0] - x, mMouseCoord[1] - y };
-	mMouseCoord = { x, y };
-	//Si el boton izquierdo esta pulsado
-	if (mMouseButt == 0) mCamera->orbit(mp.x * 0.05, mp.y);
+	glm::dvec2 mp = { mMouseCoord[0] - x, mMouseCoord[1] - y }; //Usamos la nueva posicion
+	mMouseCoord = { x, y }; //Guardamos la nueva posicion para el proximo movimiento
+	//Boton izquierdo = 0, Boton derecho = 1
+	if (mMouseButt == 0) mCamera->orbit(mp.x * 0.05, mp.y); //Rotamos alrededor de la escena
 	else if (mMouseButt == 1) {
-		mCamera->moveUD(-mp[1]);
-		mCamera->moveLR(mp[0]);
+		mCamera->moveUD(-mp[1]); //Movimiento vertical de raton
+		mCamera->moveLR(mp[0]); //Movimiento horizontal del raton
 	}
 	mNeedsRedisplay = true;
 }
@@ -372,8 +375,9 @@ void IG1App::motion(int x, int y)
 //positivo/negativo, si se pulsa la tecla control, escala la escena segun el velor de d.
 void IG1App::mouseWheel(GLFWwindow* win, int n, int d, int x, int y)
 {
+	//d es lo que has arrastrado del raton
 	if (!(glfwGetKey(win, GLFW_MOD_CONTROL) == GLFW_PRESS)) {
-		mCamera->setScale(d * 0.1);
+		mCamera->setScale(d * 0.1); 
 	}
 	else {
 		mCamera->moveFB(d);
