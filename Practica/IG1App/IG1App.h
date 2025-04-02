@@ -79,11 +79,12 @@ protected:
 
 	bool ctrlPressed = false;
 
-	void display2V() const;
+	void display2V(int) const;
 	bool m2Vistas = false;
 
 	glm::dvec2 mMouseCoord;
 	int mMouseButt = -1;
+	int escenaSegundaVista = 2;
 
 	void mouse(int button, int state, int x, int y);
 	void motion(int x, int y);

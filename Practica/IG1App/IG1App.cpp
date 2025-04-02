@@ -164,7 +164,7 @@ IG1App::display() const
 	mScenes[mCurrentScene]->render(*mCamera); // uploads the viewport and camera to the GPU
 	}
 	else {
-		display2V(); //Display2V
+		display2V(escenaSegundaVista == -1 ? mCurrentScene : escenaSegundaVista); //Display2V
 	}
 
 	glfwSwapBuffers(mWindow); // swaps the front and back buffer
@@ -187,6 +187,9 @@ void
 IG1App::key(unsigned int key)
 {
 	bool need_redisplay = true;
+
+	// Comprobar si la escena que queremos cargar es la misma en la que estamos
+	bool mismaEscena = escenaSegundaVista == mCurrentScene || escenaSegundaVista == -1;
 
 	switch (key) {
 		case '+':
@@ -242,6 +245,24 @@ IG1App::key(unsigned int key)
 		case 'k':
 			//Llamando al display de 2 vistas
 			m2Vistas = !m2Vistas;
+
+			// Cambiar a dos vistas
+			if (m2Vistas) {
+				// Decidimos la escena que le queremos pasar y la cargamos
+				// Si la escena es la misma en la que estamos no la cargamos dos veces
+				if (!mismaEscena) {
+					mScenes[escenaSegundaVista]->load();
+				}
+			} // Cambiar a una vista
+			else { // Descargamos la segunda escena
+				// Si la escena es la misma en la que estamos no la cargamos dos veces
+				
+				if (!mismaEscena) {
+					mScenes[escenaSegundaVista]->unload();
+				}
+				
+			}
+
 			mNeedsRedisplay = true;
 			break;
 		default:
@@ -310,7 +331,7 @@ IG1App::specialkey(int key, int scancode, int action, int mods)
 		mNeedsRedisplay = true;
 }
 
-void IG1App::display2V() const
+void IG1App::display2V(int nScene) const
 {
 	//Usamos camara y viewport auxiliar
 	Camera auxCam = *mCamera;
@@ -326,15 +347,13 @@ void IG1App::display2V() const
 	//Primer viewport con camara en perspectiva 2D
 	mViewPort->setPos(0, 0);
 	auxCam.set2D();
+	//mScenes[mCurrentScene]->render(auxCam);
 
 	// Cambiar loads de las escenas
-	// mScenes[mCurrentScene]->unload();
-	// mScenes[0]->load();
-	// mScenes[0]->render(auxCam); //hemos cambiado mCurrentScene por la escena 0
-	// mScenes[0]->unload();
-	// mScenes[mCurrentScene]->load();
+	//mScenes[nScene]->load();
+	mScenes[nScene]->render(auxCam); //hemos cambiado mCurrentScene por la escena 0
+	//mScenes[nScene]->unload();
 
-	mScenes[mCurrentScene]->render(auxCam);
 
 	//Segundo viewport con camara en perspectiva 3D
 	mViewPort->setPos(mWinW / 2, 0);
