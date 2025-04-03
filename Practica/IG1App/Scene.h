@@ -39,7 +39,7 @@ protected:
 	void resetGL();
 
 	std::vector<Abs_Entity*> gObjects; // Entities (graphic objects) of the scene
-	std::vector<Abs_Entity*> gObjectsTranslucid;
+	std::vector<Abs_Entity*> gObjectsTranslucid; // Translucid Entities (graphic objects) of the scene
 
 	//EDITABLE
 

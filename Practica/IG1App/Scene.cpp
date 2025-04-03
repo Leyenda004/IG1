@@ -34,23 +34,32 @@ void
 Scene::destroy()
 { // release memory and resources
 
-	for (Abs_Entity* el : gObjects)
+	for (Abs_Entity* el : gObjects) //delete a los objetos opacos
+		delete el;
+	for (Abs_Entity* el : gObjectsTranslucid) //delete a los objetos translucidos
 		delete el;
 
-	gObjects.clear();
+	gObjects.clear(); //Vaciando el vector de objetos opacos
+	gObjectsTranslucid.clear(); //Vaciando el vector de objetos translucidos
 }
 
 void
 Scene::load()
 {
-	for (Abs_Entity* obj : gObjects)
+	for (Abs_Entity* obj : gObjects) //load a los objetos opacos
+		obj->load();
+
+	for (Abs_Entity* obj : gObjectsTranslucid) //load a los objetos translucidos
 		obj->load();
 }
 
 void
 Scene::unload()
 {
-	for (Abs_Entity* obj : gObjects)
+	for (Abs_Entity* obj : gObjects) //unload a los objetos opacos
+		obj->unload();
+
+	for (Abs_Entity* obj : gObjectsTranslucid) //unload a los objetos translucidos
 		obj->unload();
 }
 
@@ -75,19 +84,21 @@ Scene::render(Camera const& cam) const
 {
 	cam.upload();
 
-	for (Abs_Entity* el : gObjects)
+	for (Abs_Entity* el : gObjects) //renderizamos los objetos opacos
 		el->render(cam.viewMat());
 
-	for (Abs_Entity* el : gObjectsTranslucid)
+	for (Abs_Entity* el : gObjectsTranslucid) //renderizamos los objetos translucidos
 		el->render(cam.viewMat());
 }
 
 
 void
 Scene::update() {
-	for (Abs_Entity* el : gObjects) {
+	for (Abs_Entity* el : gObjects) { //updateamos los objetos opacos
 		el->update();
 	}
+	for (Abs_Entity* el : gObjectsTranslucid) //updateamos los objetos translucidos
+		el->update();
 }
 
 void

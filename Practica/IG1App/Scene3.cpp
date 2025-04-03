@@ -39,6 +39,10 @@ Scene3::init() {
 	// Graphics objects (entities) of the scene
 	gObjects.push_back(new RGBAxes(400.0f));
 
+	//CRISTALERA - Medida de los lados en ancho y alto, archivo a cargar
+	GlassParapet* glass = new GlassParapet(200.f, "../assets/images/windowV.jpg");
+	gObjectsTranslucid.push_back(glass);
+
 	//SUELO
 	Ground* ground = new Ground();
 	Texture* tex = new Texture();
@@ -74,7 +78,4 @@ Scene3::init() {
 	photo->setModelMat(photoTras * photo->modelMat());
 	gObjects.push_back(photo);
 
-	//CRISTALERA - Medida de los lados en ancho y alto, archivo a cargar
-	GlassParapet* glass = new GlassParapet(200.f, "../assets/images/windowV.jpg");
-	gObjects.push_back(glass);
 }

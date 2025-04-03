@@ -145,12 +145,9 @@ void Camera::setAxes() {
 	mRight = row(mViewMat, 0);
 	mUpward = row(mViewMat, 1);
 	mFront = -row(mViewMat, 2); // Importante el (-)
-
-	// ?? Lo hemos añadido a todos los metodos necesarios?
 }
 
 // (-n = look - eye)
-// Movimientos relativos a la camara, no global
 
 //MOVIMIENTO DE CAMARA HACIA LA IZQUIERDA Y DERECHA
 void Camera::moveLR(GLfloat cs)
