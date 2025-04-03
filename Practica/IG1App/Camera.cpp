@@ -33,10 +33,13 @@ Camera::uploadVM() const
 	Shader::setUniform4All("modelView", mViewMat);
 }
 
+
+// Modifica la matriz de vista para adaptarla a los nuevos parametros
 void
 Camera::setVM()
 {
 	mViewMat = lookAt(mEye, mLook, mUp); // glm::lookAt defines the view matrix
+	// Con los nuevos parametros, actualizamos los vectores de la camara
 	setAxes();
 }
 
@@ -105,6 +108,8 @@ Camera::setScale(GLdouble s)
 	setPM();
 }
 
+
+// Actualiza la perspectiva actual
 void
 Camera::setPM()
 {
@@ -141,6 +146,7 @@ Camera::upload() const
 	uploadPM();
 }
 
+// Actualiza los vectores de la camara
 void Camera::setAxes() {
 	mRight = row(mViewMat, 0);
 	mUpward = row(mViewMat, 1);
