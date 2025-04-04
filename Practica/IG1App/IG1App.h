@@ -84,7 +84,7 @@ protected:
 
 	glm::dvec2 mMouseCoord;
 	int mMouseButt = -1;
-	int escenaSegundaVista = 2;
+	int escenaSegundaVista = 0;
 
 	void mouse(int button, int state, int x, int y);
 	void motion(int x, int y);
