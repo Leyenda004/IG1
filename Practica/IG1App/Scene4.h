@@ -3,5 +3,6 @@
 class Scene4 :
     public Scene
 {
+    void init() override;
 };
 
