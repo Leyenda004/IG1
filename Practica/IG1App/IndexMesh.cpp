@@ -45,7 +45,8 @@ IndexMesh* IndexMesh::generateByRevolution(const std::vector<glm::vec2>& profile
 	IndexMesh* mesh = new IndexMesh();
 	mesh->mPrimitive = GL_TRIANGLES;
 	int tamPerfil = profile.size();
-	mesh->vVertices.reserve(nSamples * tamPerfil);
+	mesh->mNumVertices = (nSamples + 1) * tamPerfil;
+	mesh->vVertices.reserve(mesh->mNumVertices);
 
 	GLdouble theta1 = 2 * numbers::pi / nSamples;
 

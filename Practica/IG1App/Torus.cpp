@@ -27,6 +27,6 @@ Torus::Torus(GLdouble R, GLdouble r, GLuint nPoints, GLuint nSamples)
 	}
 
 
-
+	//mMesh = profileMesh;
 	mMesh = IndexMesh::generateByRevolution(profile, nSamples);
 }

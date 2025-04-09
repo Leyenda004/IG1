@@ -13,7 +13,7 @@ void Scene4::init()
 	// Graphics objects (entities) of the scene
 	gObjects.push_back(new RGBAxes(400.0f));
 
-	Torus* torus = new Torus(20,100);
+	Torus* torus = new Torus(200,300);
 
 	gObjects.push_back(torus);
 }
