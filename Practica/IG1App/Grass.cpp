@@ -12,9 +12,9 @@ Grass::Grass(GLdouble width, GLdouble height, GLdouble posX, GLdouble posY, GLdo
 	mTexture = new Texture();
 	mTexture->load(mTexturePar, 255);
 
-	mModelMat = rotate(mModelMat, radians(180.f), vec3(1, 0, 0));
-	mModelMat = translate(mModelMat, vec3(0, -posY, 0));
-	mModelMat = translate(mModelMat, vec3(posX, -posY, posZ));
+	//mModelMat = rotate(mModelMat, radians(180.f), vec3(1, 0, 0));
+	//mModelMat = translate(mModelMat, vec3(0, -posY, 0));
+	mModelMat = translate(mModelMat, vec3(posX, posY, posZ));
 }
 
 void Grass::render(const glm::mat4& modelViewMat) const

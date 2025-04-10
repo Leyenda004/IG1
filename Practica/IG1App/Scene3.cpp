@@ -59,10 +59,10 @@ Scene3::init() {
 	gObjects.push_back(boxComplete);
 
 	//HIERBA - Anchura, Altura, PosicionX, PosicionY, PosicionZ, archivo a cargar
-	Grass* grass1 = new Grass(25.f, 25.f, -25.f/2, 12.5f, -25.f/2, "../assets/images/grass_alpha.png");
-	Grass* grass2 = new Grass(25.f, 25.f, -25.f/2, 12.5f, 25.f/2, "../assets/images/grass_alpha.png");
-	Grass* grass3 = new Grass(25.f, 25.f, 25.f/2, 12.5f, -25.f/2, "../assets/images/grass_alpha.png");
-	Grass* grass4 = new Grass(25.f, 25.f, 25.f/2, 12.5f, 25.f/2, "../assets/images/grass_alpha.png");
+	Grass* grass1 = new Grass(25.f, 25.f, -25.f/2, 25.f, -25.f/2, "../assets/images/grass_alpha.png");
+	Grass* grass2 = new Grass(25.f, 25.f, -25.f/2, 25.f, 25.f/2, "../assets/images/grass_alpha.png");
+	Grass* grass3 = new Grass(25.f, 25.f, 25.f/2, 25.f, -25.f/2, "../assets/images/grass_alpha.png");
+	Grass* grass4 = new Grass(25.f, 25.f, 25.f/2, 25.f, 25.f/2, "../assets/images/grass_alpha.png");
 	gObjects.push_back(grass1);
 	gObjects.push_back(grass2);
 	gObjects.push_back(grass3);

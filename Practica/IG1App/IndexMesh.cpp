@@ -44,16 +44,37 @@ IndexMesh* IndexMesh::generateByRevolution(const std::vector<glm::vec2>& profile
 {
 	IndexMesh* mesh = new IndexMesh();
 	mesh->mPrimitive = GL_TRIANGLES;
-	int tamPerfil = profile.size();
-	mesh->mNumVertices = (nSamples + 1) * tamPerfil;
+	//int tamPerfil = profile.size();
+	//mesh->mNumVertices = (nSamples + 1) * tamPerfil;
+	mesh->mNumVertices = mesh->vVertices.size();
 	mesh->vVertices.reserve(mesh->mNumVertices);
 
+	vector<vector<vec3>> vs(nSamples + 1);
 	GLdouble theta1 = 2 * numbers::pi / nSamples;
 
 	for (int i = 0; i <= nSamples; ++i) {
 		GLdouble c = cos(i * theta1), s = sin(i * theta1);
-		for (auto p : profile) mesh->vVertices.emplace_back(p.x * c, p.y, -p.x * s);
+		vs[i].reserve(profile.size());
+		for (glm::vec2 p : profile) vs[i].emplace_back(p.x * c, p.y, p.x * s);
 	}
+
+	for (int i = 0; i < nSamples; ++i) {
+		// caras i a i + 1 
+		for (int j = 0; j < profile.size() - 1; ++j) { // una cara 
+			// Triángulo inferior (si no es degenerado) 
+			if (profile[j].x != 0.0) {
+				mesh->vVertices.push_back(vs[i][j]);
+				mesh->vVertices.push_back(vs[i + 1][j]);
+				mesh->vVertices.push_back(vs[i][j + 1]);
+			}
+			if (profile[j + 1].x != 0.0) {
+				for (auto [s, t] : { pair{i,j + 1},{i + 1,j},{i + 1,j + 1} }) {
+					mesh->vVertices.push_back(vs[s][t]);
+				}
+			}
+		}
+	}
+
 
 	return mesh;
 }
