@@ -32,9 +32,9 @@ Torus::Torus(GLdouble R, GLdouble r, GLuint nPoints, GLuint nSamples)
 	//
 	//delete profileMesh;
 
-	vector<vec2> perfil(nPoints + 1);
+	vector<vec2> perfil(nPoints);
 
-	for (GLuint i = 0; i < nPoints + 1; ++i)
+	for (GLuint i = 0; i < nPoints; ++i)
 	{
 		float theta = (2.0f * std::numbers::pi * i) / nPoints;
 		float x = R + r * cos(theta);

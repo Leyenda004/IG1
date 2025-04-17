@@ -97,7 +97,7 @@ IndexMesh* IndexMesh::generateByRevolution(const std::vector<glm::vec2>& profile
     IndexMesh* mesh = new IndexMesh;
     mesh->mPrimitive = GL_TRIANGLES;
     int tamPerfil = profile.size();
-    mesh->vVertices.reserve((nSamples+1) * tamPerfil);
+    mesh->vVertices.reserve( (nSamples + 1) * tamPerfil);
     // Genera los vértices de las muestras
     GLdouble theta1 = 2 * numbers::pi / nSamples;
     for (int i = 0; i <= nSamples; ++i) { // muestra i-ésima
@@ -123,12 +123,28 @@ IndexMesh* IndexMesh::generateByRevolution(const std::vector<glm::vec2>& profile
     return mesh;
 }
 
-IndexMesh* IndexMesh::generateIndexedBox(GLdouble l)
+IndexMesh* IndexMesh::generateIndexedBox(GLdouble L)
 {
-	IndexMesh* mesh = static_cast<IndexMesh*>(Mesh::generateCube(l));
-	//mesh->mPrimitive = GL_TRIANGLES;
-	// mesh->mNumVertices = mesh->vVertices.size();
-	//mesh->vVertices.reserve(mesh->mNumVertices);
+	//IndexMesh* mesh = static_cast<IndexMesh*>(Mesh::generateCube(l));
+	IndexMesh* mesh = new IndexMesh();
+
+	mesh->mPrimitive = GL_TRIANGLES;
+	mesh->vVertices.reserve(8);
+	/*mesh->vVertices.reserve(mesh->mNumVertices);*/
+	mesh->mNumVertices = mesh->vVertices.size();
+	mesh->vIndexes.reserve(36);
+
+	mesh->vVertices.push_back({ L / 2, L / 2, -L / 2 }); // 0 ++-
+	mesh->vVertices.push_back({ L / 2, -L / 2, -L / 2 }); // 1 +--
+	mesh->vVertices.push_back({ L / 2, L / 2, L / 2 }); // 2 +++
+	mesh->vVertices.push_back({ L / 2, -L / 2, L / 2 }); // 3 +-+
+	mesh->vVertices.push_back({ -L / 2, L / 2, L / 2 }); // 4 -++
+	mesh->vVertices.push_back({ -L / 2, -L / 2, L / 2 }); // 5 --+
+	mesh->vVertices.push_back({ -L / 2, L / 2, -L / 2 }); // 6 -+-
+	mesh->vVertices.push_back({ -L / 2, -L / 2, -L / 2 }); // 7 ---
+
+
+	
 	mesh->vNormals.reserve(mesh->mNumVertices);
 	mesh->vColors.reserve(mesh->mNumVertices);
 
@@ -136,15 +152,66 @@ IndexMesh* IndexMesh::generateIndexedBox(GLdouble l)
 		mesh->vColors.emplace_back(0, 1, 0, 1.0f);
 	}
 
-	for ( const auto& v : mesh->vVertices) {
-        vec3 normal(0.0f);
+	// Triangle 1
+	mesh->vIndexes.push_back(0);
+	mesh->vIndexes.push_back(1);
+	mesh->vIndexes.push_back(2);
 
-        normal += vec3((v.x > 0) ? 1.0f : -1.0f, 0.0f, 0.0f);
-        normal += vec3(0.0f, (v.y > 0) ? 1.0f : -1.0f, 0.0f);
-        normal += vec3(0.0f, 0.0f, (v.z > 0) ? 1.0f : -1.0f);
+	// Triangle 2
+	mesh->vIndexes.push_back(2);
+	mesh->vIndexes.push_back(1);
+	mesh->vIndexes.push_back(3);
 
-        mesh->vNormals.push_back(normalize(normal));
-    }
+	// Triangle 3
+	mesh->vIndexes.push_back(2);
+	mesh->vIndexes.push_back(3);
+	mesh->vIndexes.push_back(4);
+
+	// Triangle 4
+	mesh->vIndexes.push_back(4);
+	mesh->vIndexes.push_back(3);
+	mesh->vIndexes.push_back(5);
+
+	// Triangle 5
+	mesh->vIndexes.push_back(4);
+	mesh->vIndexes.push_back(5);
+	mesh->vIndexes.push_back(6);
+
+	// Triangle 6
+	mesh->vIndexes.push_back(6);
+	mesh->vIndexes.push_back(5);
+	mesh->vIndexes.push_back(7);
+
+	// Triangle 7
+	mesh->vIndexes.push_back(6);
+	mesh->vIndexes.push_back(7);
+	mesh->vIndexes.push_back(0);
+
+	// Triangle 8
+	mesh->vIndexes.push_back(0);
+	mesh->vIndexes.push_back(7);
+	mesh->vIndexes.push_back(1);
+
+	// Triangle 9
+	mesh->vIndexes.push_back(4);
+	mesh->vIndexes.push_back(6);
+	mesh->vIndexes.push_back(2);
+
+	// Triangle 10
+	mesh->vIndexes.push_back(2);
+	mesh->vIndexes.push_back(6);
+	mesh->vIndexes.push_back(0);
+
+	// Triangle 11
+	mesh->vIndexes.push_back(1);
+	mesh->vIndexes.push_back(7);
+	mesh->vIndexes.push_back(3);
+
+	// Triangle 12
+	mesh->vIndexes.push_back(3);
+	mesh->vIndexes.push_back(7);
+	mesh->vIndexes.push_back(5);
+
 	mesh->buildNormalVectors();
 	return mesh;
 }
