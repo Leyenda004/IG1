@@ -9,6 +9,7 @@ private:
 	void load() override;
 	void unload() override;
 	void draw() const override;
+	void buildNormalVectors();
 public:
 	static IndexMesh* generateByRevolution(const std::vector<glm::vec2>& profile, GLuint nSamples,
 		GLfloat angleMax = 2 * std::numbers::pi);

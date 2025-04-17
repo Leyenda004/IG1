@@ -1,7 +1,8 @@
 #pragma once
 #include "SingleColorEntity.h"
+#include "ColorMaterialEntity.h"
 class Torus :
-    public SingleColorEntity
+    public ColorMaterialEntity
 {
 public:
     //r: grosor

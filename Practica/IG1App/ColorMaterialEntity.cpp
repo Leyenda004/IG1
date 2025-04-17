@@ -16,8 +16,10 @@ void ColorMaterialEntity::render(mat4 const& modelViewMat) const {
         mMesh->render();
 
         if (mShowNormals) {
+            mat4 bMat = modelViewMat * mModelMat; // glm matrix multiplication
             mShaderAux->use();
             mShaderAux->setUniform("normals", modelViewMat);
+            upload(bMat);
             mMesh->render();
         }
     }
