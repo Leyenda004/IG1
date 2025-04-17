@@ -35,7 +35,7 @@ Camera::uploadVM() const
 	// glm::dmat4 mViewMatAux;
 	// mViewMatAux = rotate(mViewMat, glm::radians(180.0), glm::dvec3(-1.0, -1.0, -1.0));
 	// Shader::setUniform4All("LightDir", mViewMatAux);
-	Shader::setUniform4All("LightDir", mViewMat);
+	// Shader::setUniform4All("LightDir", mViewMat);
 }
 
 
