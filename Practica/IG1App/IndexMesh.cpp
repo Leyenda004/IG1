@@ -78,3 +78,31 @@ IndexMesh* IndexMesh::generateByRevolution(const std::vector<glm::vec2>& profile
 
 	return mesh;
 }
+
+IndexMesh* IndexMesh::generateIndexedBox(GLdouble l)
+{
+	IndexMesh* mesh = static_cast<IndexMesh*>(Mesh::generateCube(l));
+	//mesh->mPrimitive = GL_TRIANGLES;
+	// mesh->mNumVertices = mesh->vVertices.size();
+	//mesh->vVertices.reserve(mesh->mNumVertices);
+	mesh->vNormals.reserve(mesh->mNumVertices);
+	mesh->vColors.reserve(mesh->mNumVertices);
+
+	for (int i = 0; i < mesh->mNumVertices; ++i) {
+		mesh->vColors.emplace_back(0, 1, 0, 1.0f);
+	}
+
+	for ( const auto& v : mesh->vVertices) {
+        vec3 normal(0.0f);
+
+        normal += vec3((v.x > 0) ? 1.0f : -1.0f, 0.0f, 0.0f);
+        normal += vec3(0.0f, (v.y > 0) ? 1.0f : -1.0f, 0.0f);
+        normal += vec3(0.0f, 0.0f, (v.z > 0) ? 1.0f : -1.0f);
+
+        mesh->vNormals.push_back(normalize(normal));
+    }
+
+	
+
+	return mesh;
+}

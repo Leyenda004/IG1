@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+#include "ColorMaterialEntity.h"
+
 using namespace std;
 
 // static single instance (singleton pattern)
@@ -266,6 +268,10 @@ IG1App::key(unsigned int key)
 			}
 
 			mNeedsRedisplay = true;
+			break;
+		case 'n':
+		case 'N':
+			ColorMaterialEntity::toggleShowNormals();
 			break;
 		default:
 			if (key >= '0' && key <= '9' && !changeScene(key - '0'))
