@@ -50,7 +50,8 @@ protected:
 
 	//EDITABLE
 
-	std::vector<glm::vec2> vTexCoords;
+	std::vector<glm::vec2> vTexCoords; // tex array
+	std::vector<glm::vec3> vNormals;   // normal array
 
 	virtual void draw() const;
 
@@ -63,6 +64,7 @@ private:
 	//EDITABLE
 
 	GLuint mTCO; // texture buffer object
+	GLuint mNBO; // normal buffer object
 };
 
 #endif //_H_Scene_H_
