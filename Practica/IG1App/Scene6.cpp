@@ -2,7 +2,7 @@
 
 #include "Sphere.h"
 #include "Disk.h"
-
+#include "Cone.h"
 
 
 #include <glm/gtc/matrix_transform.hpp>
@@ -31,4 +31,8 @@ void Scene6::init()
 
 	Disk* disk = new Disk(200.0f, 100.0f);
 	gObjects.push_back(disk);
+
+	Cone* cone = new Cone(200.0f, 100.0f, 50.0f);
+	gObjects.push_back(cone);
+
 }

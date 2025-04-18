@@ -1,10 +1,9 @@
 #include "ColorMaterialEntity.h"
-#include <iostream>
 
 using namespace glm;
 
 ColorMaterialEntity::ColorMaterialEntity() : SingleColorEntity() {
-	mShader =       Shader::get("lightDir"); //shader??
+	//mShader =       Shader::get("simple_light"); //shader??
     mShaderAux =    Shader::get("normals");
 }
 
