@@ -3,7 +3,6 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-
 using namespace glm;
 using namespace std;
 
@@ -13,34 +12,15 @@ using namespace std;
 //nPoints: numero de puntos de la circunferencia
 Torus::Torus(GLdouble R, GLdouble r, GLuint nPoints, GLuint nSamples)
 {
-	//// Creamos el perfil
-	//Mesh* profileMesh = Mesh::generateRegularPolygon(nPoints, r / 2); //El radio es / 2 porque r es el grosor del toroide, es decir el diametro
-	//// Desplazamos una cantidad de R (radio del toroide)
-	//mat4 tras = translate(mat4(1.0f), vec3(R, 0, 0));
-	//setModelMat(mModelMat * tras);
-	//
-	//vector<vec2> profile;
-	//vector<vec3> vertices = profileMesh->vertices();
-	//
-	//for (const auto& v : vertices) {
-	//	profile.push_back(vec2(v.x, v.y));
-	//}
-	//
-	//
-	////mMesh = profileMesh; // 
-	//mMesh = IndexMesh::generateByRevolution(profile, nSamples);
-	//
-	//delete profileMesh;
+	vector<vec2> profile(nPoints + 1);
 
-	vector<vec2> perfil(nPoints);
-
-	for (GLuint i = 0; i < nPoints; ++i)
-	{
-		float theta = (2.0f * std::numbers::pi * i) / nPoints;
-		float x = R + r * cos(theta);
-		float y = r * sin(theta);
-		perfil[i] = vec2(x, y);
+	for (GLint i = 0; i < profile.size(); ++i) {
+		float ang = (2.0f * std::numbers::pi * i) / nPoints;
+		// radians() lo convierte en un disco
+		float x = R + r * cos(/*radians*/(ang));
+		float y = r * sin(/*radians*/(ang));
+		profile[i] = vec2(x, y);
 	}
-
-	mMesh = IndexMesh::generateByRevolution(perfil, nSamples);
+	
+	mMesh = IndexMesh::generateByRevolution(profile, nSamples);
 }

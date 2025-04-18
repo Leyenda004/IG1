@@ -1,17 +1,18 @@
 #include "ColorMaterialEntity.h"
+#include <iostream>
 
 using namespace glm;
 
-ColorMaterialEntity::ColorMaterialEntity() {
-	mShader = Shader::get("LightDir");
-    mShaderAux = Shader::get("normals");
+ColorMaterialEntity::ColorMaterialEntity() : SingleColorEntity() {
+	mShader =       Shader::get("lightDir"); //shader??
+    mShaderAux =    Shader::get("normals");
 }
 
 void ColorMaterialEntity::render(mat4 const& modelViewMat) const {
     if (mMesh != nullptr) {
         mat4 aMat = modelViewMat * mModelMat; // glm matrix multiplication
         mShader->use();
-        mShader->setUniform("LightDir", modelViewMat);
+        mShader->setUniform("lightDir", modelViewMat); //shader??
         upload(aMat);
         mMesh->render();
 

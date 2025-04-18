@@ -25,9 +25,10 @@ void Scene6::init()
 
 
 	Sphere* sphere = new Sphere(200.0f, 30, 30);
-	mat4 photoTras = translate(mat4(1.0f), vec3(100.0f, 0.0f, 0.0f));
+	mat4 photoTras = translate(mat4(1.0f), vec3(200.0f, 200.0f, 200.0f));
 	sphere->setModelMat(photoTras * sphere->modelMat());
 	gObjects.push_back(sphere);
 
-	Disk* disk = new Disk(200.0f, 100.0f, 30, 30);
+	Disk* disk = new Disk(200.0f, 100.0f);
+	gObjects.push_back(disk);
 }

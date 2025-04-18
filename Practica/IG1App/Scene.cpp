@@ -82,13 +82,15 @@ Scene::resetGL()
 void
 Scene::render(Camera const& cam) const
 {
-	cam.upload();
 
 	for (Abs_Entity* el : gObjects) //renderizamos los objetos opacos
 		el->render(cam.viewMat());
 
 	for (Abs_Entity* el : gObjectsTranslucid) //renderizamos los objetos translucidos
 		el->render(cam.viewMat());
+
+		
+	cam.upload();
 }
 
 

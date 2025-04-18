@@ -1,9 +1,9 @@
 #pragma once
 #include "ColorMaterialEntity.h"
-class Disk :
-    public ColorMaterialEntity
+class Disk
+	: public ColorMaterialEntity
 {
 public:
-	Disk(GLdouble, GLdouble, GLuint, GLuint);
+	Disk(GLdouble R, GLdouble r, GLuint nRings = 30, GLuint nSamples = 30);
 };
 

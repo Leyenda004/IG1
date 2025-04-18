@@ -13,11 +13,11 @@ Sphere::Sphere(GLdouble radius, GLuint nParallels, GLuint nMeridians)
 
 	for (GLuint i = 0; i < nParallels; ++i)
 	{
-		float theta = (2.0f * std::numbers::pi * i) / nMeridians;
+		float theta = (2.0f * std::numbers::pi * i) / nParallels;
 		float x = radius * cos(theta);
 		float y = radius * sin(theta);
 		perfil[i] = vec2(x, y);
 	}
 
-	mMesh = IndexMesh::generateByRevolution(perfil, nParallels);
+	mMesh = IndexMesh::generateByRevolution(perfil, nMeridians);
 }

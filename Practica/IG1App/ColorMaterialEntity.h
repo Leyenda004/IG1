@@ -1,6 +1,5 @@
 #pragma once
 #include "SingleColorEntity.h"
-// !!
 #include "Shader.h"
 class ColorMaterialEntity :
     public SingleColorEntity

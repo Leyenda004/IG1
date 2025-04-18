@@ -30,13 +30,8 @@ Camera::Camera(Viewport* vp)
 void
 Camera::uploadVM() const
 {
-	Shader::setUniform4All("modelView",mViewMat);
-
-	// glm::dmat4 mViewMatAux;
-	// mViewMatAux = rotate(mViewMat, glm::radians(180.0), glm::dvec3(-1.0, -1.0, -1.0));
-	// Shader::setUniform4All("LightDir", mViewMatAux);
-	
-	Shader::setUniform4All("LightDir", mViewMat);
+	Shader::setUniform4All("modelView", mViewMat);
+	Shader::setUniform4All("lightDir", mViewMat * dmat4({-1.0f, -1.0f, -1.0f, 0})); //shader??
 }
 
 
