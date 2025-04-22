@@ -12,8 +12,8 @@ Cone::Cone(GLdouble h, GLdouble r, GLdouble R, GLuint nRings, GLuint nSamples)
 	vector<vec2> perfil(nRings);
 
 	for (GLuint i = 0; i < nRings; ++i) {
-		GLdouble y = -h / 2.0 + h * i / nRings; //va de -h/2 a h/2 siendo h la altura del cono
-		GLdouble x = r + (R - r) * (GLdouble(i) / nRings);  // Calculamos la diferencia entre ambos radios y lo aumentamos en funcion de los anillos que quedan por cubrir
+		GLdouble y = h / 2.0 - h * i / nRings; //va de -h/2 a h/2 siendo h la altura del cono
+		GLdouble x = R + (r - R) * (GLdouble(i) / nRings);  // Calculamos la diferencia entre ambos radios y lo aumentamos en funcion de los anillos que quedan por cubrir
 		perfil[i] = vec2(x, y);  // punto del perfil
 	}
 

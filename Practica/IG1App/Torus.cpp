@@ -16,7 +16,8 @@ Torus::Torus(GLdouble R, GLdouble r, GLuint nPoints, GLuint nSamples)
 
 	for (GLint i = 0; i <= nPoints; ++i) {
 		//El toroide requiere una vuelta completa, por eso usamos 2.0f * pi
-		float ang = (2.0f * std::numbers::pi * i) / nPoints;
+		//-1.0f porque lo hacemos en sentido antihorario
+		float ang = (-1.0f * 2.0f * std::numbers::pi * i) / nPoints;
 		// radians() lo convierte en un disco
 		float x = R + r * cos(/*radians*/(ang));
 		float y = r * sin(/*radians*/(ang));

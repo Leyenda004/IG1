@@ -53,7 +53,7 @@ void IndexMesh::buildNormalVectors()
 	vNormals.resize(mNumVertices, vec3(0.0f));
 
 	// Recorrer triángulos y acumular normales por vértice
-	for (size_t i = 0; i < vIndexes.size(); i += 3) {
+	for (size_t i = 0; i < vIndexes.size() - 1; i += 3) {
 
 		//Necesitamos 3 indices para formar un triangulo
 		GLuint i0 = vIndexes[i];
@@ -67,7 +67,7 @@ void IndexMesh::buildNormalVectors()
 
 		//!!!!!!!!! REVISAR
 		//Calculamos la normal del triangulo a partir de los vertices
-		vec3 normal = -normalize(cross(v1 - v0, v2 - v0)); //Signo menos por sentido antihorario y revolución antihoraria
+		vec3 normal = normalize(cross(v1 - v0, v2 - v0)); //Signo menos por sentido antihorario y revolución antihoraria
 		//Normalize seria positivo respecto a las diapositivas
 
 		//Sumamos n al vector normal en cada vertice del triangulo
@@ -127,73 +127,128 @@ IndexMesh* IndexMesh::generateIndexedBox(GLdouble l)
 
 	mesh->mPrimitive = GL_TRIANGLES;
 	mesh->vVertices.reserve(8);
-	
-	mesh->vVertices.push_back({l/2,l/2,-l/2}); // 0 ++-
-	mesh->vVertices.push_back({l/2,-l/2,-l/2}); // 1 +--
-	mesh->vVertices.push_back({l/2,l/2,l/2}); // 2 +++
-	mesh->vVertices.push_back({l/2,-l/2,l/2}); // 3 +-+
-	mesh->vVertices.push_back({-l/2,l/2,l/2}); // 4 -++
-	mesh->vVertices.push_back({-l/2,-l/2,l/2}); // 5 --+
-	mesh->vVertices.push_back({-l/2,l/2,-l/2}); // 6 -+-
+	//mesh->vVertices.push_back({+l/2,+l/2,-l/2}); //0
+	//mesh->vVertices.push_back({+l/2,-l/2,-l/2}); //1
+	//mesh->vVertices.push_back({+l/2,+l/2,+l/2}); //2
+	//mesh->vVertices.push_back({-l/2,-l/2,+l/2}); //3
+	//mesh->vVertices.push_back({-l/2,+l/2,+l/2}); //4
+	//mesh->vVertices.push_back({+l/2,+l/2,+l/2}); //5
+	//mesh->vVertices.push_back({+l/2,+l/2,-l/2}); //6
+	//mesh->vVertices.push_back({-l/2,+l/2,-l/2}); //7
+	//Sentido antihorario
 	mesh->vVertices.push_back({-l/2,-l/2,-l/2}); // 7 ---
+	mesh->vVertices.push_back({-l/2,l/2,-l/2}); // 6 -+-
+	mesh->vVertices.push_back({-l/2,-l/2,l/2}); // 5 --+
+	mesh->vVertices.push_back({-l/2,l/2,l/2}); // 4 -++
+	mesh->vVertices.push_back({l/2,-l/2,l/2}); // 3 +-+
+	mesh->vVertices.push_back({l/2,l/2,l/2}); // 2 +++
+	mesh->vVertices.push_back({l/2,-l/2,-l/2}); // 1 +--
+	mesh->vVertices.push_back({l/2,l/2,-l/2}); // 0 ++-
 
 	mesh->mNumVertices = mesh->vVertices.size();
-	mesh->vColors.reserve(mesh->mNumVertices);
-
-	for (int i = 0; i < mesh->mNumVertices; ++i) {
-		mesh->vColors.emplace_back(0.0f,1.0f,0.0f,1.0f);
-	}
 
 	mesh->vIndexes.reserve(36);
 
+	//0,1,2, 2,1,3 ,2,3,4 ,4,3,5 ,4,5,6 ,6,5,7 ,6,7,0 ,0,7,1 4,6,2, 2,6,0, 1,7,3, 3,7,5,
+
+	//Sentido antihorario
 	// Triangle 1
+	mesh->vIndexes.push_back(2);
 	mesh->vIndexes.push_back(0);
-	mesh->vIndexes.push_back(1);
-	mesh->vIndexes.push_back(2);
-	// Triangle 2
-	mesh->vIndexes.push_back(2);
-	mesh->vIndexes.push_back(1);
-	mesh->vIndexes.push_back(3);
+	mesh->vIndexes.push_back(6);
 	// Triangle 3
 	mesh->vIndexes.push_back(2);
-	mesh->vIndexes.push_back(3);
+	mesh->vIndexes.push_back(6);
 	mesh->vIndexes.push_back(4);
-	// Triangle 4
-	mesh->vIndexes.push_back(4);
+	// Triangle 2
+	mesh->vIndexes.push_back(1);
 	mesh->vIndexes.push_back(3);
-	mesh->vIndexes.push_back(5);
+	mesh->vIndexes.push_back(2);
 	// Triangle 5
+	mesh->vIndexes.push_back(1);
+	mesh->vIndexes.push_back(7);
+	mesh->vIndexes.push_back(0);
+	// Triangle 4
+	mesh->vIndexes.push_back(2);
+	mesh->vIndexes.push_back(6);
 	mesh->vIndexes.push_back(4);
+	// Triangle 7
+	mesh->vIndexes.push_back(7);
 	mesh->vIndexes.push_back(5);
 	mesh->vIndexes.push_back(6);
 	// Triangle 6
+	mesh->vIndexes.push_back(0);
+	mesh->vIndexes.push_back(7);
+	mesh->vIndexes.push_back(6);
+	// Triangle 9
+	mesh->vIndexes.push_back(5);
+	mesh->vIndexes.push_back(3);
+	mesh->vIndexes.push_back(4);
+	// Triangle 8
 	mesh->vIndexes.push_back(6);
 	mesh->vIndexes.push_back(5);
-	mesh->vIndexes.push_back(7);
-	// Triangle 7
-	mesh->vIndexes.push_back(6);
-	mesh->vIndexes.push_back(7);
-	mesh->vIndexes.push_back(0);
-	// Triangle 8
-	mesh->vIndexes.push_back(0);
-	mesh->vIndexes.push_back(7);
-	mesh->vIndexes.push_back(1);
-	// Triangle 9
 	mesh->vIndexes.push_back(4);
-	mesh->vIndexes.push_back(6);
+	// Triangle 11
+	mesh->vIndexes.push_back(3);
+	mesh->vIndexes.push_back(1);
 	mesh->vIndexes.push_back(2);
 	// Triangle 10
-	mesh->vIndexes.push_back(2);
-	mesh->vIndexes.push_back(6);
 	mesh->vIndexes.push_back(0);
-	// Triangle 11
-	mesh->vIndexes.push_back(1);
-	mesh->vIndexes.push_back(7);
-	mesh->vIndexes.push_back(3);
+	mesh->vIndexes.push_back(2);
+	mesh->vIndexes.push_back(4);
 	// Triangle 12
-	mesh->vIndexes.push_back(3);
-	mesh->vIndexes.push_back(7);
-	mesh->vIndexes.push_back(5);
+	mesh->vIndexes.push_back(2);
+	mesh->vIndexes.push_back(1);
+	mesh->vIndexes.push_back(0);
+
+	//// Triangle 1
+	//mesh->vIndexes.push_back(0);
+	//mesh->vIndexes.push_back(1);
+	//mesh->vIndexes.push_back(2);
+	//// Triangle 2
+	//mesh->vIndexes.push_back(2);
+	//mesh->vIndexes.push_back(1);
+	//mesh->vIndexes.push_back(3);
+	//// Triangle 3
+	//mesh->vIndexes.push_back(2);
+	//mesh->vIndexes.push_back(3);
+	//mesh->vIndexes.push_back(4);
+	//// Triangle 4
+	//mesh->vIndexes.push_back(4);
+	//mesh->vIndexes.push_back(3);
+	//mesh->vIndexes.push_back(5);
+	//// Triangle 5
+	//mesh->vIndexes.push_back(4);
+	//mesh->vIndexes.push_back(5);
+	//mesh->vIndexes.push_back(6);
+	//// Triangle 6
+	//mesh->vIndexes.push_back(6);
+	//mesh->vIndexes.push_back(5);
+	//mesh->vIndexes.push_back(7);
+	//// Triangle 7
+	//mesh->vIndexes.push_back(6);
+	//mesh->vIndexes.push_back(7);
+	//mesh->vIndexes.push_back(0);
+	//// Triangle 8
+	//mesh->vIndexes.push_back(0);
+	//mesh->vIndexes.push_back(7);
+	//mesh->vIndexes.push_back(1);
+	//// Triangle 9
+	//mesh->vIndexes.push_back(4);
+	//mesh->vIndexes.push_back(6);
+	//mesh->vIndexes.push_back(2);
+	//// Triangle 10
+	//mesh->vIndexes.push_back(2);
+	//mesh->vIndexes.push_back(6);
+	//mesh->vIndexes.push_back(0);
+	//// Triangle 11
+	//mesh->vIndexes.push_back(1);
+	//mesh->vIndexes.push_back(7);
+	//mesh->vIndexes.push_back(3);
+	//// Triangle 12
+	//mesh->vIndexes.push_back(3);
+	//mesh->vIndexes.push_back(7);
+	//mesh->vIndexes.push_back(5);
 
 	mesh->buildNormalVectors();
 	return mesh;

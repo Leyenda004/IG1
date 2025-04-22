@@ -14,7 +14,7 @@ Sphere::Sphere(GLdouble radius, GLuint nParallels, GLuint nMeridians)
 	for (GLuint i = 0; i < nParallels; ++i)
 	{
 		//1.0f porque vamos en sentido antihorario al igual que las normales y que el revolution
-		float theta = std::numbers::pi * (1.0f - float(i) / nParallels);  //+90° a -90° y no multiplicamos por 2.0f ya que 
+		float theta = std::numbers::pi * (-1.0f * float(i) / nParallels);  //+90° a -90° y no multiplicamos por 2.0f ya que 
 																		  //necesitamos media circunferencia de perfil, no una entera
 		float x = radius * sin(theta);  
 		float y = radius * cos(theta); 
