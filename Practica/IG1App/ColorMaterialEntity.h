@@ -10,7 +10,7 @@ public:
     void render(glm::mat4 const& modelViewMat) const override;
     static void toggleShowNormals() { mShowNormals = !mShowNormals; }
 private:
-    inline static bool mShowNormals = true;
+    inline static bool mShowNormals = false;
     Shader* mShaderAux; // shader adicional para normales
 };
 

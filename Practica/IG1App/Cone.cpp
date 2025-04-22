@@ -9,13 +9,13 @@ using namespace std;
 
 Cone::Cone(GLdouble h, GLdouble r, GLdouble R, GLuint nRings, GLuint nSamples)
 {
-	vector<vec2> perfil(nRings + 1);
-	for (GLuint i = 0; i < nRings + 1; ++i)
-	{
-		float theta = (2.0f * std::numbers::pi * i) / nRings;
-		float x = R + r * cos(radians(theta));
-		float y = r * sin(radians(theta));
-		perfil[i] = vec2(x, y);
+	vector<vec2> perfil(nRings);
+
+	for (GLuint i = 0; i < nRings; ++i) {
+		GLdouble y = -h / 2.0 + h * i / nRings; //va de -h/2 a h/2 siendo h la altura del cono
+		GLdouble x = r + (R - r) * (GLdouble(i) / nRings);  // Calculamos la diferencia entre ambos radios y lo aumentamos en funcion de los anillos que quedan por cubrir
+		perfil[i] = vec2(x, y);  // punto del perfil
 	}
-	mMesh = IndexMesh::generateByRevolution(perfil, nSamples, h);
+
+	mMesh = IndexMesh::generateByRevolution(perfil, nSamples);
 }

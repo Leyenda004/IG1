@@ -1,5 +1,6 @@
 #pragma once
 #include "ColorMaterialEntity.h"
+#include "SingleColorEntity.h"
 class Torus
 	: public ColorMaterialEntity
 {
@@ -8,6 +9,6 @@ public:
     //R: radio
     //nSamples: numero de muestras
     //nPoints: numero de puntos de la circunferencia
-    Torus(GLdouble R, GLdouble r, GLuint nPoints = 30, GLuint nSamples = 30);
+    Torus(GLdouble R, GLdouble r, GLuint nPoints = 40, GLuint nSamples = 40);
 };
 

@@ -23,16 +23,19 @@ void Scene6::init()
 	// Graphics objects (entities) of the scene
 	gObjects.push_back(new RGBAxes(400.0f));
 
-
-	Sphere* sphere = new Sphere(200.0f, 30, 30);
-	mat4 photoTras = translate(mat4(1.0f), vec3(200.0f, 200.0f, 200.0f));
-	sphere->setModelMat(photoTras * sphere->modelMat());
+	//Radio, paralelos, meridianos
+	Sphere* sphere = new Sphere(50.0f, 40, 40);
+	//!!!!!!!! NORMALES NO SIGUEN
+	//mat4 photoTras = translate(mat4(1.0f), vec3(200.0f, 200.0f, 200.0f));
+	//sphere->setModelMat(photoTras * sphere->modelMat());
 	gObjects.push_back(sphere);
 
-	Disk* disk = new Disk(200.0f, 100.0f);
+	//Radio exterior / Radio interior / nRings / nSamples
+	Disk* disk = new Disk(200.0f, 100.0f, 20, 20);
 	gObjects.push_back(disk);
 
-	Cone* cone = new Cone(200.0f, 100.0f, 50.0f);
+	//Altura / Radio inferior / Radio superior
+	Cone* cone = new Cone(50.0f, 100.0f, 50.0f);
 	gObjects.push_back(cone);
 
 }

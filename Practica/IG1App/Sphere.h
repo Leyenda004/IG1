@@ -4,6 +4,6 @@ class Sphere :
     public ColorMaterialEntity
 {
 public:
-    Sphere(GLdouble, GLuint, GLuint);
+    Sphere(GLdouble radius, GLuint nParallels, GLuint nMeridians);
 };
 

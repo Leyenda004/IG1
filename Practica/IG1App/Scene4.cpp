@@ -12,5 +12,5 @@ void Scene4::init()
 
 	// Graphics objects (entities) of the scene
 	gObjects.push_back(new RGBAxes(400.0f));
-	gObjects.push_back(new Torus(200, 20));
+	gObjects.push_back(new Torus(180, 80));
 }
