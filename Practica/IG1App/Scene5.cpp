@@ -12,5 +12,5 @@ void Scene5::init()
 
 	// Graphics objects (entities) of the scene
 	gObjects.push_back(new RGBAxes(400.0f));
-	gObjects.push_back(new IndexedBox(100.0f));
+	gObjects.push_back(new IndexedBox(200.0f));
 }
