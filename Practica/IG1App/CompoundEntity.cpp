@@ -23,6 +23,8 @@ void CompoundEntity::render(const glm::mat4& modelViewMat) const
 {
 	for (Abs_Entity* obj : gObjects) { //render a los objetos del compound a partir de modelViewMat
 		mat4 aMat = modelViewMat * mModelMat;
+		Shader* normal = Shader::get("normals");
+		normal->use();
 		obj->render(aMat);
 	}
 }
