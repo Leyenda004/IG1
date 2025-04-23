@@ -41,6 +41,23 @@ void Scene7::init()
 
 }
 
+bool Scene7::handleKey(unsigned int key)
+{
+	bool needRedisplay = true;
+	switch (key) {
+	case 'h':
+		rotateTIE();
+		break;
+	case 'g':
+		orbitTIE();
+		break;
+	default:
+		needRedisplay = false;
+		break;
+	}
+	return needRedisplay;
+}
+
 void Scene7::rotateTIE()
 {
 	Node->setModelMat(glm::rotate(Node->modelMat(), radians(3.0f), vec3{0.f, 1.f, 0.f}));

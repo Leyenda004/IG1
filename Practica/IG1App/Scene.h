@@ -33,8 +33,7 @@ public:
 
 	void takePhoto();
 
-	virtual void rotateTIE() {};
-	virtual void orbitTIE() {};
+	virtual bool handleKey(unsigned int key) { return false; };
 
 protected:
 	void destroy();

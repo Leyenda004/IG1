@@ -8,8 +8,9 @@ class Scene7 :
 {
 public:
     void init() override;
-    void rotateTIE() override;
-    void orbitTIE() override;
+    bool handleKey(unsigned int key) override;
+    void rotateTIE();
+    void orbitTIE();
 private:
     CompoundEntity* Node;
 };

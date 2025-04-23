@@ -218,11 +218,7 @@ IG1App::key(unsigned int key)
 			break;
 		// FOTO
 		case 'f' :
-			//mScenes[mCurrentScene]->takePhoto();
-			mScenes[mCurrentScene]->rotateTIE();
-			break;
-		case 'g':
-			mScenes[mCurrentScene]->orbitTIE();
+			mScenes[mCurrentScene]->takePhoto();
 			break;
 		// MOVIMIENTO CÁMARA
 		case 'a':
@@ -283,6 +279,7 @@ IG1App::key(unsigned int key)
 			if (key >= '0' && key <= '9' && !changeScene(key - '0'))
 				cout << "[NOTE] There is no scene " << char(key) << ".\n";
 			else
+				if (!mScenes[mCurrentScene]->handleKey(key)) //Keys de escenas especificas
 				need_redisplay = false;
 			break;
 	} // switch
