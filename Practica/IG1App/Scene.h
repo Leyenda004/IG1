@@ -33,6 +33,9 @@ public:
 
 	void takePhoto();
 
+	virtual void rotateTIE() {};
+	virtual void orbitTIE() {};
+
 protected:
 	void destroy();
 	void setGL();

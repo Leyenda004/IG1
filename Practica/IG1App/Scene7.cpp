@@ -12,7 +12,7 @@ using namespace glm;
 
 void Scene7::init()
 {
-	this->setGL(); // OpenGL settings
+	setGL(); // OpenGL settings
 
 	// allocate memory and load resources
 	// Lights
@@ -25,11 +25,28 @@ void Scene7::init()
 	Tatooine->setColor({1.0f,0.9f,0.0f,1.0f}); //255,233,0
 	gObjects.push_back(Tatooine);
 
-	CompoundEntity* FigtherTIE = new CompoundEntity();
-	AdvancedTIE* tie = new AdvancedTIE();
-	FigtherTIE->addEntity(tie);
+	Node = new CompoundEntity();
+	CompoundEntity* NodeAuxRot = new CompoundEntity();
 
-	FigtherTIE->setModelMat(translate(mat4(1.0f), vec3(0.0f, 0.0f, 100.0f)));
-	gObjects.push_back(FigtherTIE);
+	mat4 TIErot = rotate(mat4(1.0f), radians(90.0f), vec3(0.f, 1.f, 0.f));
+	NodeAuxRot->setModelMat(NodeAuxRot->modelMat() * TIErot);
+	Node->addEntity(NodeAuxRot);
 
+	AdvancedTIE* FighterTIE = new AdvancedTIE();
+	mat4 TIEtras = translate(mat4(1.0f), vec3(0.0f, 1120.0f, 0.0f));
+	mat4 TIEscale = scale(mat4(1.0f), vec3(0.2f, 0.2f, 0.2f));
+	FighterTIE->setModelMat(FighterTIE->modelMat() * TIEscale * TIEtras);
+	Node->addEntity(FighterTIE);
+	gObjects.push_back(Node);
+
+}
+
+void Scene7::rotateTIE()
+{
+	Node->setModelMat(glm::rotate(Node->modelMat(), radians(3.0f), vec3{0.f, 1.f, 0.f}));
+}
+
+void Scene7::orbitTIE()
+{
+	Node->setModelMat(glm::rotate(Node->modelMat(), radians(3.0f), vec3{ 1.f, 0.f, 0.f }));
 }

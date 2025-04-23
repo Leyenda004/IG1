@@ -218,7 +218,11 @@ IG1App::key(unsigned int key)
 			break;
 		// FOTO
 		case 'f' :
-			mScenes[mCurrentScene]->takePhoto();
+			//mScenes[mCurrentScene]->takePhoto();
+			mScenes[mCurrentScene]->rotateTIE();
+			break;
+		case 'g':
+			mScenes[mCurrentScene]->orbitTIE();
 			break;
 		// MOVIMIENTO CÁMARA
 		case 'a':
@@ -380,6 +384,9 @@ IG1App::changeScene(size_t sceneNr)
 	// Check whether the scene exists
 	if (sceneNr >= mScenes.size())
 		return false;
+
+	if (sceneNr == 7) glClearColor(0.0, 0.0, 0.0, 1.0); // background color (alpha=1 -> opaque)
+	else glClearColor(0.6, 0.7, 0.8, 1.0); // background color (alpha=1 -> opaque)
 
 	// Change only if a different scene
 	if (sceneNr != mCurrentScene) {
