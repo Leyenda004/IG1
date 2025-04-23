@@ -26,9 +26,10 @@ AdvancedTIE::AdvancedTIE()
 	mat4 trasDisk = translate(disk->modelMat(), vec3(0.0f, 75.0f, 30.0f));
 	mat4 rotDisk = rotate(disk->modelMat(), radians(45.0f), vec3(1.0f, 0.0f, 0.0f));
 	disk->setModelMat(disk->modelMat() * rotDisk * trasDisk);
-	gObjects.push_back(disk);
+	addEntity(disk);
 
 	Cone* coneB = new Cone(100.0f, 30.0f, 30.0f);
+	coneB->setColor({ 0.0f,0.0f,0.0f,1.0f });
 	mat4 trasconeB = translate(coneB->modelMat(), vec3(0.0f, 50.0f,20.0f));
 	mat4 rotconeB = rotate(coneB->modelMat(), radians(45.0f), vec3(1.0f, 0.0f, 0.0f));
 	coneB->setModelMat(coneB->modelMat() * rotconeB * trasconeB);
