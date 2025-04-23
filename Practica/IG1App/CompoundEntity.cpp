@@ -22,7 +22,7 @@ void CompoundEntity::addEntity(Abs_Entity* ae)
 void CompoundEntity::render(const glm::mat4& modelViewMat) const
 {
 	for (Abs_Entity* obj : gObjects) //render a los objetos del compound a partir de modelViewMat
-		obj->render(modelViewMat);
+		obj->render(modelViewMat * obj->modelMat()); //diapositivas
 }
 
 void CompoundEntity::update()

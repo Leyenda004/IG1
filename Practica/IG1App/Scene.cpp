@@ -15,7 +15,7 @@ using namespace glm;
 void
 Scene::init()
 {
-	setGL(); // OpenGL settings
+	//setGL(); // OpenGL settings
 
 	// allocate memory and load resources
 	// Lights
