@@ -24,30 +24,20 @@ void Scene6::init()
 	// Graphics objects (entities) of the scene
 	gObjects.push_back(new RGBAxes(400.0f));
 
-	CompoundEntity* Ovni = new CompoundEntity();
+	CompoundEntity* ovni = new CompoundEntity();
+	
+	//!!!!!!!! NORMALES NO SIGUEN
 
-	////Radio, paralelos, meridianos
-	//Sphere* sphere = new Sphere(50.0f, 40, 40);
-	////!!!!!!!! NORMALES NO SIGUEN
-	////mat4 photoTras = translate(mat4(1.0f), vec3(200.0f, 200.0f, 200.0f));
-	////sphere->setModelMat(photoTras * sphere->modelMat());
-	//gObjects.push_back(sphere);
-	//
-	////Radio exterior / Radio interior / nRings / nSamples
-	//Disk* disk = new Disk(200.0f, 100.0f, 20, 20);
-	//gObjects.push_back(disk);
-	//
-	////Altura / Radio inferior / Radio superior
-	//Cone* cone = new Cone(50.0f, 100.0f, 50.0f);
-	//gObjects.push_back(cone);
+	//Radio, paralelos, meridianos
+	Sphere* sphere = new Sphere(50.0f);
+	ovni->addEntity(sphere);
+	//Radio exterior / Radio interior / nRings / nSamples
+	Disk* disk = new Disk(200.0f, 100.0f);
+	ovni->addEntity(disk);
+	//Altura / Radio inferior / Radio superior
+	Cone* cone = new Cone(50.0f, 100.0f, 100.0f);
+	ovni->addEntity(cone);
 
-	Sphere* sphere = new Sphere(50.0f, 40, 40);
-	Ovni->addEntity(sphere);
-	Disk* disk = new Disk(200.0f, 100.0f, 20, 20);
-	Ovni->addEntity(disk);
-	Cone* cone = new Cone(50.0f, 100.0f, 50.0f);
-	Ovni->addEntity(cone);
-
-	gObjects.push_back(Ovni);
+	gObjects.push_back(ovni);
 
 }
