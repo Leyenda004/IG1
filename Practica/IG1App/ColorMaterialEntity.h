@@ -6,6 +6,8 @@ class ColorMaterialEntity :
 {
 public:
     ColorMaterialEntity();
+    ColorMaterialEntity(float, float, float);
+    ColorMaterialEntity(float, float, float, float);
     ~ColorMaterialEntity() {};
     void render(glm::mat4 const& modelViewMat) const override;
     static void toggleShowNormals() { mShowNormals = !mShowNormals; }
