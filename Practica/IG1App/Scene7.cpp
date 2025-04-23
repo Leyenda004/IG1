@@ -21,14 +21,15 @@ void Scene7::init()
 	// Graphics objects (entities) of the scene
 	gObjects.push_back(new RGBAxes(400.0f));
 
-	//Sphere* Tatooine = new Sphere(100.0f, 40, 40);
-	//gObjects.push_back(Tatooine);
+	Sphere* Tatooine = new Sphere(200.0f, 40, 40);
+	Tatooine->setColor({1.0f,0.9f,0.0f,1.0f}); //255,233,0
+	gObjects.push_back(Tatooine);
 
 	CompoundEntity* FigtherTIE = new CompoundEntity();
 	AdvancedTIE* tie = new AdvancedTIE();
 	FigtherTIE->addEntity(tie);
 
-	FigtherTIE->setModelMat(translate(FigtherTIE->modelMat(), vec3(0.0f, 0.0f, 100.0f)));
+	FigtherTIE->setModelMat(translate(mat4(1.0f), vec3(0.0f, 0.0f, 100.0f)));
 	gObjects.push_back(FigtherTIE);
 
 }
