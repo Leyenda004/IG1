@@ -3,6 +3,7 @@
 #include "Sphere.h"
 #include "Disk.h"
 #include "Cone.h"
+#include "WingAdvancedTIE.h"
 
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
@@ -38,4 +39,10 @@ AdvancedTIE::AdvancedTIE()
 	coneB->setModelMat(coneB->modelMat() * rotconeB * trasconeB);
 	//coneB->setModelMat(translate(coneB->modelMat(), vec3(0.0f, 65.0f, 50.0f)));
 	addEntity(coneB);
+
+	WingAdvancedTIE* wingA = new WingAdvancedTIE(100.0f, "../assets/images/noche.jpg");
+	mat4 traswingA = translate(wingA->modelMat(), vec3(0.0f, 50.0f, 20.0f));
+	mat4 rotwingA = rotate(wingA->modelMat(), radians(0.0f), vec3(1.0f, 0.0f, 0.0f));
+	wingA->setModelMat(wingA->modelMat() * rotwingA * traswingA);
+	addEntity(wingA);
 }
