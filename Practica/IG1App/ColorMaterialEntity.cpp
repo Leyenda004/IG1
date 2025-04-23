@@ -8,16 +8,6 @@ ColorMaterialEntity::ColorMaterialEntity() : SingleColorEntity({0.0f,1.0f,0.0f,1
     mShaderAux =    Shader::get("normals");
 }
 
-ColorMaterialEntity::ColorMaterialEntity(float r, float g, float b) : SingleColorEntity({ r, g, b, 1.0f }) {
-	mShader = Shader::get("simple_light"); //Usamos el shader simple_light
-	mShaderAux = Shader::get("normals");
-}
-
-ColorMaterialEntity::ColorMaterialEntity(float r, float g, float b, float a) : SingleColorEntity({ r, g, b, a }) {
-	mShader = Shader::get("simple_light"); //Usamos el shader simple_light
-	mShaderAux = Shader::get("normals");
-}
-
 void ColorMaterialEntity::render(mat4 const& modelViewMat) const {
     if (mMesh != nullptr) {
         mat4 aMat = modelViewMat * mModelMat;
