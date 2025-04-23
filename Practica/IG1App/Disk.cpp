@@ -18,7 +18,7 @@ Disk::Disk(GLdouble R, GLdouble r, GLuint nRings, GLuint nSamples)
 	//CON NRINGS
 	vector<vec2> perfil(nRings); //reservando nRings de perfil
 	for (GLuint i = 0; i < nRings; ++i) {
-		GLdouble x = r + (R - r) * (GLdouble(i) / nRings);  // Calculamos la diferencia entre ambos radios y lo aumentamos en funcion de los anillos que quedan por cubrir
+		GLdouble x = r + (R - r) * (-1.0f * GLdouble(i) / nRings);  // Calculamos la diferencia entre ambos radios y lo aumentamos en funcion de los anillos que quedan por cubrir
 		//Usamos 1.0f porque lo hacemos en sentido antihorario como Sphere
 		perfil[i] = vec2(x, 0.0);  // punto del perfil
 	}
