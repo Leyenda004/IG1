@@ -69,6 +69,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AdvancedTIE.h" />
     <ClInclude Include="Box.h" />
     <ClInclude Include="BoxOutline.h" />
     <ClInclude Include="Camera.h" />
@@ -112,6 +113,7 @@
     <ClInclude Include="Viewport.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AdvancedTIE.cpp" />
     <ClCompile Include="Box.cpp" />
     <ClCompile Include="BoxOutline.cpp" />
     <ClCompile Include="Camera.cpp" />
