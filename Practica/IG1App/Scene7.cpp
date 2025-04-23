@@ -2,6 +2,7 @@
 
 #include "Sphere.h"
 #include "CompoundEntity.h"
+#include "AdvancedTIE.h"
 #include "Disk.h"
 #include "Cone.h"
 #include <glm/gtc/matrix_transform.hpp>
@@ -20,24 +21,14 @@ void Scene7::init()
 	// Graphics objects (entities) of the scene
 	gObjects.push_back(new RGBAxes(400.0f));
 
-	Sphere* Tatooine = new Sphere(400.0f, 40, 40);
-	mat4 mT = translate(mat4(1.0f), vec3(0.0f, 0.0f, -0.0f));
-	Tatooine->setModelMat(mT * Tatooine->modelMat());
-	gObjects.push_back(Tatooine);
+	//Sphere* Tatooine = new Sphere(100.0f, 40, 40);
+	//gObjects.push_back(Tatooine);
 
-	CompoundEntity* Ovni = new CompoundEntity();
+	CompoundEntity* FigtherTIE = new CompoundEntity();
+	AdvancedTIE* tie = new AdvancedTIE();
+	FigtherTIE->addEntity(tie);
 
-	Disk* disk = new Disk(200.0f, 100.0f, 20, 20);
-	mat4 mT2 = translate(mat4(1.0f), vec3(0.0f, 400.0f, 0.0f));
-	disk->setModelMat(mT2 * disk->modelMat());
-	gObjects.push_back(disk);
-	//Ovni->addEntity(disk);
-	//Cone* cone = new Cone(50.0f, 100.0f, 50.0f);
-	//Ovni->addEntity(cone);
-
-	//mat4 mT = translate(mat4(1.0f), vec3(0.0f, 0.0f, 500.0f));
-	//Ovni->setModelMat(mT * Ovni->modelMat());
-
-	//gObjects.push_back(Ovni);
+	FigtherTIE->setModelMat(translate(FigtherTIE->modelMat(), vec3(0.0f, 0.0f, 100.0f)));
+	gObjects.push_back(FigtherTIE);
 
 }
