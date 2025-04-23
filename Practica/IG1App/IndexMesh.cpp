@@ -141,53 +141,53 @@ IndexMesh* IndexMesh::generateIndexedBox(GLdouble l)
 	
 	mesh->vIndexes.reserve(36);
 	
-	//CARA +X
-	mesh->vIndexes.push_back(4);
-	mesh->vIndexes.push_back(6);
-	mesh->vIndexes.push_back(5);
+	// CARA +X
 	mesh->vIndexes.push_back(6);
 	mesh->vIndexes.push_back(7);
 	mesh->vIndexes.push_back(5);
-	
-	//CARA -Z
 	mesh->vIndexes.push_back(6);
+	mesh->vIndexes.push_back(5);
+	mesh->vIndexes.push_back(4);
+
+	// CARA -Z
 	mesh->vIndexes.push_back(0);
+	mesh->vIndexes.push_back(1);
 	mesh->vIndexes.push_back(7);
 	mesh->vIndexes.push_back(0);
-	mesh->vIndexes.push_back(1);
 	mesh->vIndexes.push_back(7);
-	
-	//CARA -Y
+	mesh->vIndexes.push_back(6);
+
+	// CARA -Y
+	mesh->vIndexes.push_back(0);
 	mesh->vIndexes.push_back(6);
 	mesh->vIndexes.push_back(4);
-	mesh->vIndexes.push_back(2);
-	mesh->vIndexes.push_back(6);
-	mesh->vIndexes.push_back(2);
 	mesh->vIndexes.push_back(0);
-	
-	//CARA -X
-	mesh->vIndexes.push_back(0);
-	mesh->vIndexes.push_back(2);
-	mesh->vIndexes.push_back(1);
-	mesh->vIndexes.push_back(2);
-	mesh->vIndexes.push_back(3);
-	mesh->vIndexes.push_back(1);
-	
-	//CARA +Z
-	mesh->vIndexes.push_back(2);
 	mesh->vIndexes.push_back(4);
+	mesh->vIndexes.push_back(2);
+
+	// CARA -X
+	mesh->vIndexes.push_back(0);
+	mesh->vIndexes.push_back(2);
 	mesh->vIndexes.push_back(3);
+	mesh->vIndexes.push_back(0);
+	mesh->vIndexes.push_back(3);
+	mesh->vIndexes.push_back(1);
+
+	// CARA +Z
+	mesh->vIndexes.push_back(2);
 	mesh->vIndexes.push_back(4);
 	mesh->vIndexes.push_back(5);
+	mesh->vIndexes.push_back(2);
+	mesh->vIndexes.push_back(5);
 	mesh->vIndexes.push_back(3);
-	
-	//CARA +Y
+
+	// CARA +Y
+	mesh->vIndexes.push_back(1);
 	mesh->vIndexes.push_back(3);
 	mesh->vIndexes.push_back(5);
 	mesh->vIndexes.push_back(1);
 	mesh->vIndexes.push_back(5);
 	mesh->vIndexes.push_back(7);
-	mesh->vIndexes.push_back(1);
 
 	mesh->mNumVertices = mesh->vVertices.size();
 	mesh->buildNormalVectors();
