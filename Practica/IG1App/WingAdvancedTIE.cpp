@@ -18,6 +18,7 @@ WingAdvancedTIE::WingAdvancedTIE(GLdouble length, std::string mTextureOut)
 	setTexture(mTexture);
 }
 
+// Render traslúcido
 void WingAdvancedTIE::render(glm::mat4 const& modelViewMat) const
 {
 	if (mMesh != nullptr && mTexture != nullptr) {

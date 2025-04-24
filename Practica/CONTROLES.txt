@@ -10,6 +10,11 @@ CÁMARA
 - Vista cenital: c
 - Orbit: O (mayus)
 
+RATÓN
+- Rueda ratón: Forward/Backwards
+- Click izquierdo: Orbit
+- Click derecho: Mover cámara
+
 MOVIMIENTO
 - Arriba/Abajo: w/s
 - Izquierda/Derecha: a/d

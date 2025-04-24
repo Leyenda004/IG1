@@ -20,8 +20,10 @@ void Scene8::init()
 	// Graphics objects (entities) of the scene
 	gObjects.push_back(new RGBAxes(400.0f));
 
+	// Entidad compuesta Farmer
 	CompoundEntity* Farmer = new CompoundEntity();
 
+	// Cabeza
 	Sphere* head = new Sphere(100.0f, 40, 40);
 	head->setColor({ 1, 0.5f, 0, 1 });
 	Farmer->addEntity(head);
@@ -57,8 +59,9 @@ void Scene8::init()
 	diskM->setModelMat(trasDiskM * rotDiskM);
 	Farmer->addEntity(diskM);
 
+	// Farmer a escena
 	gObjects.push_back(Farmer);
 
+	// Lo giramos levemente 15º para que frontalmente se vea la perspectiva y los discos
 	Farmer->setModelMat(rotate(Farmer->modelMat(), radians(15.0f), vec3{ 1.f, 0.f, 0.f }));
-
 }

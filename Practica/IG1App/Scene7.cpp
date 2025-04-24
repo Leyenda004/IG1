@@ -19,17 +19,22 @@ void Scene7::init()
 	// Graphics objects (entities) of the scene
 	gObjects.push_back(new RGBAxes(400.0f));
 
+	// Planeta a la escena
 	Sphere* Tatooine = new Sphere(200.0f, 40, 40);
 	Tatooine->setColor({1.0f,0.9f,0.0f,1.0f}); //255,233,0
 	gObjects.push_back(Tatooine);
 
+	// Entidad compuesta
 	Node = new CompoundEntity();
+	// Nodo auxiliar
 	CompoundEntity* NodeAuxRot = new CompoundEntity();
 
+	// Rotación con el nodo fantasma/auxiliar
 	mat4 TIErot = rotate(mat4(1.0f), radians(90.0f), vec3(0.f, 1.f, 0.f));
 	NodeAuxRot->setModelMat(NodeAuxRot->modelMat() * TIErot);
 	Node->addEntity(NodeAuxRot);
 
+	// Creación y colocación del TIE
 	AdvancedTIE* FighterTIE = new AdvancedTIE();
 	mat4 TIEtras = translate(mat4(1.0f), vec3(0.0f, 1120.0f, 0.0f));
 	mat4 TIEscale = scale(mat4(1.0f), vec3(0.2f, 0.2f, 0.2f));

@@ -90,8 +90,8 @@ IndexMesh* IndexMesh::generateByRevolution(const std::vector<glm::vec2>& profile
 	int tamPerfil = profile.size();
 	mesh->vVertices.reserve(nSamples * tamPerfil);
 
-
-	GLdouble theta = angleMax / (nSamples);
+	// Desde aquí se especifica la porción de vuelta que se quiere girar la figura
+	GLdouble theta = angleMax / nSamples;
 
 	for (int i = 0; i <= nSamples; ++i) {
  		GLdouble c = cos(i * theta), s = sin(i * theta);

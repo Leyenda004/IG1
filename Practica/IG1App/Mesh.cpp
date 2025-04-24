@@ -485,6 +485,7 @@ Mesh* Mesh::generateStar3DTexCor(GLdouble re, GLuint np, GLdouble h){
 	return mesh;
 }
 
+// Alas del TIE
 Mesh* Mesh::generateWing(GLdouble width, GLdouble height) {
 
 	Mesh* mesh = new Mesh();
@@ -496,6 +497,7 @@ Mesh* Mesh::generateWing(GLdouble width, GLdouble height) {
 	GLdouble y = height / 2;
 	GLdouble z = 0.4 * y;
 
+	// 8 vértices
 	mesh->vVertices.emplace_back(-x, y, -z);
 	mesh->vVertices.emplace_back(x, y, -z);
 	mesh->vVertices.emplace_back(-x, y/3, 0);
@@ -505,7 +507,7 @@ Mesh* Mesh::generateWing(GLdouble width, GLdouble height) {
 	mesh->vVertices.emplace_back(-x, -y, -z);
 	mesh->vVertices.emplace_back(x, -y, -z);
 
-
+	// 4 vértices de textura
 	mesh->vTexCoords.emplace_back(0, 0);
 	mesh->vTexCoords.emplace_back(0, 1);
 	mesh->vTexCoords.emplace_back(1, 0);
