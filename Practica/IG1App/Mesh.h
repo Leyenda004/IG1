@@ -40,6 +40,7 @@ public:
 	static Mesh* generateBoxOutlineTexCor(GLdouble length);
 	static Mesh* generateStar3D(GLdouble re, GLuint np, GLdouble h);
 	static Mesh* generateStar3DTexCor(GLdouble re, GLuint np, GLdouble h);
+	static Mesh* generateWing(GLdouble width, GLdouble height);
 
 protected:
 	GLuint mPrimitive =

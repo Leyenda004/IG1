@@ -484,3 +484,31 @@ Mesh* Mesh::generateStar3DTexCor(GLdouble re, GLuint np, GLdouble h){
 
 	return mesh;
 }
+
+Mesh* Mesh::generateWing(GLdouble width, GLdouble height) {
+
+	Mesh* mesh = new Mesh();
+	mesh->mPrimitive = GL_TRIANGLE_STRIP;
+	mesh->mNumVertices = 8;
+	mesh->vTexCoords.reserve(4);
+
+	GLdouble x = width / 2;
+	GLdouble y = height / 2;
+
+	mesh->vVertices.emplace_back(-x, y, -0.2 * y);
+	mesh->vVertices.emplace_back(x, y, -0.2 * y);
+	mesh->vVertices.emplace_back(-x, 1/3 * y, 0);
+	mesh->vVertices.emplace_back(x, 1/3 * y, 0);
+	mesh->vVertices.emplace_back(-x, -1/3 * y, 0);
+	mesh->vVertices.emplace_back(x, -1/3 * y, 0);
+	mesh->vVertices.emplace_back(-x, -y, -0.2 * y);
+	mesh->vVertices.emplace_back(x, -y, -0.2 * y);
+
+
+	mesh->vTexCoords.emplace_back(0, 0);
+	mesh->vTexCoords.emplace_back(0, 1);
+	mesh->vTexCoords.emplace_back(1, 0);
+	mesh->vTexCoords.emplace_back(1, 1);
+
+	return mesh;
+}

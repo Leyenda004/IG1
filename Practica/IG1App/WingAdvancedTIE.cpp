@@ -1,13 +1,20 @@
 #include "WingAdvancedTIE.h"
 
 #include "Texture.h"
+
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
+using namespace glm;
+
 WingAdvancedTIE::WingAdvancedTIE(GLdouble length, std::string mTextureOut)
 {
-	mMesh = Mesh::generateRectangleTexCor(length, length/3);
+	mMesh = Mesh::generateWing(length / 2, length);
+	
 	mShader = Shader::get("texture");
 
 	mTexture = new Texture();
-	mTexture->load(mTextureOut, 255 / 3);
+	mTexture->load(mTextureOut, 255 / 2);
 	setTexture(mTexture);
 }
 
