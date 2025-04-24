@@ -1,0 +1,27 @@
+ESCENAS 1-9: Teclas 0-8
+
+CÁMARA
+- Pitch (movimiento en SÍ): Flechas arriba/abajo
+- Yaw (movimiento en NO): Flechas derecha/izquierda
+- Roll (giro sobre sí misma): Control + Flechas derecha/izquierda
+- Zoom: +/-
+- Vista 2D: o
+- Vista 3D: l
+- Vista cenital: c
+- Orbit: O (mayus)
+
+MOVIMIENTO
+- Arriba/Abajo: w/s
+- Izquierda/Derecha: a/d
+- Forward/Backwards: W/S (mayus)
+
+OTROS
+- Update: u
+- Foto: f
+- Perspectiva: p
+- Doble vista: k
+- Normales: n/N
+
+ESCENA 7
+- Rotar TIE: h
+- Orbitar TIE: g
