@@ -41,13 +41,13 @@ AdvancedTIE::AdvancedTIE()
 	addEntity(coneB);
 
 	WingAdvancedTIE* wingA = new WingAdvancedTIE(300.0f, "../assets/images/noche.jpg");
-	mat4 traswingA = translate(wingA->modelMat(), vec3(-150.0f, 0.0f, 0.0f));
+	mat4 traswingA = translate(wingA->modelMat(), vec3(-145.0f, 0.0f, 0.0f));
 	mat4 rotwingA = rotate(wingA->modelMat(), radians(-90.0f), vec3(0.0f, 1.0f, 0.0f));
 	wingA->setModelMat(traswingA * rotwingA * wingA->modelMat());
 	addEntity(wingA);
 
 	WingAdvancedTIE* wingB = new WingAdvancedTIE(300.0f, "../assets/images/noche.jpg");
-	mat4 traswingB = translate(wingB->modelMat(), vec3(150.0f, 0.0f, 0.0f));
+	mat4 traswingB = translate(wingB->modelMat(), vec3(145.0f, 0.0f, 0.0f));
 	mat4 rotwingB = rotate(wingB->modelMat(), radians(90.0f), vec3(0.0f, 1.0f, 0.0f));
 	wingB->setModelMat(traswingB * rotwingB * wingB->modelMat());
 	addEntity(wingB);

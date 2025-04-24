@@ -497,10 +497,10 @@ Mesh* Mesh::generateWing(GLdouble width, GLdouble height) {
 
 	mesh->vVertices.emplace_back(-x, y, -0.2 * y);
 	mesh->vVertices.emplace_back(x, y, -0.2 * y);
-	mesh->vVertices.emplace_back(-x, 1/3 * y, 0);
-	mesh->vVertices.emplace_back(x, 1/3 * y, 0);
-	mesh->vVertices.emplace_back(-x, -1/3 * y, 0);
-	mesh->vVertices.emplace_back(x, -1/3 * y, 0);
+	mesh->vVertices.emplace_back(-x, y/3, 0);
+	mesh->vVertices.emplace_back(x, y/3, 0);
+	mesh->vVertices.emplace_back(-x, -y/3, 0);
+	mesh->vVertices.emplace_back(x, -y/3, 0);
 	mesh->vVertices.emplace_back(-x, -y, -0.2 * y);
 	mesh->vVertices.emplace_back(x, -y, -0.2 * y);
 
