@@ -76,6 +76,7 @@ IG1App::init()
 	mScenes.push_back(new Scene5);
 	mScenes.push_back(new Scene6);
 	mScenes.push_back(new Scene7);
+	mScenes.push_back(new Scene8);
 
 	mCamera->set2D();
 
@@ -382,7 +383,7 @@ IG1App::changeScene(size_t sceneNr)
 	if (sceneNr >= mScenes.size())
 		return false;
 
-	if (sceneNr == 7) glClearColor(0.0, 0.0, 0.0, 1.0); // background color (alpha=1 -> opaque)
+	if (sceneNr == 6 || sceneNr == 7) glClearColor(0.0, 0.0, 0.0, 1.0); // background color (alpha=1 -> opaque)
 	else glClearColor(0.6, 0.7, 0.8, 1.0); // background color (alpha=1 -> opaque)
 
 	// Change only if a different scene

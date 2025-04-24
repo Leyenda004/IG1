@@ -7,7 +7,7 @@
 using namespace glm;
 using namespace std;
 
-Disk::Disk(GLdouble R, GLdouble r, GLuint nRings, GLuint nSamples)
+Disk::Disk(GLdouble R, GLdouble r, GLuint nRings, GLuint nSamples, GLfloat angleMax)
 {
 	//CON DOS VERTICES
 	//vector<vec2> perfil(2); //reservando dos puntos de perfil
@@ -22,7 +22,7 @@ Disk::Disk(GLdouble R, GLdouble r, GLuint nRings, GLuint nSamples)
 		//Usamos 1.0f porque lo hacemos en sentido antihorario como Sphere
 		perfil[i] = vec2(x, 0.0);  // punto del perfil
 	}
-	mMesh = IndexMesh::generateByRevolution(perfil, nSamples); //El perfil es una linea de n rings
+	mMesh = IndexMesh::generateByRevolution(perfil, nSamples, angleMax); //El perfil es una linea de n rings
 }
 
 

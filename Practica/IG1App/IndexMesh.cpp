@@ -91,7 +91,7 @@ IndexMesh* IndexMesh::generateByRevolution(const std::vector<glm::vec2>& profile
 	mesh->vVertices.reserve(nSamples * tamPerfil);
 
 
-	GLdouble theta = 2 * numbers::pi / nSamples;
+	GLdouble theta = angleMax / (nSamples);
 
 	for (int i = 0; i <= nSamples; ++i) {
  		GLdouble c = cos(i * theta), s = sin(i * theta);

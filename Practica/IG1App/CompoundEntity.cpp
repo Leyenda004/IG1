@@ -2,10 +2,6 @@
 
 using namespace glm;
 
-CompoundEntity::CompoundEntity()
-{
-}
-
 CompoundEntity::~CompoundEntity()
 {
 	for (Abs_Entity* obj : gObjects) {

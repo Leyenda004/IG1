@@ -6,7 +6,7 @@ class CompoundEntity :
 protected:
     std::vector<Abs_Entity*> gObjects;
 public:
-    CompoundEntity();
+    CompoundEntity() {};
     ~CompoundEntity();
     void addEntity(Abs_Entity* ae); //Añadir entidad al compound
 

@@ -494,15 +494,16 @@ Mesh* Mesh::generateWing(GLdouble width, GLdouble height) {
 
 	GLdouble x = width / 2;
 	GLdouble y = height / 2;
+	GLdouble z = 0.4 * y;
 
-	mesh->vVertices.emplace_back(-x, y, -0.2 * y);
-	mesh->vVertices.emplace_back(x, y, -0.2 * y);
+	mesh->vVertices.emplace_back(-x, y, -z);
+	mesh->vVertices.emplace_back(x, y, -z);
 	mesh->vVertices.emplace_back(-x, y/3, 0);
 	mesh->vVertices.emplace_back(x, y/3, 0);
 	mesh->vVertices.emplace_back(-x, -y/3, 0);
 	mesh->vVertices.emplace_back(x, -y/3, 0);
-	mesh->vVertices.emplace_back(-x, -y, -0.2 * y);
-	mesh->vVertices.emplace_back(x, -y, -0.2 * y);
+	mesh->vVertices.emplace_back(-x, -y, -z);
+	mesh->vVertices.emplace_back(x, -y, -z);
 
 
 	mesh->vTexCoords.emplace_back(0, 0);

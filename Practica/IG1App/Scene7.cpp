@@ -3,8 +3,6 @@
 #include "Sphere.h"
 #include "CompoundEntity.h"
 #include "AdvancedTIE.h"
-#include "Disk.h"
-#include "Cone.h"
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 

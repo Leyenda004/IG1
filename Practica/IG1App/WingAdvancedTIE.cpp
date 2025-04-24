@@ -9,7 +9,7 @@ using namespace glm;
 
 WingAdvancedTIE::WingAdvancedTIE(GLdouble length, std::string mTextureOut)
 {
-	mMesh = Mesh::generateWing(length / 2, length);
+	mMesh = Mesh::generateWing(length / 1.5f, length / 1.5f);
 	
 	mShader = Shader::get("texture");
 
