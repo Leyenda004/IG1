@@ -1,11 +1,13 @@
 #include "ColorMaterialEntity.h"
+#include "Material.h"
 
 #include <iostream>
 using namespace glm;
 
-ColorMaterialEntity::ColorMaterialEntity() : SingleColorEntity({0.0f,1.0f,0.0f,1.0f}) {
+ColorMaterialEntity::ColorMaterialEntity(vec4 color_) : EntityWithMaterial({ 0.0f,1.0f,0.0f,1.0f }) {
 	mShader =       Shader::get("simple_light"); //Usamos el shader simple_light
     mShaderAux =    Shader::get("normals");
+    setMaterial(Material(color))
 }
 
 void ColorMaterialEntity::render(mat4 const& modelViewMat) const {

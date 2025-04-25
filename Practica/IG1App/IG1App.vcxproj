@@ -79,6 +79,7 @@
     <ClInclude Include="Cube.h" />
     <ClInclude Include="Disk.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="EntityWithMaterial.h" />
     <ClInclude Include="EntityWithTexture.h" />
     <ClInclude Include="GlassParapet.h" />
     <ClInclude Include="Grass.h" />
@@ -105,6 +106,7 @@
     <ClInclude Include="Scene6.h" />
     <ClInclude Include="Scene7.h" />
     <ClInclude Include="Scene8.h" />
+    <ClInclude Include="Scene9.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="SingleColorEntity.h" />
     <ClInclude Include="Sphere.h" />
@@ -125,6 +127,7 @@
     <ClCompile Include="Cube.cpp" />
     <ClCompile Include="Disk.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="EntityWithMaterial.cpp" />
     <ClCompile Include="EntityWithTexture.cpp" />
     <ClCompile Include="GlassParapet.cpp" />
     <ClCompile Include="Grass.cpp" />
@@ -152,6 +155,7 @@
     <ClCompile Include="Scene6.cpp" />
     <ClCompile Include="Scene7.cpp" />
     <ClCompile Include="Scene8.cpp" />
+    <ClCompile Include="Scene9.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="SingleColorEntity.cpp" />
     <ClCompile Include="Sphere.cpp" />

@@ -1,8 +1,10 @@
 #pragma once
 #include "SingleColorEntity.h"
+#include "EntityWithMaterial.h"
 #include "Shader.h"
 class ColorMaterialEntity :
-    public SingleColorEntity
+	//public SingleColorEntity
+    public EntityWithMaterial
 {
 public:
     ColorMaterialEntity();

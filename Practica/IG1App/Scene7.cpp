@@ -30,9 +30,9 @@ void Scene7::init()
 	CompoundEntity* NodeAuxRot = new CompoundEntity();
 
 	// Rotación con el nodo fantasma/auxiliar
-	mat4 TIErot = rotate(mat4(1.0f), radians(90.0f), vec3(0.f, 1.f, 0.f));
-	NodeAuxRot->setModelMat(NodeAuxRot->modelMat() * TIErot);
-	Node->addEntity(NodeAuxRot);
+	//mat4 TIErot = rotate(mat4(1.0f), radians(90.0f), vec3(0.f, 1.f, 0.f));
+	//NodeAuxRot->setModelMat(NodeAuxRot->modelMat() * TIErot);
+	//Node->addEntity(NodeAuxRot);
 
 	// Creación y colocación del TIE
 	AdvancedTIE* FighterTIE = new AdvancedTIE();
