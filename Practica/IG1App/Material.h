@@ -20,6 +20,8 @@ public:
 
 	void setCopper();
 
+	glm::vec3 getAmbient();
+
 protected:
 	// Coeficientes de reflexión
 	glm::vec3 ambient = {0.2, 0.2, 0.2};
@@ -51,6 +53,12 @@ inline void
 Material::setExp(GLfloat exp)
 {
 	expF = exp;
+}
+
+inline glm::vec3
+Material::getAmbient()
+{
+	return this->ambient;
 }
 
 #endif //_H_Material_H_

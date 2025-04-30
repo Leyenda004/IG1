@@ -25,12 +25,12 @@ void Scene8::init()
 
 	// Cabeza
 	Sphere* head = new Sphere(100.0f, 40, 40);
-	head->setColor({ 1, 0.5f, 0, 1 });
+	head->setMaterial(new Material({ 1, 0.5f, 0 }));
 	Farmer->addEntity(head);
 
 	// Ojo izquierdo
 	Cone* coneA = new Cone(20, 0, 10);
-	coneA->setColor({ 0, 0.60f, 0.6f, 1.0f });
+	coneA->setMaterial(new Material({ 0, 0.60f, 0.6f }));
 	mat4 rotconeA = rotate(coneA->modelMat(), radians(-90.0f), vec3(1.0f, 0.0f, 0.0f));
 	mat4 trasconeA = translate(mat4(1), vec3(-30.0f, 30.0f, 95));
 	coneA->setModelMat(trasconeA * rotconeA);
@@ -38,7 +38,7 @@ void Scene8::init()
 
 	// Ojo derecho
 	Cone* coneB = new Cone(20, 0, 10);
-	coneB->setColor({ 0, 0, 1, 1.0f });
+	coneB->setMaterial(new Material({ 0, 0, 1 }));
 	mat4 rotconeB = rotate(coneB->modelMat(), radians(-90.0f), vec3(1.0f, 0.0f, 0.0f));
 	mat4 trasconeB = translate(mat4(1), vec3(30.0f, 30.0f, 95));
 	coneB->setModelMat(trasconeB * rotconeB);
@@ -46,14 +46,14 @@ void Scene8::init()
 
 	// Disco cabeza
 	Disk* disk = new Disk(100.0f, 00.0f);
-	disk->setColor({ 1, 0, 0, 1.0f });
+	disk->setMaterial(new Material({ 1, 0, 0 }));
 	mat4 trasDisk = translate(disk->modelMat(), vec3(0.0f, 75.0f, 0.0f));
 	disk->setModelMat(trasDisk);
 	Farmer->addEntity(disk);
 
 	// Disco boca (diskMouth)
 	Disk* diskM = new Disk(80, 0, 30, 30, std::numbers::pi);
-	diskM->setColor({ 0, 1, 0, 1.0f });
+	diskM->setMaterial(new Material({ 0, 1, 0 }));
 	mat4 rotDiskM = rotate(mat4(1), radians(90.0f), vec3(1.0f, 0.0f, 0.0f));
 	mat4 trasDiskM = translate(mat4(1), vec3(0, 0, 70));
 	diskM->setModelMat(trasDiskM * rotDiskM);

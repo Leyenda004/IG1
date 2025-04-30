@@ -4,10 +4,9 @@
 #include <iostream>
 using namespace glm;
 
-ColorMaterialEntity::ColorMaterialEntity(vec4 color_) : EntityWithMaterial({ 0.0f,1.0f,0.0f,1.0f }) {
+ColorMaterialEntity::ColorMaterialEntity() : EntityWithMaterial() {
 	mShader =       Shader::get("simple_light"); //Usamos el shader simple_light
     mShaderAux =    Shader::get("normals");
-    setMaterial(Material(color))
 }
 
 void ColorMaterialEntity::render(mat4 const& modelViewMat) const {
@@ -17,7 +16,7 @@ void ColorMaterialEntity::render(mat4 const& modelViewMat) const {
         // usamos el shader simple_light
         mShader->use();
         mShader->setUniform("modelView",aMat);
-        mShader->setUniform("color", (vec4)color()); //Necesitamos cargar el color de SingleColorEntity
+        mShader->setUniform("color", { 0.0f,1.0f,0.0f,1.0f }); //Necesitamos cargar el color de SingleColorEntity
         upload(aMat);
         mMesh->render(); //Renderizamos la forma con color e iluminacion
 
