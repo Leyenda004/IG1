@@ -16,7 +16,8 @@ void ColorMaterialEntity::render(mat4 const& modelViewMat) const {
         // usamos el shader simple_light
         mShader->use();
         mShader->setUniform("modelView",aMat);
-        mShader->setUniform("color", { 0.0f,1.0f,0.0f,1.0f }); //Necesitamos cargar el color de SingleColorEntity
+        mShader->setUniform("color", glm::vec4(mMaterial->getAmbient()[0], mMaterial->getAmbient()[1], mMaterial->getAmbient()[2], 1.0f)); //Necesitamos cargar el color de SingleColorEntity
+		mMaterial->upload(*mShader);
         upload(aMat);
         mMesh->render(); //Renderizamos la forma con color e iluminacion
 
