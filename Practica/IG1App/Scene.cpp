@@ -15,13 +15,39 @@ using namespace glm;
 void
 Scene::init()
 {
-	//setGL(); // OpenGL settings
+	setGL(); // OpenGL settings
 
 	// allocate memory and load resources
 	// Lights
 	// Textures
 
 	// Graphics objects (entities) of the scene
+
+	//En camera.cpp
+	//Shader* lightShader = Shader::get("simple_light");
+	//lightShader->use();
+	//lightShader->setUniform("lightDir", vec4(normalize(vec3(mViewMat * vec4(-1, -1, -1, 0))), 0.0f));
+
+	//FUNCIONA
+	DirLight* dirLight = new DirLight(0); //Luz direccional
+	dirLight->setEnabled(true); //Activamos la luz direccional
+
+	dirLight->setAmb({ 0.25f, 0.25f, 0.25f });
+	dirLight->setDiff({ 0.6f, 0.6f, 0.6f });
+	dirLight->setSpec({ 0.0f, 0.2f, 0.0f });
+
+	//Se hace por defecto
+	//dirLight->setDirection({ -1.0f, -1.0f, -1.0f });
+
+	//Aplicamos el shader de simple_light como lo teniamos en camera.cpp
+	lightShader = Shader::get("simple_light");
+	if (lightShader) {
+		lightShader->use();
+		lightShader->setUniform("lightDir", vec4(normalize(vec3(-1.0f, -1.0f, -1.0f)), 0.0f));
+	}
+
+	gLights.push_back(dirLight); //Guardamos la luz direccional en el vector de luces
+	//En render cargamos las luces con upload
 }
 
 Scene::~Scene()
@@ -79,10 +105,23 @@ Scene::resetGL()
 	//glDisable(GL_TEXTURE_2D);	// disable textures
 }
 
+void Scene::uploadLights(Camera const& cam) const
+{
+	//upload a las luces
+	for (Light* l : gLights) 
+		if (lightShader != nullptr) {
+			l->upload(*lightShader, cam.viewMat());
+		}
+}
+
 void
 Scene::render(Camera const& cam) const
 {
 	cam.upload();
+
+	//Cargamos las luces antes de renderizar objetos opacos y translucidos
+	
+	uploadLights(cam);
 
 	for (Abs_Entity* el : gObjects) //renderizamos los objetos opacos
 		el->render(cam.viewMat());
@@ -94,6 +133,7 @@ Scene::render(Camera const& cam) const
 
 void
 Scene::update() {
+
 	for (Abs_Entity* el : gObjects) { //updateamos los objetos opacos
 		el->update();
 	}

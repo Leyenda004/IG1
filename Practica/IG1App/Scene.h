@@ -8,6 +8,7 @@
 #include "Entity.h"
 
 #include "Texture.h"
+#include "Light.h"
 
 #include <vector>
 
@@ -35,6 +36,8 @@ public:
 
 	virtual bool handleKey(unsigned int key) { return false; };
 
+	void uploadLights(Camera const& cam) const;
+
 protected:
 	void destroy();
 	void setGL();
@@ -46,6 +49,10 @@ protected:
 	//EDITABLE
 
 	std::vector<Texture*> gTextures;
+	std::vector<Light*> gLights;
+
+	Shader* lightShader = nullptr; // Shader for lights
+	//DirLight* dirLight = new DirLight(0); //Luz direccional
 };
 
 #endif //_H_Scene_H_
