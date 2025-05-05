@@ -21,6 +21,7 @@ Light::~Light()
 void Light::upload(Shader& shader, glm::mat4 const& modelViewMat) const
 {
 	// Transfer light properties to the GPU
+	shader.use();
 	shader.setUniform(lightID + ".enabled", bEnabled);
 	shader.setUniform(lightID + ".ambient", ambient);
 	shader.setUniform(lightID + ".diffuse", diffuse);

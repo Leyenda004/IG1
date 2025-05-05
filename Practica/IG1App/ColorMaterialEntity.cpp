@@ -5,7 +5,7 @@
 using namespace glm;
 
 ColorMaterialEntity::ColorMaterialEntity() : EntityWithMaterial() {
-	mShader =       Shader::get("simple_light"); //Usamos el shader simple_light
+	mShader =       Shader::get("light"); //Usamos el shader light, en vez de simple_light
     mShaderAux =    Shader::get("normals");
 }
 

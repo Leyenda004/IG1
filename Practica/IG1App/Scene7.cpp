@@ -16,6 +16,8 @@ void Scene7::init()
 	// Lights
 	// Textures
 
+	addLights();
+
 	// Graphics objects (entities) of the scene
 	gObjects.push_back(new RGBAxes(400.0f));
 

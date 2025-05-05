@@ -23,30 +23,32 @@ Scene::init()
 
 	// Graphics objects (entities) of the scene
 
+	//IDEAS DE IMPLEMENTACION DE LUCES, QUITAR PARA ENTREGA
+
 	//En camera.cpp
 	//Shader* lightShader = Shader::get("simple_light");
 	//lightShader->use();
 	//lightShader->setUniform("lightDir", vec4(normalize(vec3(mViewMat * vec4(-1, -1, -1, 0))), 0.0f));
 
 	//FUNCIONA
-	DirLight* dirLight = new DirLight(0); //Luz direccional
-	dirLight->setEnabled(true); //Activamos la luz direccional
-
-	dirLight->setAmb({ 0.25f, 0.25f, 0.25f });
-	dirLight->setDiff({ 0.6f, 0.6f, 0.6f });
-	dirLight->setSpec({ 0.0f, 0.2f, 0.0f });
+	//DirLight* dirLight = new DirLight(0); //Luz direccional
+	//dirLight->setEnabled(true); //Activamos la luz direccional
+	//dirLight->setAmb({ 0.25f, 0.25f, 0.25f });
+	//dirLight->setDiff({ 0.6f, 0.6f, 0.6f });
+	//dirLight->setSpec({ 0.0f, 0.2f, 0.0f });
 
 	//Se hace por defecto
 	//dirLight->setDirection({ -1.0f, -1.0f, -1.0f });
 
 	//Aplicamos el shader de simple_light como lo teniamos en camera.cpp
-	lightShader = Shader::get("simple_light");
-	if (lightShader) {
-		lightShader->use();
-		lightShader->setUniform("lightDir", vec4(normalize(vec3(-1.0f, -1.0f, -1.0f)), 0.0f));
-	}
-
-	gLights.push_back(dirLight); //Guardamos la luz direccional en el vector de luces
+	//lightShader = Shader::get("light");
+	//if (lightShader) {
+	//lightShader->use();
+	//	lightShader->setUniform("lightDir", vec4(normalize(vec3(-1.0f, -1.0f, -1.0f)), 0.0f));
+	//}
+	
+	//lightShader = Shader::get("light");
+	//gLights.push_back(dirLight); //Guardamos la luz direccional en el vector de luces
 	//En render cargamos las luces con upload
 }
 
@@ -107,11 +109,27 @@ Scene::resetGL()
 
 void Scene::uploadLights(Camera const& cam) const
 {
+	Shader* lightShader = Shader::get("light");
 	//upload a las luces
 	for (Light* l : gLights) 
 		if (lightShader != nullptr) {
-			l->upload(*lightShader, cam.viewMat());
+			if (l->enabled()) l->upload(*lightShader, cam.viewMat());
 		}
+}
+
+void Scene::addLights()
+{
+	DirLight* dirLight = new DirLight(0); //Luz direccional ///El parametro es una id única, cuidado
+	dirLight->setEnabled(true); //Activamos la luz direccional
+	dirLight->setAmb({ 0.25f, 0.25f, 0.25f });
+	dirLight->setDiff({ 0.6f, 0.6f, 0.6f });
+	dirLight->setSpec({ 0.0f, 0.2f, 0.0f });
+	//Se hace por defecto
+	dirLight->setDirection({ -1.0f, -1.0f, -1.0f });
+
+	gLights.push_back(dirLight); 
+
+
 }
 
 void

@@ -6,6 +6,8 @@ void Scene5::init()
 {
 	setGL(); // OpenGL settings
 
+	addLights();
+
 	// allocate memory and load resources
 	// Lights
 	// Textures

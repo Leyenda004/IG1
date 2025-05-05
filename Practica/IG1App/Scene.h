@@ -37,6 +37,7 @@ public:
 	virtual bool handleKey(unsigned int key) { return false; };
 
 	void uploadLights(Camera const& cam) const;
+	virtual void addLights();
 
 protected:
 	void destroy();
@@ -52,7 +53,6 @@ protected:
 	std::vector<Light*> gLights;
 
 	Shader* lightShader = nullptr; // Shader for lights
-	//DirLight* dirLight = new DirLight(0); //Luz direccional
 };
 
 #endif //_H_Scene_H_
