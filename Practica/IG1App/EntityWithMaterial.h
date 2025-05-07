@@ -6,7 +6,7 @@ class EntityWithMaterial :
 {
 public:
 	EntityWithMaterial(glm::vec3 color = glm::vec3{ 0.0f, 1.0f, 0.0f });
-	~EntityWithMaterial() {};
+	~EntityWithMaterial() { delete mMaterial; };
 	void setMaterial(Material* material) { mMaterial = material; }
 	Material* getMaterial() const { return mMaterial; }
 protected:

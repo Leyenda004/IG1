@@ -62,10 +62,15 @@ void
 Scene::destroy()
 { // release memory and resources
 
-	for (Abs_Entity* el : gObjects) //delete a los objetos opacos
-		delete el;
-	for (Abs_Entity* el : gObjectsTranslucid) //delete a los objetos translucidos
-		delete el;
+	for (Abs_Entity* el : gObjects) delete el; //delete a los objetos opacos
+
+	for (Abs_Entity* el : gObjectsTranslucid) delete el; //delete a los objetos translucidos
+	
+	// for (Texture* t : gTextures) delete t; //delete a las texturas
+
+	for (Light* l : gLights) delete l; //delete a las luces
+
+	for (Material* m : gMaterials) delete m; //delete a los materiales
 
 	gObjects.clear(); //Vaciando el vector de objetos opacos
 	gObjectsTranslucid.clear(); //Vaciando el vector de objetos translucidos

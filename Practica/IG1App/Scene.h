@@ -9,6 +9,7 @@
 
 #include "Texture.h"
 #include "Light.h"
+#include "Material.h"
 
 #include <vector>
 
@@ -49,10 +50,9 @@ protected:
 
 	//EDITABLE
 
-	std::vector<Texture*> gTextures;
+	// std::vector<Texture*> gTextures; // No se usa
 	std::vector<Light*> gLights;
-
-	Shader* lightShader = nullptr; // Shader for lights
+	std::vector<Material*> gMaterials; // No se usa
 };
 
 #endif //_H_Scene_H_
