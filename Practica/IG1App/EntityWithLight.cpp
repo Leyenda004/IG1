@@ -8,7 +8,6 @@ EntityWithLight::EntityWithLight(SpotLight* light) : mLight(light)
 {
     mMesh = Mesh::generateCube(0.1f);
     mLight->setEnabled(true);
-    // lightSphere->setMaterial(new Material({ 1.0f, 1.0f, 1.0f }));
 }
 
 void EntityWithLight::update()

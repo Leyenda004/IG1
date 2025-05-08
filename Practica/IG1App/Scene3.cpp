@@ -45,7 +45,7 @@ Scene3::init() {
 
 	//SUELO
 	Ground* ground = new Ground();
-	Texture* tex = new Texture();
+	Texture* tex = new Texture(); //??
 	tex->load("../assets/images/baldosaC.png", 255);
 	ground->setTexture(tex);
 	gObjects.push_back(ground);

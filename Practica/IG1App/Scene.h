@@ -52,7 +52,7 @@ protected:
 
 	// std::vector<Texture*> gTextures; // No se usa
 	std::vector<Light*> gLights;
-	std::vector<Material*> gMaterials; // No se usa
+	std::vector<Material*> gMaterials;
 };
 
 #endif //_H_Scene_H_

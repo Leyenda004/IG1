@@ -24,7 +24,8 @@ void Scene9::init()
 	Sphere* tat1 = new Sphere(100.0f, 40, 40);
 	Material* goldMaterial = new Material({ 1, 1, 0 });
 	goldMaterial->setGold();
-	tat1->setMaterial(new Material({ 1, 1, 0 }));
+	gMaterials.push_back(goldMaterial);
+	tat1->setMaterial(goldMaterial);
 	tat1->setModelMat(translate(mat4(1), vec3(-150, 0, 0)));
 	gObjects.push_back(tat1);
 
@@ -32,6 +33,7 @@ void Scene9::init()
 	//Copper material, asignamos los valores directamente
 	Material* copperMaterial = new Material({ 1, 1, 0 });
 	copperMaterial->setCopper();
+	gMaterials.push_back(copperMaterial);
 	tat2->setMaterial(copperMaterial);
 	tat2->setModelMat(translate(mat4(1), vec3(150, 0, 0)));
 	gObjects.push_back(tat2);

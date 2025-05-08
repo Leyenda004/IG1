@@ -65,7 +65,7 @@ void IndexMesh::buildNormalVectors()
 		const vec3& v1 = vVertices[i1];
 		const vec3& v2 = vVertices[i2];
 
-		//!!!!!!!!! REVISAR
+		//!! REVISAR
 		//Calculamos la normal del triangulo a partir de los vertices
 		vec3 normal = normalize(cross(v1 - v0, v2 - v0)); //Signo menos por sentido antihorario y revolución antihoraria
 		//Normalize seria positivo respecto a las diapositivas

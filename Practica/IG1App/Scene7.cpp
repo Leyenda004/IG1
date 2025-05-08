@@ -26,14 +26,16 @@ void Scene7::init()
 
 	// Planeta a la escena
 	Sphere* Tatooine = new Sphere(200.0f, 40, 40);
-	Tatooine->setMaterial(new Material({1.0f,0.9f,0.0f})); //255,233,0
+	Material* tatooineMat = new Material({ 1, 0.9f, 0 });
+	gMaterials.push_back(tatooineMat);
+	Tatooine->setMaterial(tatooineMat); //255,233,0
 	gObjects.push_back(Tatooine);
 
 	// Entidad compuesta
 	Node = new CompoundEntity();
-	// Nodo auxiliar
-	CompoundEntity* NodeAuxRot = new CompoundEntity();
 
+	// Nodo auxiliar
+	//CompoundEntity* NodeAuxRot = new CompoundEntity();
 	// Rotaci�n con el nodo fantasma/auxiliar
 	//mat4 TIErot = rotate(mat4(1.0f), radians(90.0f), vec3(0.f, 1.f, 0.f));
 	//NodeAuxRot->setModelMat(NodeAuxRot->modelMat() * TIErot);
