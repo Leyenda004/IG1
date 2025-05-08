@@ -63,15 +63,15 @@ bool Scene7::handleKey(unsigned int key)
 		break;
 	case 'r':
 		FighterTIE->getFoco()->setEnabled(!FighterTIE->getFoco()->enabled());
-		std::cout << "Foco " << FighterTIE->getFoco()->enabled() << std::endl;
+		// std::cout << "Foco " << FighterTIE->getFoco()->enabled() << std::endl;
 		break;
 	case 't':
 		posLight->setEnabled(!posLight->enabled());
-		std::cout << "PosLight " << posLight->enabled() << std::endl;
+		// std::cout << "PosLight " << posLight->enabled() << std::endl;
 		break;
 	case 'y':
 		spotLight->setEnabled(!spotLight->enabled());
-		std::cout << "SpotLight " << spotLight->enabled() << std::endl;
+		// std::cout << "SpotLight " << spotLight->enabled() << std::endl;
 		break;
 	default:
 		needRedisplay = false;

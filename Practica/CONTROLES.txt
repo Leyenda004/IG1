@@ -30,3 +30,6 @@ OTROS
 ESCENA 7
 - Rotar TIE: h
 - Orbitar TIE: g
+- Foco TIE: r
+- posLight: t
+- spotLight: y
