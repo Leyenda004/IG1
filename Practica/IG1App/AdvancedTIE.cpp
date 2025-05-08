@@ -1,8 +1,5 @@
 #include "AdvancedTIE.h"
 
-#include "Light.h"
-#include "Material.h"
-
 #include "Sphere.h"
 #include "Disk.h"
 #include "Cone.h"
@@ -16,7 +13,7 @@ using namespace glm;
 AdvancedTIE::AdvancedTIE()
 {
 	// Material del TIE
-	mMat = new Material({ 0.0f,0.25f,0.41f }); //(0,65,106)
+	mMat = Material({ 0.0f,0.25f,0.41f }); //(0,65,106)
 
 	// Esfera central
 	//Radio, paralelos, meridianos

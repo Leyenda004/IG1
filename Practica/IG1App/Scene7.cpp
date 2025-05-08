@@ -26,7 +26,7 @@ void Scene7::init()
 
 	// Planeta a la escena
 	Sphere* Tatooine = new Sphere(200.0f, 40, 40);
-	Material* tatooineMat = new Material({ 1, 0.9f, 0 });
+	Material tatooineMat = Material({ 1, 0.9f, 0 });
 	gMaterials.push_back(tatooineMat);
 	Tatooine->setMaterial(tatooineMat); //255,233,0
 	gObjects.push_back(Tatooine);

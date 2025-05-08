@@ -14,5 +14,6 @@ public:
 private:
     inline static bool mShowNormals = false;
     Shader* mShaderAux; // shader adicional para normales
+    glm::vec3 colorDefecto;
 };
 

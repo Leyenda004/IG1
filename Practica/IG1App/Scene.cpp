@@ -70,7 +70,7 @@ Scene::destroy()
 
 	for (Light* l : gLights) delete l; //delete a las luces
 
-	for (Material* m : gMaterials) delete m; //delete a los materiales
+	// for (Material m : gMaterials) delete m; //delete a los materiales
 
 	gObjects.clear(); //Vaciando el vector de objetos opacos
 	gObjectsTranslucid.clear(); //Vaciando el vector de objetos translucidos

@@ -5,12 +5,12 @@ class EntityWithMaterial :
     public Abs_Entity
 {
 public:
-	EntityWithMaterial(glm::vec3 color = glm::vec3{ 0.0f, 1.0f, 0.0f }) { mMaterial = new Material(color); }
-	~EntityWithMaterial() { /*delete mMaterial;*/ };
-	void setMaterial(Material* material) {  if (mMaterial != nullptr) delete mMaterial; mMaterial = material; }
-	Material* getMaterial() const { return mMaterial; }
+	EntityWithMaterial(glm::vec3 color = glm::vec3{ 0.0f, 1.0f, 0.0f }) { mMaterial = Material(color); }
+	~EntityWithMaterial() {};
+	void setMaterial(const Material& material) { mMaterial = material; }
+	Material getMaterial() const { return mMaterial; }
 protected:
-	Material* mMaterial;
+	Material mMaterial;
 };
 
 
@@ -26,5 +26,5 @@ protected:
  //	Material* getMaterial() const { return mMaterial; }
  //protected:
  //	glm::vec3 colorDefecto = { 0.0f, 1.0f, 0.0f };
- //	Material* mMaterial = new Material(colorDefecto);
+ //	Material* mMaterial = Material(colorDefecto);
  //};

@@ -27,14 +27,14 @@ void Scene8::init()
 
 	// Cabeza
 	Sphere* head = new Sphere(100.0f, 40, 40);
-	Material* headMat = new Material({ 1, 0.5f, 0 });
+	Material headMat = Material({ 1, 0.5f, 0 });
 	gMaterials.push_back(headMat);
 	head->setMaterial(headMat);
 	Farmer->addEntity(head);
 
 	// Ojo izquierdo
 	Cone* coneA = new Cone(20, 0, 10);
-	Material* coneAMat = new Material({ 0, 0.6f, 0.6f });
+	Material coneAMat = Material({ 0, 0.6f, 0.6f });
 	gMaterials.push_back(coneAMat);
 	coneA->setMaterial(coneAMat);
 	mat4 rotconeA = rotate(coneA->modelMat(), radians(-90.0f), vec3(1.0f, 0.0f, 0.0f));
@@ -44,7 +44,7 @@ void Scene8::init()
 
 	// Ojo derecho
 	Cone* coneB = new Cone(20, 0, 10);
-	Material* coneBMat = new Material({ 0, 0.6f, 0.6f });
+	Material coneBMat = Material({ 0, 0.6f, 0.6f });
 	gMaterials.push_back(coneBMat);
 	coneB->setMaterial(coneBMat);
 	mat4 rotconeB = rotate(coneB->modelMat(), radians(-90.0f), vec3(1.0f, 0.0f, 0.0f));
@@ -54,7 +54,7 @@ void Scene8::init()
 
 	// Disco cabeza
 	Disk* disk = new Disk(100.0f, 00.0f);
-	Material* diskMat = new Material({ 1, 0, 0 });
+	Material diskMat = Material({ 1, 0, 0 });
 	gMaterials.push_back(diskMat);
 	disk->setMaterial(diskMat);
 	mat4 trasDisk = translate(disk->modelMat(), vec3(0.0f, 75.0f, 0.0f));
@@ -63,7 +63,7 @@ void Scene8::init()
 
 	// Disco boca (diskMouth)
 	Disk* diskM = new Disk(80, 0, 30, 30, std::numbers::pi);
-	Material* diskMouthMat = new Material({ 0, 1, 0 });
+	Material diskMouthMat = Material({ 0, 1, 0 });
 	gMaterials.push_back(diskMouthMat);
 	diskM->setMaterial(diskMouthMat);
 	mat4 rotDiskM = rotate(mat4(1), radians(90.0f), vec3(1.0f, 0.0f, 0.0f));
@@ -74,6 +74,6 @@ void Scene8::init()
 	// Farmer a escena
 	gObjects.push_back(Farmer);
 
-	// Lo giramos levemente 15º para que frontalmente se vea la perspectiva y los discos
+	// Lo giramos levemente 15ï¿½ para que frontalmente se vea la perspectiva y los discos
 	Farmer->setModelMat(rotate(Farmer->modelMat(), radians(15.0f), vec3{ 1.f, 0.f, 0.f }));
 }

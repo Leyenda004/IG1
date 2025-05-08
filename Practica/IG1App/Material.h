@@ -59,7 +59,7 @@ Material::setExp(GLfloat exp)
 inline glm::vec3
 Material::getAmbient()
 {
-	return this->ambient;
+	return ambient;
 }
 
 #endif //_H_Material_H_
