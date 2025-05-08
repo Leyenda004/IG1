@@ -4,6 +4,7 @@
 #include "Disk.h"
 #include "Cone.h"
 #include "WingAdvancedTIE.h"
+#include "Light.h"
 
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
@@ -60,4 +61,25 @@ AdvancedTIE::AdvancedTIE()
 	mat4 rotwingB = rotate(wingB->modelMat(), radians(90.0f), vec3(0.0f, 1.0f, 0.0f));
 	wingB->setModelMat(traswingB * rotwingB * wingB->modelMat());
 	addEntity(wingB);
+
+	// Foco
+	foco = new SpotLight({ 0, 0, 0 }, 1); 
+	foco->setEnabled(true);
+	// Componentes
+	foco->setAmb({ 0.25f, 0.25f, 0.25f });
+	foco->setDiff({ 0.6f, 0.6f, 0.6f });
+	foco->setSpec({ 0.0f, 0.2f, 0.0f });
+	// Transformaciones
+	//foco->setPosition({ 0.0f, -25.0f, 0.0f });
+	foco->setDirection({ 0, 0, 1 });
+	//foco->setCutoff(10.0f, 30.0f); // Angulo interno y externo
+	foco->setAttenuation(0.6f, 0.003f, 0.0f);
+
+	mShader = Shader::get("light");
+}
+
+void AdvancedTIE::render(glm::mat4 const& modelViewMat) const
+{
+	CompoundEntity::render(modelViewMat);
+	foco->upload(*mShader, modelViewMat * mModelMat);	
 }

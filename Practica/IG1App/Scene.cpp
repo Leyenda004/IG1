@@ -118,13 +118,13 @@ void Scene::uploadLights(Camera const& cam) const
 	//upload a las luces
 	for (Light* l : gLights) 
 		if (lightShader != nullptr) {
-			if (l->enabled()) l->upload(*lightShader, cam.viewMat());
+			l->upload(*lightShader, cam.viewMat());
 		}
 }
 
 void Scene::addLights()
 {
-	DirLight* dirLight = new DirLight(0); //Luz direccional ///El parametro es una id única, cuidado
+	DirLight* dirLight = new DirLight(0); //Luz direccional ///El parametro es una id ï¿½nica, cuidado
 	dirLight->setEnabled(true); //Activamos la luz direccional
 	dirLight->setAmb({ 0.25f, 0.25f, 0.25f });
 	dirLight->setDiff({ 0.6f, 0.6f, 0.6f });

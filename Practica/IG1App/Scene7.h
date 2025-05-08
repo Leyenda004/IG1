@@ -2,6 +2,7 @@
 #include "Scene.h"
 
 class CompoundEntity;
+class AdvancedTIE;
 
 class Scene7 :
     public Scene
@@ -14,11 +15,8 @@ public:
     void orbitTIE();
 private:
     CompoundEntity* Node;
-    
+	AdvancedTIE* FighterTIE = nullptr;
+
     PosLight* posLight = nullptr;
-    bool posLightOn = true;
     SpotLight* spotLight = nullptr;
-    bool spotLightOn = true;
-    SpotLight* foco = nullptr;
-    bool focoOn = true;
 };

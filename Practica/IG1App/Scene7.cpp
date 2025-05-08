@@ -40,15 +40,11 @@ void Scene7::init()
 	//Node->addEntity(NodeAuxRot);
 
 	// Creaci�n y colocaci�n del TIE
-	AdvancedTIE* FighterTIE = new AdvancedTIE();
+	FighterTIE = new AdvancedTIE();
 	mat4 TIEtras = translate(mat4(1.0f), vec3(0.0f, 1120.0f, 0.0f));
 	mat4 TIEscale = scale(mat4(1.0f), vec3(0.2f, 0.2f, 0.2f));
 	FighterTIE->setModelMat(FighterTIE->modelMat() * TIEscale * TIEtras);
 	Node->addEntity(FighterTIE);
-
-	EntityWithLight* FighterTIElight = new EntityWithLight(foco);
-	gLights.push_back(FighterTIElight->getLight());
-	Node->addEntity(FighterTIElight);
 
 	gObjects.push_back(Node);
 }
@@ -64,19 +60,16 @@ bool Scene7::handleKey(unsigned int key)
 		orbitTIE();
 		break;
 	case 'r':
-		focoOn = !focoOn;
-		std::cout << "Foco " << (focoOn ? "on" : "off") << std::endl;
-		foco->setEnabled(focoOn);
+		FighterTIE->getFoco()->setEnabled(!FighterTIE->getFoco()->enabled());
+		std::cout << "Foco " << FighterTIE->getFoco()->enabled() << std::endl;
 		break;
 	case 't':
-		posLightOn = !posLightOn;
-		std::cout << "PosLight " << (posLightOn ? "on" : "off") << std::endl;
-		posLight->setEnabled(posLightOn);
+		posLight->setEnabled(!posLight->enabled());
+		std::cout << "PosLight " << posLight->enabled() << std::endl;
 		break;
 	case 'y':
-		spotLightOn = !spotLightOn;
-		std::cout << "SpotLight " << (spotLightOn ? "on" : "off") << std::endl;
-		spotLight->setEnabled(spotLightOn);
+		spotLight->setEnabled(!spotLight->enabled());
+		std::cout << "SpotLight " << spotLight->enabled() << std::endl;
 		break;
 	default:
 		needRedisplay = false;
@@ -136,20 +129,4 @@ void Scene7::addLights()
 	spotLight->setAttenuation(0.6f, 0.003f, 0.0f); // Constante, linear, cuadratica (cuanto mas, menos se expande)
 	// Vector
 	gLights.push_back(spotLight);
-
-
-	// Foco
-	foco = new SpotLight({ 0, 0, 0 }, 1);
-	foco->setEnabled(false);
-	// Componentes
-	foco->setAmb({ 0.25f, 0.25f, 0.25f });
-	foco->setDiff({ 0.6f, 0.6f, 0.6f });
-	foco->setSpec({ 0.0f, 0.2f, 0.0f });
-	// Transformaciones
-	foco->setPosition({ 0.0f, 235, 0.0f });
-	foco->setDirection({ 0.0f, -1.0f, 0.0f });
-	//foco->setCutoff(10.0f, 30.0f); // Angulo interno y externo
-	foco->setAttenuation(0.6f, 0.003f, 0.0f);
-	// Vector
-	gLights.push_back(foco);
 }
