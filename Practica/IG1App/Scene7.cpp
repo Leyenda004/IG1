@@ -129,9 +129,9 @@ void Scene7::addLights()
 	spotLight->setDiff({ 0.6f, 0.6f, 0.6f });
 	spotLight->setSpec({ 0.0f, 0.2f, 0.0f });
 	// Transformaciones
-	spotLight->setPosition({ 175.0f, 175.0f, 175.0f }); // Izquierda y arriba
-	spotLight->setDirection({ -1.0f, -1.0f, -1.0f });
-	spotLight->setAttenuation(0.6f, 0.003f, 0.0f); // Constante, linear, cuadratica (cuanto mas, menos se expande)
+	spotLight->setPosition({ 0.0f, 0.0f, 210.0f }); // Izquierda
+	spotLight->setDirection({ 0.0f, -1.0f, -1.0f });
+	spotLight->setAttenuation(0.0f, 0.003f, 0.0f); // Constante, linear, cuadratica (cuanto mas, menos se expande)
 	// Vector
 	gLights.push_back(spotLight);
 }

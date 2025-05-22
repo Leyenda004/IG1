@@ -57,7 +57,7 @@ Camera::set2D()
 	mLook = {0, 0, 0}; 
 	mUp = {0, 1, 0}; 
 	mAng = -90;
-	mRadio = 300.0f;
+	mRadio = 500.0f;
 	setVM(); //Actualizamos matriz de vista con los nuevos parametros
 }
 
@@ -65,11 +65,33 @@ void
 Camera::set3D()
 {
 	mEye = {500, 500, 500};
-	mLook = {0, 10, 0};
-	mUp = {0, 1, 0};
-	mAng = 90;
-	mRadio = 300.0f;
+	mLook = {0, 0, 0};
+	mUp = {0, 0.5, 0};
+	mAng = -45;
+	mRadio = 500.0f;
 	setVM(); //Actualizamos matriz de vista con los nuevos parametros
+}
+
+void Camera::setCenital()
+{
+	mEye = { 0, 500, 0 }; //Nos situamos arriba de la escena
+	//Look - eye = n, sale negativo pero porque la camara esta en posicion negativa, como el set2D
+	mLook = { 0, 0, 0 };
+	mUp = { 0, 0, 1 };
+	mAng = 90;
+	mRadio = 500.0f;
+	setVM();
+}
+
+//ROTACION A PARTIR DE UN ANGULO CONCRETO
+void Camera::orbit(GLdouble incAng, GLdouble incY)
+{
+	mAng += incAng;
+	mEye.x = mLook.x + cos(radians(mAng)) * mRadio;
+	mEye.z = mLook.z - sin(radians(mAng)) * mRadio;
+	mEye.y += incY;
+	//mUp = { 0, 1, 0 };
+	setVM();
 }
 
 void
@@ -242,27 +264,5 @@ void Camera::rollReal(GLfloat cs)
 	//mLook = mEye + rotate(mLook - mEye, radians(double(-cs)), dvec3(mFront));
 	mUp = rotate(mUp, radians(double(-cs)), dvec3(mFront));
 	//rotar el up sobre el front
-	setVM();
-}
-
-//ROTACION A PARTIR DE UN ANGULO CONCRETO
-void Camera::orbit(GLdouble incAng, GLdouble incY)
-{
-	mAng += incAng;
-	mEye.x = mLook.x + cos(radians(mAng)) * mRadio;
-	mEye.z = mLook.z - sin(radians(mAng)) * mRadio;
-	mEye.y += incY;
-	//mUp = { 0, 1, 0 };
-	setVM();
-}
-
-void Camera::setCenital()
-{
-	mEye = { 0, 500, 0 }; //Nos situamos arriba de la escena
-	//Look - eye = n, sale negativo pero porque la camara esta en posicion negativa, como el set2D
-	mLook = { 0, 0, 0 }; 
-	mUp = { 0, 0, 1 };
-	mAng = 90;
-	mRadio = 300.0f;
 	setVM();
 }

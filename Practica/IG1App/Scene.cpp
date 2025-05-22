@@ -94,6 +94,10 @@ Scene::unload()
 
 	for (Abs_Entity* obj : gObjectsTranslucid) //unload a los objetos translucidos
 		obj->unload();
+
+	Shader* lightShader = Shader::get("light");
+	for (Light* l : gLights)
+		l->unload(*lightShader);
 }
 
 void
@@ -131,10 +135,8 @@ void Scene::addLights()
 	dirLight->setSpec({ 0.0f, 0.2f, 0.0f });
 	//Se hace por defecto
 	dirLight->setDirection({ -1.0f, -1.0f, -1.0f });
-
+	
 	gLights.push_back(dirLight); 
-
-
 }
 
 void

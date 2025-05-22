@@ -5,7 +5,4 @@ class Scene9 :
 {
 public:
     void init() override;
-    void addLights() override;
-private:
-    DirLight* dirLight = nullptr;
 };

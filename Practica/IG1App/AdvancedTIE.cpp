@@ -71,10 +71,11 @@ AdvancedTIE::AdvancedTIE()
 	foco->setAmb({ 0.25f, 0.25f, 0.25f });
 	foco->setDiff({ 0.6f, 0.6f, 0.6f });
 	foco->setSpec({ 0.0f, 0.2f, 0.0f });
+	foco->setPosition({ 0.0f, -105.0f, 0.0f });
 	// Transformaciones
-	foco->setDirection({ 0, 0, 1 });
+	foco->setDirection({ 0, -1, 0 });
 	//foco->setCutoff(10.0f, 30.0f); // Angulo interno y externo
-	foco->setAttenuation(0.6f, 0.003f, 0.0f);
+	foco->setAttenuation(0.2f, 0.003f, 0.0f);
 
 	mShader = Shader::get("light");
 }
