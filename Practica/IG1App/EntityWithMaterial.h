@@ -5,10 +5,10 @@ class EntityWithMaterial :
     public Abs_Entity
 {
 public:
-	EntityWithMaterial(glm::vec3 color = glm::vec3{ 0.0f, 1.0f, 0.0f }) { mMaterial = Material(color); }
+	EntityWithMaterial(glm::vec3 color = glm::vec3{ 0.0f, 1.0f, 0.0f });
 	~EntityWithMaterial() {};
-	void setMaterial(const Material& material) { mMaterial = material; }
-	Material getMaterial() const { return mMaterial; }
+	void setMaterial(const Material& material);
+	Material getMaterial() const;
 protected:
 	Material mMaterial;
 };

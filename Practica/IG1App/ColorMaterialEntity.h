@@ -10,7 +10,7 @@ public:
     ColorMaterialEntity();
     ~ColorMaterialEntity() {};
     void render(glm::mat4 const& modelViewMat) const override;
-    static void toggleShowNormals() { mShowNormals = !mShowNormals; }
+    static void toggleShowNormals();
 private:
     inline static bool mShowNormals = false;
     Shader* mShaderAux; // shader adicional para normales

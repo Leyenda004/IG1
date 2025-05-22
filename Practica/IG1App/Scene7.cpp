@@ -4,6 +4,8 @@
 #include "CompoundEntity.h"
 #include "AdvancedTIE.h"
 #include "EntityWithLight.h"
+#include "Light.h"
+#include "Material.h"
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
@@ -54,6 +56,7 @@ void Scene7::init()
 bool Scene7::handleKey(unsigned int key)
 {
 	bool needRedisplay = true;
+	SpotLight* FighterTIEFoco = FighterTIE->getFoco();
 	switch (key) {
 	case 'h':
 		rotateTIE();
@@ -62,7 +65,7 @@ bool Scene7::handleKey(unsigned int key)
 		orbitTIE();
 		break;
 	case 'r':
-		FighterTIE->getFoco()->setEnabled(!FighterTIE->getFoco()->enabled());
+		FighterTIEFoco->setEnabled(!FighterTIEFoco->enabled());
 		// std::cout << "Foco " << FighterTIE->getFoco()->enabled() << std::endl;
 		break;
 	case 't':
@@ -93,7 +96,7 @@ void Scene7::orbitTIE()
 void Scene7::addLights()
 {
 	// Directional light
-	DirLight* dirLight = new DirLight(0);
+	dirLight = new DirLight(0);
 	dirLight->setEnabled(false);
 	// Componentes
 	dirLight->setAmb({ 0.25f, 0.25f, 0.25f });

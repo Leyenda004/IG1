@@ -17,6 +17,7 @@ private:
     CompoundEntity* Node;
 	AdvancedTIE* FighterTIE = nullptr;
 
+    DirLight* dirLight = nullptr;
     PosLight* posLight = nullptr;
     SpotLight* spotLight = nullptr;
 };

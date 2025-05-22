@@ -30,3 +30,8 @@ void ColorMaterialEntity::render(mat4 const& modelViewMat) const {
         }
     }
 }
+
+void ColorMaterialEntity::toggleShowNormals()
+{
+    mShowNormals = !mShowNormals;
+}

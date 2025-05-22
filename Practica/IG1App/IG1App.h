@@ -99,7 +99,7 @@ protected:
 	//CALLBACKS DE RATON
 
 	// Callback
-	// Detecta los botones pulsados del ratón
+	// Detecta los botones pulsados del ratón, solo cuando se ha pulsado una tecla o boton de raton
 	static void s_mouse(GLFWwindow* win, int button, int action, int mods) 
 	{
 		if (action == GLFW_PRESS || action == GLFW_RELEASE) {

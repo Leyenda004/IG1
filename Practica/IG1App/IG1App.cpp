@@ -414,8 +414,8 @@ void IG1App::motion(int x, int y)
 	glm::dvec2 mp = { mMouseCoord[0] - x, mMouseCoord[1] - y }; //Usamos la nueva posicion
 	mMouseCoord = { x, y }; //Guardamos la nueva posicion para el proximo movimiento
 	//Boton izquierdo = 0, Boton derecho = 1
-	if (mMouseButt == 0) mCamera->orbit(mp.x * 0.05, mp.y); //Rotamos alrededor de la escena
-	else if (mMouseButt == 1) {
+	if (mMouseButt == GLFW_MOUSE_BUTTON_LEFT) mCamera->orbit(mp.x * 0.05, mp.y); //Rotamos alrededor de la escena
+	else if (mMouseButt == GLFW_MOUSE_BUTTON_RIGHT) {
 		mCamera->moveUD(-mp[1]); //Movimiento vertical de raton
 		mCamera->moveLR(mp[0]); //Movimiento horizontal del raton
 	}

@@ -39,3 +39,16 @@ void Scene9::init()
 	gObjects.push_back(tat2);
 
 }
+
+void Scene9::addLights() {
+	
+	dirLight = new DirLight(0); //Luz direccional ///El parametro es una id �nica, cuidado
+	dirLight->setEnabled(true); //Activamos la luz direccional
+	dirLight->setAmb({ 0.25f, 0.25f, 0.25f });
+	dirLight->setDiff({ 0.6f, 0.6f, 0.6f });
+	dirLight->setSpec({ 0.0f, 0.2f, 0.0f });
+	//Se hace por defecto
+	dirLight->setDirection({ -1.0f, -1.0f, -1.0f });
+	
+	gLights.push_back(dirLight);
+}
