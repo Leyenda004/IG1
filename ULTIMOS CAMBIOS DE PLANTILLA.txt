@@ -1,18 +1,6 @@
-P1
-	
-O Todo perfecto!
-
 P2
 
-O No se dibuja bien el fondo de la caja.
 - La imagen con la captura de pantalla sale invertida.
-O Para garantizar que se renderizan bien los objetos translúcidos, deberíais crear un vector de objetos transparentes, el cual se renderizase despues de los objetos opacos
-
-P3
-
-O el moveLR está justo al revés (la a es para la izda y la d para la derecha). También el UD.
-O Cuando movéis el ratón, teneis que comprobar que se ha cliqueado el botón. 
-O Además en el motion deberías utilizar las constantes GLFW_MOUSE_BUTTON_LEFT y GLFW_MOUSE_BUTTON_RIGHT
 
 P4
 
@@ -21,11 +9,6 @@ P4
 
 P5
 
-O Siguiendo vuestros comandos, las teclas tienen comportamientos anómalas. Se apaga la luz del TIE con la 'h', cuando debería ser la r. 
 - Es necesario pulsar dos veces para que haga caso. Al encender el foco de la escena, se enciende el foco de la nave.
-- La luz focal lo habéis colocado en otra posición. Debería apuntar al ecuador.
-O La escena de las esferas no tiene luz direccional.
-O No pongas código en los ficheros .h. Solo deberían ir declaración e inicializaciones de atributos.
 - ColorMaterialEntity no debería tener render propio, sino reutilizar el de EntityWithMaterial (que se queda con el dibujado de normales).
-O Nunca llaméis un método de un método. Por ejemplo: FighterTIE->getFoco()->setEnabled( ...
 - ColorMaterialEntity no necesita tener un atributo con el color.
